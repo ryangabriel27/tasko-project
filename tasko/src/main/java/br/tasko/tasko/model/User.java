@@ -27,6 +27,7 @@ public class User implements Serializable {
     private String cpf;
     private String telefone;
     private String email;
+    private String senha;
     private String tipo;
     private Date data_nasc;
     private String cep;
