@@ -23,13 +23,14 @@ body {
 }
 
 .button {
-    display: inline-block;
+    display: flex;
     padding: 15px 30px;
     border-radius: 5px;
     text-decoration: none;
     color: white;
     font-weight: bold;
     margin: 10px;
+    
 }
 
 .primary {
