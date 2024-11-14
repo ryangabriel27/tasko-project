@@ -52,3 +52,63 @@ nav {
 .nav-left a:hover, .nav-right a:hover {
     opacity: 0.7;
 }
+
+
+
+/* Estilos da seção de Categorias */
+.categoria-section {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+.categoria-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.categoria-header h2 {
+    font-size: 24px;
+    color: #333;
+}
+
+.busca-box {
+    display: flex;
+    align-items: center;
+}
+
+.busca-box input {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px 0 0 4px;
+    outline: none;
+}
+
+.busca-box button {
+    padding: 8px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+}
+
+/* Estilos dos Cards de Categorias */
+.categorias {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.card {
+    background-color: #f5f5f5;
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    font-size: 18px;
+    color: #333;
+    text-decoration: none;
+}
