@@ -10,9 +10,13 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity 
 @Table(name = "usuario") 
+@Getter
+@Setter
 public class User implements Serializable {
 
     @Id
@@ -33,22 +37,4 @@ public class User implements Serializable {
     @JoinColumn(name = "prestador_id", nullable = true)  // "nullable = true" torna a coluna opcional
     private Prestador prestador;
 
-
-
-    //Métodos
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
 }
