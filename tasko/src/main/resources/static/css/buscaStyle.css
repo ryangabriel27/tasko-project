@@ -55,7 +55,7 @@ nav {
 
 
 
-/* Estilos da seção de Categorias */
+/* Seção de Categorias */
 .categoria-section {
     max-width: 1200px;
     margin: 20px auto;
@@ -69,46 +69,87 @@ nav {
     margin-bottom: 20px;
 }
 
-.categoria-header h2 {
-    font-size: 24px;
-    color: #333;
-}
-
-.busca-box {
-    display: flex;
-    align-items: center;
-}
-
-.busca-box input {
+.busca-box input, .busca-box button {
     padding: 8px;
     border: 1px solid #ddd;
-    border-radius: 4px 0 0 4px;
-    outline: none;
+    border-radius: 4px;
 }
 
 .busca-box button {
-    padding: 8px;
     background-color: #333;
     color: white;
     border: none;
-    border-radius: 0 4px 4px 0;
     cursor: pointer;
 }
 
-/* Estilos dos Cards de Categorias */
+
+
+
+
+
+/* Seção de Categorias */
+.categoria-section {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+.categoria-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.busca-box input, .busca-box button {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.busca-box button {
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+/* Cards de Categorias */
 .categorias {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
 }
 
-.card {
+.card1, .card2, .card3 {
+    display: flex;
     background-color: #f5f5f5;
     padding: 20px;
-    text-align: center;
+    text-decoration: none;
+    color: #333;
     border-radius: 8px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    font-size: 18px;
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+/* Ícone e Texto em Coluna, Alinhados à Esquerda */
+.card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.card-content i {
+    font-size: 30px;
     color: #333;
-    text-decoration: none;
+    margin-bottom: 5px;
+}
+
+.card-text {
+    font-size: 18px;
+    font-weight: bold;
 }
