@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-TaskoApplication<tasko>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "br.tasko.tasko.TaskoApplication",
+            "projectName": "tasko",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
