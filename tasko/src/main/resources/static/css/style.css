@@ -1,0 +1,42 @@
+body {
+    background-color: #4B0082; /* Cor de fundo roxo */
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.container {
+    text-align: center;   
+
+}
+
+.logo img {
+    max-width: 300px; 
+    width: 100%;
+}
+
+.buttons {
+    margin-top: 20px;
+}
+
+.button {
+    display: inline-block;
+    padding: 15px 30px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    margin: 10px;
+}
+
+.primary {
+    background-color: #FFA500; /* Cor laranja */
+}
+
+.secondary {
+    background-color: transparent;
+    border: 2px solid white;
+}
