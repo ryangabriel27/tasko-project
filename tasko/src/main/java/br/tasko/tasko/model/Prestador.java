@@ -6,8 +6,7 @@ import java.util.List;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,15 +20,14 @@ public class Prestador implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @OneToOne
+    @JoinColumn(name = "usuario_id", referencedColumnName = "id") // Supomos que User tem uma coluna `id`
     private User usuario;
+
     private String descricaoServicos;
     private String categoriaServicos;
     private String cnpj;
     private String links;
-    private List<Avaliacao> avaliacoes;
     private int valorHora;
-    private List<Servico> meusServicos;
-
-    
 
 }
