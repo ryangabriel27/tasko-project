@@ -132,6 +132,26 @@ nav {
     transition: transform 0.2s;
 }
 
+.card1{
+    background-color: #F50035;
+}
+
+.card2{
+
+}
+
+.card3{
+
+}
+
+.card4{
+
+}
+
+.card5{
+    
+}
+
 .card:hover {
     transform: scale(1.05);
 }
