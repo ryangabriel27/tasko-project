@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Busca - Tasko</title>
+    <link rel="icon" type="image/png" th:href="@{/img/TkoWhite.png}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/css/headerStyle.css}">
+    <link rel="stylesheet" th:href="@{/css/inicioStyle.css}">
+</head>
+<body>
+
+<nav>
+    <!-- Navbar com ícones -->
+    <div class="nav-left">
+        <a href="/">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+    </div>
+    <div class="logo">
+        <img th:src="@{/img/TaskoWhite.png}" alt="Logo">
+    </div>
+    <div class="nav-right">
+        <a href="/busca">
+            <i class="fas fa-search"></i>
+            <span>Busca</span>
+        </a>
+        <a href="/perfil">
+            <i class="fas fa-user"></i>
+            <span>Perfil</span>
+        </a>
+    </div>
+</nav>
+
+<!-- Seção de Categorias -->
+<section class="categoria-section">
+    <div class="categoria-header">
+        <h2>Categoria</h2>
+        <div class="busca-box">
+            <input type="text" placeholder="Buscar...">
+            <button><i class="fas fa-search"></i></button>
+        </div>
+    </div>
+
+    <!-- Cards de Categorias clicáveis com ícones -->
+    <div class="categorias">
+        <a href="/categoria/1" class="card1">
+            <div class="card-content">
+                <i class="fas fa-book"></i>
+                <span class="card-text">Categoria 1</span>
+            </div>
+        </a>
+        <a href="/categoria/2" class="card2">
+            <div class="card-content">
+                <i class="fas fa-music"></i>
+                <span class="card-text">Categoria 2</span>
+            </div>
+        </a>
+        <a href="/categoria/3" class="card3">
+            <div class="card-content">
+                <i class="fas fa-film"></i>
+                <span class="card-text">Categoria 3</span>
+            </div>
+        </a>
+        <a href="/categoria/1" class="card1">
+            <div class="card-content">
+                <i class="fas fa-book"></i>
+                <span class="card-text">Categoria 1</span>
+            </div>
+        </a>
+        <a href="/categoria/2" class="card2">
+            <div class="card-content">
+                <i class="fas fa-music"></i>
+                <span class="card-text">Categoria 2</span>
+            </div>
+        </a>
+        <a href="/categoria/3" class="card3">
+            <div class="card-content">
+                <i class="fas fa-film"></i>
+                <span class="card-text">Categoria 3</span>
+            </div>
+        </a>
+        <a href="/categoria/1" class="card1">
+            <div class="card-content">
+                <i class="fas fa-book"></i>
+                <span class="card-text">Categoria 1</span>
+            </div>
+        </a>
+        <a href="/categoria/2" class="card2">
+            <div class="card-content">
+                <i class="fas fa-music"></i>
+                <span class="card-text">Categoria 2</span>
+            </div>
+        </a>
+        <a href="/categoria/3" class="card3">
+            <div class="card-content">
+                <i class="fas fa-film"></i>
+                <span class="card-text">Categoria 3</span>
+            </div>
+        </a>
+        <a href="/categoria/1" class="card1">
+            <div class="card-content">
+                <i class="fas fa-book"></i>
+                <span class="card-text">Categoria 1</span>
+            </div>
+        </a>
+        <a href="/categoria/2" class="card2">
+            <div class="card-content">
+                <i class="fas fa-music"></i>
+                <span class="card-text">Categoria 2</span>
+            </div>
+        </a>
+        <a href="/categoria/3" class="card3">
+            <div class="card-content">
+                <i class="fas fa-film"></i>
+                <span class="card-text">Categoria 3</span>
+            </div>
+        </a>
+    </div>
+</section>
+
+
+</body>
+</html>
