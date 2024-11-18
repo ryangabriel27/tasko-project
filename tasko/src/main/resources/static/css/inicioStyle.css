@@ -185,7 +185,10 @@ body{
     font-size: 22px;
 }
 
-.rating-carousel
+.profile-info img{
+    width: 67px;
+    height: 67px;
+}
 
 .carousel-card-content {
     margin-top: 10px;
@@ -212,4 +215,13 @@ body{
     padding: 10px;
     border-radius: 50%;
     cursor: pointer;
+}
+
+.carousel-card-button{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.carousel-card-button i{
+    color: #F50035;
 }
