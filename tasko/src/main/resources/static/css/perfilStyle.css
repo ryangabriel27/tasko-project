@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap');
+
 /* Resetando margin e padding para todos os elementos */
 * {
     margin: 0;
@@ -20,6 +22,7 @@ body {
     padding: 1em 5.2em;
     width: 100%;
     justify-content: space-between;
+    font-family: 'Figtree', sans-serif;
 }
 
 /* Informações do perfil (foto + descrição) */
@@ -42,6 +45,7 @@ body {
     display: flex;
     flex-direction: column;
     margin-right: 200px; /* Aumentando o espaço entre a descrição e a avaliação */
+    font-family: 'Figtree', sans-serif;
 }
 
 .username {
@@ -89,9 +93,10 @@ body {
 }
 
 .about-text {
-    font-size: 16px; /* Tamanho de fonte para o texto */
+    font-size: 19px; /* Tamanho de fonte para o texto */
     color: #555; /* Cor mais suave para o conteúdo */
     line-height: 1.6; /* Espaçamento entre linhas para facilitar a leitura */
+
 }
 /* Linha fina laranja */
 /* Linha fina laranja */
@@ -124,6 +129,7 @@ body {
     width: 100%; /* Ocupa toda a largura disponível */
     max-width: 800px; /* Limita a largura máxima */
     margin: 0 auto; /* Centraliza horizontalmente */
+    font-family: 'Figtree', sans-serif;
 }
 
 .work-title {
