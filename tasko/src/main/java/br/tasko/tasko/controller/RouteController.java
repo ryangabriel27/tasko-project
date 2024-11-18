@@ -35,4 +35,9 @@ public class RouteController {
         return "inicio";
     }
 
+    @GetMapping("/perfil")
+    public String perfil() {
+        return "perfil";
+    }
+    
 }
