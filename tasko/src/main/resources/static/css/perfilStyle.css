@@ -1,3 +1,149 @@
-body{
+/* Resetando margin e padding para todos os elementos */
+* {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos do body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+/* Estilos da seção de perfil (ficará abaixo da navbar) */
+.profile-section {
+    display: flex; /* Layout flexível para organizar os elementos */
+    flex-direction: row; /* Alinha os itens na horizontal */
+    align-items: center; /* Alinha verticalmente os itens */
+    margin-top: 20px;
+    padding: 1em 5.2em;
+    width: 100%;
+    justify-content: space-between;
+}
+
+/* Informações do perfil (foto + descrição) */
+.profile-info {
+    display: flex;
+    align-items: center;
+    flex: 1; /* Permite que essa seção ocupe a maior parte do espaço */
+    justify-content: flex-start; /* Mantém tudo à esquerda */
+}
+
+.profile-pic {
+    width: 200px; /* Aumentando a foto */
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover; /* Garante que a imagem se ajuste corretamente */
+    margin-right: 40px; /* Aumentando o espaço entre a foto e o nome/descrição */
+}
+
+.description {
+    display: flex;
+    flex-direction: column;
+    margin-right: 200px; /* Aumentando o espaço entre a descrição e a avaliação */
+}
+
+.username {
+    font-size: 40px;
+    font-weight: bold;
+    color: #333;
+}
+
+.bio {
+    font-size: 18px;
+    color: #777;
+    margin-top: 5px;
+}
+
+/* Estilos da avaliação (estrela e valor) */
+.rating {
+    display: flex;
+    align-items: center;
+}
+
+.star {
+    color: #FFD700; /* Cor dourada para a estrela */
+    font-size: 80px; /* Aumentando o tamanho da estrela */
+    margin-right: 10px;
+}
+
+.rating-value {
+    font-size: 30px;
+    color: #333;
+}
+
+/* Estilos da seção "Sobre Mim" */
+.about-me {
+    margin-top: 0px; /* Espaço superior */
+    padding: 80px; /* Padding para o conteúdo não encostar nas bordas */
+    width: 100%; /* A seção agora ocupa toda a largura da tela */
+    max-width: none; /* Removendo a restrição de largura máxima */
+}
+
+.about-title {
+    font-size: 24px; /* Tamanho maior para o título */
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px; /* Espaço abaixo do título */
+}
+
+.about-text {
+    font-size: 16px; /* Tamanho de fonte para o texto */
+    color: #555; /* Cor mais suave para o conteúdo */
+    line-height: 1.6; /* Espaçamento entre linhas para facilitar a leitura */
+}
+/* Linha fina laranja */
+/* Linha fina laranja */
+/* Linha fina laranja com espaçamento nas laterais */
+.separator-line {
+    width: 90%; /* Reduzindo a largura para não tocar nas bordas */
+    height: 1px; /* Espessura mais fina */
+    background-color: #FFA500; /* Cor laranja */
+    margin: 20px auto; /* Centraliza horizontalmente e adiciona espaçamento vertical */
+}
+
+
+/* Estilo das caixas em coluna */
+.work-cards {
+    display: flex;
+    flex-direction: column; /* Organiza as caixas em coluna */
+    gap: 20px; /* Espaçamento entre as caixas */
+    margin-top: 20px;
+}
+
+.work-card {
+    display: flex; /* Layout flexível */
+    align-items: center; /* Alinha os itens verticalmente ao centro */
+    justify-content: space-between; /* Distribui os itens com espaço entre eles */
+    background-color: #fff; /* Fundo branco */
+    border: 1px solid #ddd; /* Borda leve */
+    border-radius: 10px; /* Borda arredondada */
+    padding: 20px; /* Espaçamento interno */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    width: 100%; /* Ocupa toda a largura disponível */
+    max-width: 800px; /* Limita a largura máxima */
+    margin: 0 auto; /* Centraliza horizontalmente */
+}
+
+.work-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    flex: 2; /* Ocupa mais espaço na horizontal */
+    text-align: left; /* Alinha o texto à esquerda */
+}
+
+.work-value {
+    font-size: 16px;
+    color: #555;
+    flex: 1; /* Espaço médio */
+    text-align: center; /* Centraliza o texto */
+}
+
+.work-arrow {
+    font-size: 20px;
+    color: #FFA500;
+    flex: 0.5; /* Ocupa menos espaço */
+    text-align: right; /* Alinha à direita */
 }

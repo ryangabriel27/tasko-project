@@ -2,17 +2,63 @@
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Busca - Tasko</title>
+    <title>Perfil - Tasko</title>
     <link rel="icon" type="image/png" th:href="@{/img/TkoWhite.png}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" th:href="@{/css/perfilStyle.css}">
 </head>
 <body>
 
-<!-- Fragmento da Navbar -->
+<!-- Navbar (sem alterações) -->
 <div th:insert="fragments/navbar"></div>
 
-    perfil
+<!-- Seção de Perfil, abaixo da navbar -->
+<div class="profile-section">
+    <div class="profile-info">
+        <img th:src="@{img/profile1.png}" alt="Foto de Perfil" class="profile-pic">
+        <div class="description">
+            <span class="username">João Silva</span>
+            <p class="bio">Desenvolvedor Web | Apaixonado por tecnologia e inovação</p>
+        </div>
+    </div>
+    <div class="rating">
+        <span class="star">&#9733;</span> <!-- Estrela -->
+        <span class="rating-value">4.5</span> <!-- Avaliação -->
+    </div>
+</div>
+
+<!-- Seção Sobre Mim -->
+<div class="about-me">
+    <h3 class="about-title">Sobre Mim:</h3>
+    <p class="about-text">
+        Olá, sou o João Silva, um desenvolvedor web apaixonado por tecnologia e inovação. Adoro aprender novas ferramentas e criar soluções que melhorem a vida das pessoas. 
+        Com experiência em front-end e back-end, busco sempre evoluir em minha carreira e me conectar com outros profissionais da área. Sou curioso e adoro compartilhar conhecimento!
+    </p>
+</div>
+
+<!-- Linha fina laranja -->
+<!-- Linha fina laranja -->
+<div class="separator-line"></div>
+
+<!-- Caixas de Trabalho em Coluna -->
+<div class="work-cards">
+    <div class="work-card">
+        <div class="work-title">Desenvolvimento de Sites</div>
+        <div class="work-value">R$ 150,00</div>
+        <div class="work-arrow">&#10132;</div> <!-- Seta -->
+    </div>
+    <div class="work-card">
+        <div class="work-title">Design Gráfico</div>
+        <div class="work-value">R$ 200,00</div>
+        <div class="work-arrow">&#10132;</div> <!-- Seta -->
+    </div>
+    <div class="work-card">
+        <div class="work-title">Consultoria Técnica</div>
+        <div class="work-value">R$ 300,00</div>
+        <div class="work-arrow">&#10132;</div> <!-- Seta -->
+    </div>
+</div>
+
 
 </body>
 </html>
