@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PrestadorRepository extends JpaRepository<Prestador, Long> {
+    boolean existsByCnpj(String cnpj);
 }

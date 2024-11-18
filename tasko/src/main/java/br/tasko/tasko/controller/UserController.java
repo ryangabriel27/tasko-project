@@ -10,6 +10,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -23,38 +24,52 @@ public class UserController {
     private PrestadorRepository prestadorRepository;
 
     @PostMapping("/cadastrar")
-    public String cadastrarUsuario(@ModelAttribute User user,
-                                   @RequestParam(required = false) String descricaoServicos,
-                                   @RequestParam(required = false) String categoriaServicos,
-                                   @RequestParam(required = false) String cnpj,
-                                   @RequestParam(required = false) String links,
-                                   @RequestParam(required = false) Integer valorHora,
-                                   Model model) {
-        if ("prestador".equals(user.getTipo())) {
-            // Criando e salvando Prestador
-            Prestador prestador = new Prestador();
-            prestador.setUsuario(user);
-            prestador.setDescricaoServicos(descricaoServicos);
-            prestador.setCategoriaServicos(categoriaServicos);
-            prestador.setCnpj(cnpj);
-            prestador.setLinks(links);
-            prestador.setValorHora(valorHora);
-
-            // Salvar User primeiro
-            userRepository.save(user);
-
-            // Associar o prestador ao usuário e salvar prestador
-            prestadorRepository.save(prestador);
-            user.setPrestador(prestador);
-            userRepository.save(user); // Atualizar o User com o     prestador relacionado
-        } else {
-            // Salvando Cliente
-            userRepository.save(user);
-        }
-
-        model.addAttribute("successMessage", "Usuário cadastrado com sucesso!");
-        return "redirect:/successPage"; // Redireciona para uma página de sucesso
+public String cadastrarUsuario(@ModelAttribute User user,
+                               BindingResult result,
+                               @RequestParam(required = false) String descricaoServicos,
+                               @RequestParam(required = false) String categoriaServicos,
+                               @RequestParam(required = false) String cnpj,
+                               @RequestParam(required = false) String links,
+                               @RequestParam(required = false) Integer valorHora,
+                               Model model) {
+    // Verifica se o CPF ou e-mail já existem
+    if (userRepository.existsByCpf(user.getCpf())) {
+        model.addAttribute("errorMessage", "O CPF informado já está cadastrado.");
+        return "erro";
     }
+    if (userRepository.existsByEmail(user.getEmail())) {
+        model.addAttribute("errorMessage", "O e-mail informado já está cadastrado.");
+        return "erro";
+    }
+
+    // Para prestador, verifica o CNPJ
+    if ("prestador".equals(user.getTipo()) && cnpj != null && prestadorRepository.existsByCnpj(cnpj)) {
+        model.addAttribute("errorMessage", "O CNPJ informado já está cadastrado.");
+        return "erro";
+    }
+
+    // Código de cadastro segue como antes...
+    if ("prestador".equals(user.getTipo())) {
+        Prestador prestador = new Prestador();
+        prestador.setUsuario(user);
+        prestador.setDescricaoServicos(descricaoServicos);
+        prestador.setCategoriaServicos(categoriaServicos);
+        prestador.setCnpj(cnpj);
+        prestador.setLinks(links);
+        prestador.setValorHora(valorHora != null ? valorHora : 0);
+
+        userRepository.save(user);
+        prestadorRepository.save(prestador);
+
+        user.setPrestador(prestador);
+        userRepository.save(user);
+    } else {
+        userRepository.save(user);
+    }
+
+    model.addAttribute("successMessage", "Usuário cadastrado com sucesso!");
+    return "redirect:/successPage";
+}
 
     @GetMapping("/cadastro")
     public String mostrarFormularioCadastro(@RequestParam("tipo") String tipo, Model model) {
