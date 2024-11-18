@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap');
+
+/* Seção de Categorias */
+.container-section {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+.inicio-container {
+    background-color: #4F00A3;
+    padding: 2em;
+    border-radius: 32px;
+    border: 3px solid #7933C4;
+    box-shadow: 0px 0px 98px -33px rgba(0, 0, 0, 0.75);
+}
+
+.container-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-direction: row;
+}
+
+.container-header .title {
+    width: 30%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.container-header h2 {
+    color: white;
+    font-family: "Figtree", sans-serif;
+    font-size: 20px;
+}
+
+.container-header i {
+    color: #FF7F0F;
+}
+
+/* Grade de cards */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* Apenas 2 colunas */
+    gap: 15px;
+}
+
+/* Estilo do card */
+
+.card{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #4F00A3;
+    border-radius: 10px;
+    padding: 10px 15px;
+    transition: transform 0.2s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+/* Foto de perfil */
+.profile-pic {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #F2A93A;
+    /* Laranja */
+}
+
+/* Informações do perfil */
+.info h3 {
+    font-size: 1rem;
+    margin-bottom: 5px;
+}
+
+.info p {
+    font-size: 0.9rem;
+    color: #D4C4E3;
+}
+
+/* Avaliação e seta */
+.rating {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.rating span {
+    color: #F2A93A;
+    font-size: 1rem;
+}
+
+.arrow {
+    font-size: 1.5rem;
+    color: #F2A93A;
+    text-decoration: none;
+}

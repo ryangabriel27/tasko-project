@@ -4,11 +4,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
 @Controller
 public class RouteController {
-    
-     // Rota para a página inicial (página de boas-vindas ou home)
+
+    // Rota para a página inicial (página de boas-vindas ou home)
     @GetMapping("/")
     public String home() {
         return "index"; // Retorna o nome da view (HTML) que será renderizada
@@ -29,6 +28,16 @@ public class RouteController {
     @GetMapping("/busca")
     public String busca() {
         return "busca";
+    }
+
+    @GetMapping("/inicio")
+    public String inicio() {
+        return "inicio";
+    }
+
+    @GetMapping("/perfil")
+    public String perfil() {
+        return "perfil";
     }
     
 }

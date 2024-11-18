@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" th:href="@{/css/navStyle.css}">
+</head>
+
+<body>
+    <nav> <!-- Navbar com ícones -->
+        <div class="nav-left">
+            <a href="/inicio">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+        </div>
+        <div class="logo">
+            <img th:src="@{/img/TaskoWhite.png}" alt="Logo">
+        </div>
+        <div class="nav-right">
+            <a href="/busca">
+                <i class="fas fa-search"></i>
+                <span>Busca</span>
+            </a>
+            <a href="/perfil">
+                <i class="fas fa-user"></i>
+                <span>Perfil</span>
+            </a>
+        </div>
+    </nav>
+</body>
+
+</html>
