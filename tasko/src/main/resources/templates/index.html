@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Tasko</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}"> 
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <script th:src="@{/js/script.js}" defer></script>
 </head>
 <body>
     <div class="container" id="tela-inicial">
@@ -12,46 +13,16 @@
         </div>
         <div class="buttons">
             <a href="/cadastro" class="button primary" id="botao-cadastrar">Cadastrar-se</a>
-            <a href="/login" class="button secondary">Já tenho uma conta</a> 
+            <a href="/login" class="button secondary">Já tenho uma conta</a>
         </div>
     </div>
 
     <div class="container" id="tela-opcoes" style="display: none;">
         <div class="buttons">
             <a href="#" class="button primary">Sou um cliente</a>
-            <a href="#" class="button secondary">Sou um prestador</a> 
+            <a href="#" class="button secondary">Sou um prestador</a>
         </div>
         <button id="botao-voltar" class="button secondary">Voltar</button>
     </div>
-
-    <script th:inline="javascript">
-        document.getElementById('botao-cadastrar').addEventListener('click', function(event) {
-            event.preventDefault();
-
-            var telaInicial = document.getElementById('tela-inicial');
-            var telaOpcoes = document.getElementById('tela-opcoes');
-
-            telaInicial.style.animation = 'slideUpOut 0.5s ease forwards';
-
-            setTimeout(function() {
-                telaInicial.style.display = 'none';
-                telaOpcoes.style.display = 'block';
-                telaOpcoes.style.animation = 'slideUpIn 0.5s ease forwards';
-            }, 500);
-        });
-
-        document.getElementById('botao-voltar').addEventListener('click', function() {
-            var telaInicial = document.getElementById('tela-inicial');
-            var telaOpcoes = document.getElementById('tela-opcoes');
-
-            telaOpcoes.style.animation = 'slideUpOut 0.5s ease forwards';
-
-            setTimeout(function() {
-                telaOpcoes.style.display = 'none';
-                telaInicial.style.display = 'block';
-                telaInicial.style.animation = 'slideUpIn 0.5s ease forwards';
-            }, 500);
-        });
-    </script>
 </body>
 </html>
