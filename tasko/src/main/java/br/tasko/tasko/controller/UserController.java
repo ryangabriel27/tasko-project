@@ -5,8 +5,6 @@ import br.tasko.tasko.model.User;
 import br.tasko.tasko.Repository.PrestadorRepository;
 import br.tasko.tasko.Repository.UserRepository;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
