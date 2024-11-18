@@ -9,28 +9,7 @@
 </head>
 <body>
 
-<nav>
-    <!-- Navbar com ícones -->
-    <div class="nav-left">
-        <a href="/">
-            <i class="fas fa-home"></i>
-            <span>Home</span>
-        </a>
-    </div>
-    <div class="logo">
-        <img th:src="@{/img/TaskoWhite.png}" alt="Logo">
-    </div>
-    <div class="nav-right">
-        <a href="/busca">
-            <i class="fas fa-search"></i>
-            <span>Busca</span>
-        </a>
-        <a href="/perfil">
-            <i class="fas fa-user"></i>
-            <span>Perfil</span>
-        </a>
-    </div>
-</nav>
+<div th:insert="fragments/navbar"></div>
 
 <!-- Seção de Categorias -->
 <section class="categoria-section">
