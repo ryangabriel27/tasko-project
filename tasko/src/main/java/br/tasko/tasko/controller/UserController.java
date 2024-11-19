@@ -1,78 +1,66 @@
 package br.tasko.tasko.controller;
 
-import br.tasko.tasko.model.Prestador;
-import br.tasko.tasko.model.User;
-import br.tasko.tasko.Repository.PrestadorRepository;
 import br.tasko.tasko.Repository.UserRepository;
+import br.tasko.tasko.model.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+import java.util.List;
+import java.util.Optional;
+
+@RestController
 @RequestMapping("/users")
 public class UserController {
 
     @Autowired
     private UserRepository userRepository;
 
-    @Autowired
-    private PrestadorRepository prestadorRepository;
+    // Recupera todos os usuários
+    @GetMapping
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
 
-    @PostMapping("/cadastrar")
-    public String cadastrarUsuario(@ModelAttribute User user,
-            BindingResult result,
-            @RequestParam(required = false) String descricaoServicos,
-            @RequestParam(required = false) String categoriaServicos,
-            @RequestParam(required = false) String cnpj,
-            @RequestParam(required = false) String links,
-            @RequestParam(required = false) Integer valorHora,
-            Model model) {
-        // Verifica se o CPF ou e-mail já existem
-        if (userRepository.existsByCpf(user.getCpf())) {
-            model.addAttribute("errorMessage", "O CPF informado já está cadastrado.");
-            return "erro";
-        }
-        if (userRepository.existsByEmail(user.getEmail())) {
-            model.addAttribute("errorMessage", "O e-mail informado já está cadastrado.");
-            return "erro";
-        }
+    // Adiciona um novo usuário
+    @PostMapping
+    public User addUser(@RequestBody User user) {
+        return userRepository.save(user);
+    }
 
-        // Para prestador, verifica o CNPJ
-        if ("prestador".equals(user.getTipo()) && cnpj != null && prestadorRepository.existsByCnpj(cnpj)) {
-            model.addAttribute("errorMessage", "O CNPJ informado já está cadastrado.");
-            return "erro";
-        }
+    // Recupera um usuário pelo ID
+    @GetMapping("/{id}")
+    public Optional<User> getUserById(@PathVariable Long id) {
+        return userRepository.findById(id);
+    }
 
-        // Código de cadastro segue como antes...
-        if ("prestador".equals(user.getTipo())) {
-            Prestador prestador = new Prestador();
-            prestador.setUsuario(user);
-            prestador.setDescricaoServicos(descricaoServicos);
-            prestador.setCategoriaServicos(categoriaServicos);
-            prestador.setCnpj(cnpj);
-            prestador.setLinks(links);
-            prestador.setValorHora(valorHora != null ? valorHora : 0);
+    // Atualiza um usuário pelo ID
+    @PutMapping("/{id}")
+    public User updateUser(@PathVariable Long id, @RequestBody User updatedUser) {
+        return userRepository.findById(id).map(user -> {
+            user.setNome(updatedUser.getNome());
+            user.setSobrenome(updatedUser.getSobrenome());
+            user.setSenha(updatedUser.getSenha());
+            user.setTipo(updatedUser.getTipo());
+            user.setData_nasc(updatedUser.getData_nasc());
+            user.setCep(updatedUser.getCep());
+            user.setEndereco(updatedUser.getEndereco());
+            user.setFoto(updatedUser.getFoto());
+            user.setCpf(updatedUser.getCpf());
+            user.setTelefone(updatedUser.getTelefone());
+            user.setEmail(updatedUser.getEmail());
+            user.setPrestador(updatedUser.getPrestador());
+            return userRepository.save(user);
+        }).orElseThrow(() -> new RuntimeException("Usuário não encontrado com ID: " + id));
+    }
 
-            userRepository.save(user);
-            prestadorRepository.save(prestador);
-
-            user.setPrestador(prestador);
-            userRepository.save(user);
+    // Deleta um usuário pelo ID
+    @DeleteMapping("/{id}")
+    public void deleteUser(@PathVariable Long id) {
+        if (userRepository.existsById(id)) {
+            userRepository.deleteById(id);
         } else {
-            userRepository.save(user);
+            throw new RuntimeException("Usuário não encontrado com ID: " + id);
         }
-
-        model.addAttribute("successMessage", "Usuário cadastrado com sucesso!");
-        return "redirect:/successPage";
     }
-
-    @GetMapping("/cadastro")
-    public String mostrarFormularioCadastro(@RequestParam("tipo") String tipo, Model model) {
-        model.addAttribute("tipo", tipo);
-        return "cadastro"; // Certifique-se de que o nome da página está correto
-    }
-
 }

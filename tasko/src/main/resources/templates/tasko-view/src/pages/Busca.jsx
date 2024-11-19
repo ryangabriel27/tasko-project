@@ -6,18 +6,18 @@ import { faBook, faMusic, faFilm, faSearch } from "@fortawesome/free-solid-svg-i
 
 const Busca = () => {
     const categorias = [
-        { id: 2, classe: "card3", icone: faBook, texto: "Categoria 1" },
-        { id: 1, classe: "card1", icone: faMusic, texto: "Categoria 2" },
-        { id: 5, classe: "card3", icone: faFilm, texto: "Categoria 3" },
-        { id: 4, classe: "card4", icone: faBook, texto: "Categoria 1" },
-        { id: 2, classe: "card5", icone: faMusic, texto: "Categoria 2" },
-        { id: 3, classe: "card3", icone: faFilm, texto: "Categoria 3" },
-        { id: 1, classe: "card1", icone: faBook, texto: "Categoria 1" },
-        { id: 2, classe: "card2", icone: faMusic, texto: "Categoria 2" },
-        { id: 3, classe: "card2", icone: faFilm, texto: "Categoria 3" },
-        { id: 5, classe: "card5", icone: faBook, texto: "Categoria 1" },
-        { id: 3, classe: "card1", icone: faMusic, texto: "Categoria 2" },
-        { id: 4, classe: "card4", icone: faFilm, texto: "Categoria 3" },
+        { id: 2, classe: "card3", icone: faBook, texto: "Tecnologia e Desenvolvimento" },
+        { id: 1, classe: "card1", icone: faMusic, texto: "Marketing e Venda" },
+        { id: 5, classe: "card3", icone: faFilm, texto: "Design e Criatividade" },
+        { id: 4, classe: "card4", icone: faBook, texto: "Escrita e Tradução" },
+        { id: 2, classe: "card5", icone: faMusic, texto: "Consultoria e Estratégia" },
+        { id: 3, classe: "card3", icone: faFilm, texto: "Administração e Suporte" },
+        { id: 1, classe: "card1", icone: faBook, texto: "Saúde e Bem-Estar" },
+        { id: 2, classe: "card2", icone: faMusic, texto: "Educação" },
+        { id: 3, classe: "card2", icone: faFilm, texto: "Arte, Teatro e Música" },
+        { id: 5, classe: "card5", icone: faBook, texto: "Arquitetura e Engenharia" },
+        { id: 3, classe: "card1", icone: faMusic, texto: "Serviços Domésticos e Manuntenção" },
+        { id: 4, classe: "card4", icone: faFilm, texto: "Eventos e Produção" },
     ];
 
     return (
