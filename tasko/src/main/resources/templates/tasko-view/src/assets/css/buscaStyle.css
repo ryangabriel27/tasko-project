@@ -32,34 +32,6 @@ body {
     cursor: pointer;
 }
 
-
-/* Seção de Categorias */
-.categoria-section {
-    max-width: 1200px;
-    margin: 20px auto;
-    padding: 0 20px;
-}
-
-.categoria-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.busca-box input, .busca-box button {
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-}
-
-.busca-box button {
-    background-color: #333;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
 /* Cards de Categorias */
 .categorias {
     display: grid;
@@ -76,28 +48,34 @@ body {
     border-radius: 8px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s;
+    justify-content: flex-start; /* Alinha o conteúdo à esquerda */
+    align-items: flex-start; /* Alinha o conteúdo à esquerda verticalmente */
+    min-height: 100px; /* Ajustando a altura mínima dos cards */
+    height: auto; /* Deixa a altura do card auto ajustável conforme o conteúdo */
 }
 
-.card1{
+/* Estilos específicos para cada card */
+.card1 {
     background-color: #F50035;
 }
 
-.card2{
-background-color: #510EF3;
+.card2 {
+    background-color: #510EF3;
 }
 
-.card3{
-background-color: #FF00B2;
+.card3 {
+    background-color: #FF00B2;
 }
 
-.card4{
-background-color: #F7C216;
+.card4 {
+    background-color: #F7C216;
 }
 
-.card5{
-background-color: #FF7F0F;
+.card5 {
+    background-color: #FF7F0F;
 }
 
+/* Efeito de hover nos cards */
 .card:hover {
     transform: scale(1.05);
 }
@@ -106,16 +84,19 @@ background-color: #FF7F0F;
 .card-content {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: flex-start; /* Alinha ao canto esquerdo do card */
+    text-align: left; /* Alinha o texto à esquerda */
 }
 
 .card-content i {
-    font-size: 30px;
-    color: #333;
-    margin-bottom: 5px;
+    font-size: 40px; /* Tamanho do ícone */
+    color: #fff; /* Cor do ícone */
+    margin-bottom: 10px; /* Adiciona um espaço entre o ícone e o texto */
 }
 
 .card-text {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
+    color: #fff; /* Cor do texto */
+    margin-top: 15px; /* Adiciona o espaço entre o ícone e o texto */
 }
