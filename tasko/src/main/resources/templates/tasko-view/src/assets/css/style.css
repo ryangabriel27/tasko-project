@@ -1,0 +1,79 @@
+body {
+    background-color: #4B0082;
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    overflow: hidden; /* Esconde a barra de rolagem durante a animação */
+}
+
+.container {
+    text-align: center;
+    animation: slideUp 1s ease forwards; /* Aplica a animação */
+    opacity: 0; /* Inicialmente invisível */
+}
+
+.logo img {
+    max-width: 300px;
+    width: 100%;
+}
+
+.buttons {
+    margin-top: 20px;
+}
+
+.button {
+    display: flex;
+    padding: 15px 30px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    margin: 10px;
+}
+
+.primary {
+    background-color: #FFA500;
+}
+
+.secondary {
+    background-color: transparent;
+    border: 2px solid white;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100%); /* Começa fora da tela */
+    }
+    to {
+        transform: translateY(0); /* Termina na posição normal */
+        opacity: 1; /* Torna visível */
+    }
+
+    
+}
+
+
+@keyframes slideUpOut {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+}
+
+@keyframes slideUpIn {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}

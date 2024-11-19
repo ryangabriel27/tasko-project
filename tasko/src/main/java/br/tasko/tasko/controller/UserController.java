@@ -22,52 +22,52 @@ public class UserController {
     private PrestadorRepository prestadorRepository;
 
     @PostMapping("/cadastrar")
-public String cadastrarUsuario(@ModelAttribute User user,
-                               BindingResult result,
-                               @RequestParam(required = false) String descricaoServicos,
-                               @RequestParam(required = false) String categoriaServicos,
-                               @RequestParam(required = false) String cnpj,
-                               @RequestParam(required = false) String links,
-                               @RequestParam(required = false) Integer valorHora,
-                               Model model) {
-    // Verifica se o CPF ou e-mail já existem
-    if (userRepository.existsByCpf(user.getCpf())) {
-        model.addAttribute("errorMessage", "O CPF informado já está cadastrado.");
-        return "erro";
+    public String cadastrarUsuario(@ModelAttribute User user,
+            BindingResult result,
+            @RequestParam(required = false) String descricaoServicos,
+            @RequestParam(required = false) String categoriaServicos,
+            @RequestParam(required = false) String cnpj,
+            @RequestParam(required = false) String links,
+            @RequestParam(required = false) Integer valorHora,
+            Model model) {
+        // Verifica se o CPF ou e-mail já existem
+        if (userRepository.existsByCpf(user.getCpf())) {
+            model.addAttribute("errorMessage", "O CPF informado já está cadastrado.");
+            return "erro";
+        }
+        if (userRepository.existsByEmail(user.getEmail())) {
+            model.addAttribute("errorMessage", "O e-mail informado já está cadastrado.");
+            return "erro";
+        }
+
+        // Para prestador, verifica o CNPJ
+        if ("prestador".equals(user.getTipo()) && cnpj != null && prestadorRepository.existsByCnpj(cnpj)) {
+            model.addAttribute("errorMessage", "O CNPJ informado já está cadastrado.");
+            return "erro";
+        }
+
+        // Código de cadastro segue como antes...
+        if ("prestador".equals(user.getTipo())) {
+            Prestador prestador = new Prestador();
+            prestador.setUsuario(user);
+            prestador.setDescricaoServicos(descricaoServicos);
+            prestador.setCategoriaServicos(categoriaServicos);
+            prestador.setCnpj(cnpj);
+            prestador.setLinks(links);
+            prestador.setValorHora(valorHora != null ? valorHora : 0);
+
+            userRepository.save(user);
+            prestadorRepository.save(prestador);
+
+            user.setPrestador(prestador);
+            userRepository.save(user);
+        } else {
+            userRepository.save(user);
+        }
+
+        model.addAttribute("successMessage", "Usuário cadastrado com sucesso!");
+        return "redirect:/successPage";
     }
-    if (userRepository.existsByEmail(user.getEmail())) {
-        model.addAttribute("errorMessage", "O e-mail informado já está cadastrado.");
-        return "erro";
-    }
-
-    // Para prestador, verifica o CNPJ
-    if ("prestador".equals(user.getTipo()) && cnpj != null && prestadorRepository.existsByCnpj(cnpj)) {
-        model.addAttribute("errorMessage", "O CNPJ informado já está cadastrado.");
-        return "erro";
-    }
-
-    // Código de cadastro segue como antes...
-    if ("prestador".equals(user.getTipo())) {
-        Prestador prestador = new Prestador();
-        prestador.setUsuario(user);
-        prestador.setDescricaoServicos(descricaoServicos);
-        prestador.setCategoriaServicos(categoriaServicos);
-        prestador.setCnpj(cnpj);
-        prestador.setLinks(links);
-        prestador.setValorHora(valorHora != null ? valorHora : 0);
-
-        userRepository.save(user);
-        prestadorRepository.save(prestador);
-
-        user.setPrestador(prestador);
-        userRepository.save(user);
-    } else {
-        userRepository.save(user);
-    }
-
-    model.addAttribute("successMessage", "Usuário cadastrado com sucesso!");
-    return "redirect:/successPage";
-}
 
     @GetMapping("/cadastro")
     public String mostrarFormularioCadastro(@RequestParam("tipo") String tipo, Model model) {

@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap');
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #4F00A3;
+    padding: 10px 20px;
+    font-family: 'Figtree', sans-serif;
+}
+
+.logo {
+    flex-grow: 1;
+    /* Isso faz a logo ficar no centro */
+    text-align: center;
+}
+
+.logo img {
+    height: 45px;
+    /* Tamanho da logo */
+}
+
+.nav-left,
+.nav-right {
+    display: flex;
+    align-items: center;
+}
+
+/* Alteração para centralizar o texto abaixo do ícone */
+.nav-left a,
+.nav-right a {
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 14px;
+    display: flex;
+    /* Isso permite que o ícone e o texto fiquem em coluna */
+    flex-direction: column;
+    /* Coloca o ícone em cima do texto */
+    align-items: center;
+    /* Centraliza os itens */
+}
+
+.nav-left a i,
+.nav-right a i {
+    font-size: 24px;
+    /* Tamanho do ícone */
+    margin-bottom: 5px;
+    /* Espaço entre o ícone e o texto */
+}
+
+/*Ajustar a navbar no meio*/
+.nav-left {
+    padding-right: 25px;
+}
+
+.nav-left a:hover,
+.nav-right a:hover {
+    opacity: 0.7;
+}
