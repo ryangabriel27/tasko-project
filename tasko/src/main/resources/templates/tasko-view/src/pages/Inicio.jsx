@@ -1,23 +1,77 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
+import { useNavigate } from 'react-router-dom';
+
 import Navbar from "../components/Navbar";
 import CategoryCard from "../components/CategoryCard";
 import CarouselCard from "../components/CarouselCard";
 import "../assets/css/inicioStyle.css";
+import image1 from "../assets/img/profile1.png";
+import image2 from "../assets/img/profile2.png";
 
 const Home = () => {
+    const navigate = useNavigate();
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        const verificarAuth = async () => {
+            try {
+                const response = await fetch('http://localhost:8080/auth/current', {
+                    credentials: 'include'
+                });
+
+                if (!response.ok) {
+                    navigate('/');
+                    return;
+                }
+
+                const userData = await response.json();
+                setUser(userData);
+            } catch (error) {
+                console.error('Erro ao verificar autenticação:', error);
+                navigate('/');
+            }
+        };
+
+        verificarAuth();
+    }, [navigate]);
+
+    const handleLogout = async () => {
+        try {
+            await fetch('http://localhost:8080/auth/logout', {
+                method: 'POST',
+                credentials: 'include'
+            });
+            navigate('/');
+        } catch (error) {
+            console.error('Erro ao fazer logout:', error);
+        }
+    };
+
+    if (!user) {
+        return <div>Carregando...</div>;
+    }
+
     const categories = [
-        { image: "img/profile1.png", name: "Ronaldo Cupim", profession: "Designer Gráfico", rating: 4.8 },
+        { image: image1, name: "Ronaldo Cupim", profession: "Designer Gráfico", rating: 4.8 },
         // Adicione mais objetos conforme necessário
     ];
 
     const carouselItems = [
-        { image: "img/profile2.png", name: "Polibe Murici", profession: "Desenvolvedor JAVA", rating: 4.8 },
+        { image: image2, name: "Polibe Murici", profession: "Desenvolvedor JAVA", rating: 4.8 },
+        { image: image2, name: "Polibe Murici", profession: "Desenvolvedor JAVA", rating: 4.8 },
+        { image: image2, name: "Polibe Murici", profession: "Desenvolvedor JAVA", rating: 4.8 },
+        { image: image2, name: "Polibe Murici", profession: "Desenvolvedor JAVA", rating: 4.8 },
+        { image: image2, name: "Polibe Murici", profession: "Desenvolvedor JAVA", rating: 4.8 },
+        { image: image2, name: "Polibe Murici", profession: "Desenvolvedor JAVA", rating: 4.8 },
+        { image: image2, name: "Polibe Murici", profession: "Desenvolvedor JAVA", rating: 4.8 },
         // Adicione mais objetos conforme necessário
     ];
 
     return (
         <>
             <Navbar />
+            <h1>Bem - vindo, {user.nome}!</h1>
+            <button onClick={handleLogout}>SAIR</button>
             <section className="container-section">
                 <div className="inicio-container">
                     <div className="container-header">

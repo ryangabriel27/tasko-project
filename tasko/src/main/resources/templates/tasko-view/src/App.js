@@ -3,6 +3,7 @@ import './App.css';
 import Perfil from "./pages/Perfil";
 import Busca from "./pages/Busca";
 import Inicio from "./pages/Inicio";
+import AuthPage from "./pages/Auth";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Route path="/perfil" element={<Perfil />} />
         <Route path="/inicio" element={<Inicio />} />
         <Route path="/busca" element={<Busca />} />
+        <Route path="/auth" element={<AuthPage />} />
       </Routes>
     </Router>
   );
