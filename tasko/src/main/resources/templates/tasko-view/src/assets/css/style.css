@@ -110,6 +110,7 @@ body {
     object-fit: cover;  /* Garante que a imagem cubra bem o espaço disponível */
     margin-left: 380px;
     height: 10;
+    display: block;
 }
 
 
