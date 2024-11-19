@@ -66,27 +66,26 @@ body {
     color: #4a148c;
   }
   
+
+
   
 /* Banner principal */
 .hero {
     display: flex;
-    justify-content: flex-end;  /* Mover a imagem para a direita */
     align-items: center;
     position: relative;  /* Necessário para o posicionamento absoluto do conteúdo sobre a imagem */
-    padding: 50px 30px;
     background-color: #f3e5f5;
 }
 
 /* Texto sobre o círculo */
 .hero-text {
     position: absolute;  /* Permite que o texto fique sobre a imagem */
-    left: 30px;  /* Ajuste a posição do texto */
-    top: 20%;  /* Ajuste a posição do texto verticalmente */
     z-index: 1;  /* Garante que o texto fique acima da imagem */
-    padding: 20px;  /* Adiciona um pouco de espaçamento interno */
+    padding: 30px 10px 30px 50px;  /* Adiciona um pouco de espaçamento interno */
     background-color: rgba(255, 255, 255, 1);  /* Fundo branco com 80% de opacidade */
-    border-radius: 10px;  /* Bordas arredondadas */
-    max-width: 600px;  /* Limita a largura máxima do texto */
+    border-top-right-radius:1000px;
+    border-bottom-right-radius: 1000px;
+    max-width: 700px;  /* Limita a largura máxima do texto */
 }
 
 /* Título e texto */
@@ -107,36 +106,86 @@ body {
 
 /* Imagem do banner */
 .hero-image img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 10px;
+    max-width: 70%;
     object-fit: cover;  /* Garante que a imagem cubra bem o espaço disponível */
-    width: 80%;  /* Reduz a largura da imagem, se necessário */
-    display: flex;
-
+    margin-left: 380px;
+    height: 10;
 }
 
 
   
   
   /* Depoimentos */
-  .testimonial {
-    padding: 30px 20px;
+.testimonial {
+    padding: 50px 20px;
     text-align: center;
-    background-color: #ffffff;
+    background-color: #4a148c;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  }
-  
-  .testimonial blockquote {
-    font-size: 18px;
+    color: white; /* Texto branco */
+    position: relative;
+}
+
+/* Aspas gigantes */
+.testimonial blockquote {
+    font-size: 30px;
     font-style: italic;
-    margin: 0 0 10px;
-  }
-  
-  .testimonial-author {
+    margin: 0 0 30px;
+    position: relative;
+    max-width: 40%; /* Limita o tamanho do texto */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.testimonial blockquote::before {
+    content: '“'; /* Aspa gigante antes do texto */
+    font-size: 100px;
+    color: white;
+    position: absolute;
+    left: -50px;
+    top: -35px;
+}
+
+.testimonial blockquote::after {
+    content: '”'; /* Aspa gigante após o texto */
+    font-size: 100px;
+    color: white;
+    position: absolute;
+    right: -30px;
+    bottom: -85px;
+}
+
+/* Autor e foto */
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.testimonial-author img {
+    border-radius: 0%;
+    width: 60px;
+    height: 60px;
+    margin-right: 15px;
+}
+
+.testimonial-author-text {
+    text-align: left;
+}
+
+.testimonial-author-name {
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+
+}
+
+.testimonial-author-description {
     font-size: 14px;
-    color: #4a148c;
-  }
+    color: #f3e5f5;
+}
+
+
   
   /* Cards */
   .cards-section {
