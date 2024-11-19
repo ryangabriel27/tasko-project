@@ -1,79 +1,175 @@
+/* Reset */
 body {
-    background-color: #4B0082;
-    font-family: sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
     margin: 0;
-    overflow: hidden; /* Esconde a barra de rolagem durante a animação */
-}
-
-.container {
-    text-align: center;
-    animation: slideUp 1s ease forwards; /* Aplica a animação */
-    opacity: 0; /* Inicialmente invisível */
-}
-
-.logo img {
-    max-width: 300px;
-    width: 100%;
-}
-
-.buttons {
-    margin-top: 20px;
-}
-
-.button {
+    font-family: Arial, sans-serif;
+    background-color: w;
+  }
+  
+  /* Linha do topo */
+  .top-bar {
     display: flex;
-    padding: 15px 30px;
-    border-radius: 5px;
-    text-decoration: none;
+    align-items: center;
+    justify-content: center;
+    background-color: #4a148c;
     color: white;
-    font-weight: bold;
-    margin: 10px;
-}
+    padding: 5px 15px;
+    margin-bottom: 3px  ;
+  }
 
-.primary {
-    background-color: #FFA500;
+  .top-bar-container {
+    background-color: #4a148c;
 }
-
-.secondary {
+  
+  .top-bar-text {
+    font-size: 12px;
+  }
+  
+  /* Cabeçalho */
+/* Cabeçalho */
+.header {
+    display: flex;
+    align-items: center;
+    padding: 10px 30px;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+  }
+  
+  .logo {
+    display: flex;
+  }
+  
+  .logo img {
+    height: 40px;
+  }
+  
+  .header-buttons {
+    display: flex;
+    align-items: center;
+  }
+  
+  .header-buttons .button {
+    margin-left: 10px;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    background-color: #4a148c;
+    color: white;
+  }
+  
+  .header-buttons .button-outline {
     background-color: transparent;
-    border: 2px solid white;
+    border: 2px solid #4a148c;
+    color: #4a148c;
+  }
+  
+  
+/* Banner principal */
+.hero {
+    display: flex;
+    justify-content: flex-end;  /* Mover a imagem para a direita */
+    align-items: center;
+    position: relative;  /* Necessário para o posicionamento absoluto do conteúdo sobre a imagem */
+    padding: 50px 30px;
+    background-color: #f3e5f5;
 }
 
-@keyframes slideUp {
-    from {
-        transform: translateY(100%); /* Começa fora da tela */
-    }
-    to {
-        transform: translateY(0); /* Termina na posição normal */
-        opacity: 1; /* Torna visível */
-    }
+/* Texto sobre o círculo */
+.hero-text {
+    position: absolute;  /* Permite que o texto fique sobre a imagem */
+    left: 30px;  /* Ajuste a posição do texto */
+    top: 20%;  /* Ajuste a posição do texto verticalmente */
+    z-index: 1;  /* Garante que o texto fique acima da imagem */
+    padding: 20px;  /* Adiciona um pouco de espaçamento interno */
+    background-color: rgba(255, 255, 255, 1);  /* Fundo branco com 80% de opacidade */
+    border-radius: 10px;  /* Bordas arredondadas */
+    max-width: 600px;  /* Limita a largura máxima do texto */
+}
 
-    
+/* Título e texto */
+.hero-text h1 {
+    font-size: 70px;
+    margin: 0 0 10px;
+}
+
+.hero-text p {
+    font-size: 16px;
+    margin: 0 0 20px;
+}
+
+.hero-text .highlight {
+    color: #4a148c;
+    font-weight: bold;
+}
+
+/* Imagem do banner */
+.hero-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;  /* Garante que a imagem cubra bem o espaço disponível */
+    width: 80%;  /* Reduz a largura da imagem, se necessário */
+    display: flex;
+
 }
 
 
-@keyframes slideUpOut {
-    from {
-        transform: translateY(0);
-        opacity: 1;
-    }
-    to {
-        transform: translateY(-100%);
-        opacity: 0;
-    }
-}
-
-@keyframes slideUpIn {
-    from {
-        transform: translateY(100%);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
+  
+  
+  /* Depoimentos */
+  .testimonial {
+    padding: 30px 20px;
+    text-align: center;
+    background-color: #ffffff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .testimonial blockquote {
+    font-size: 18px;
+    font-style: italic;
+    margin: 0 0 10px;
+  }
+  
+  .testimonial-author {
+    font-size: 14px;
+    color: #4a148c;
+  }
+  
+  /* Cards */
+  .cards-section {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px 30px;
+  }
+  
+  .card {
+    background-color: white;
+    width: 45%;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card h2 {
+    font-size: 20px;
+    margin: 0 0 10px;
+  }
+  
+  .card p {
+    font-size: 14px;
+    margin: 0 0 15px;
+  }
+  
+  .card .button {
+    background-color: #4a148c;
+    color: white;
+    font-size: 14px;
+    padding: 8px 15px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+  }
+  
