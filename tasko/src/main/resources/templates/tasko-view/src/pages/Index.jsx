@@ -2,6 +2,7 @@ import React from "react";
 import "../assets/css/style.css";
 import img1 from "../assets/img/TaskoPurple.png";
 import mu from "../assets/img/Mulher.png"
+import lenda from "../assets/img/Animal.png"
 
 const App = () => {
     return (
@@ -52,10 +53,18 @@ const App = () => {
             {/* Seção de depoimentos */}
             <section className="testimonial">
                 <blockquote>
-                    “O Tasko é o melhor site para quem quer divulgar seu trabalho.”
+                    O Tasko é o melhor site para quem quer divulgar seu trabalho.
                 </blockquote>
-                <p className="testimonial-author">Animal Lendário</p>
+                <div className="testimonial-author">
+                    <img src={lenda} alt="Foto do autor" />
+                    <div className="testimonial-author-text">
+                        <p className="testimonial-author-name">Animal Lendário</p>
+                        <p className="testimonial-author-description">Gerado por alguma IA</p>
+                    </div>
+                </div>
             </section>
+
+
 
             {/* Seção inferior */}
             <section className="cards-section">
