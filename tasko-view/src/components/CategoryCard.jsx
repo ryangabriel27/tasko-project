@@ -2,7 +2,7 @@ import React from "react";
 import "../assets/css/inicioStyle.css";
 
 const CategoryCard = ({ image, name, profession, rating }) => (
-  <div className="card">
+  <div className="card-inicio">
     <div className="profile-info">
       <img src={image} alt={`Foto de ${name}`} className="profile-pic" />
       <div className="info">

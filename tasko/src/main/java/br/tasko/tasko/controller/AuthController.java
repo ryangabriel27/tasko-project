@@ -11,7 +11,7 @@ import br.tasko.tasko.model.User;
 import br.tasko.tasko.service.UserService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")  // Permite o acesso do React
+@CrossOrigin(origins = "http://localhost:3000") // Permite o acesso do React
 @RequestMapping("/auth")
 public class AuthController {
 
@@ -19,9 +19,9 @@ public class AuthController {
     private UserService userService;
 
     @PostMapping("/register")
-    public ResponseEntity<?> registerUser(@RequestBody RegisterDTO registerDTO) {
+    public ResponseEntity<?> registerUser(@RequestBody User usuario) {
         try {
-            User user = userService.registerUser(registerDTO);
+            User user = userService.registerUser(usuario);
             return ResponseEntity.ok(user);
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
@@ -37,6 +37,9 @@ public class AuthController {
             session.setAttribute("userId", user.getId());
             session.setAttribute("userEmail", user.getEmail());
 
+            // Verifique se a sessão está sendo criada corretamente
+            System.out.println("Sessão criada com ID: " + session.getId());
+
             return ResponseEntity.ok(user);
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
@@ -50,8 +53,10 @@ public class AuthController {
             return ResponseEntity.status(401).body("Usuário não autenticado");
         }
 
-        // Aqui você pode buscar o usuário completo, se necessário
-        return ResponseEntity.ok(userId);
+        // Busca o usuário pelo ID
+        User usuario = userService.findUser(userId);
+
+        return ResponseEntity.ok(usuario);
     }
 
     @PostMapping("/logout")

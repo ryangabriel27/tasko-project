@@ -1,9 +1,11 @@
 package br.tasko.tasko.controller;
 
 import br.tasko.tasko.Repository.UserRepository;
+import br.tasko.tasko.model.Prestador;
 import br.tasko.tasko.model.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -62,5 +64,14 @@ public class UserController {
         } else {
             throw new RuntimeException("Usuário não encontrado com ID: " + id);
         }
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<?> patchPrestador(@PathVariable Long id, @RequestBody Prestador prestador) {
+        return userRepository.findById(id).map(user -> {
+            user.setPrestador(prestador);
+            userRepository.save(user);
+            return ResponseEntity.ok(user);
+        }).orElseThrow(() -> new RuntimeException("Usuário não encontrado com ID: " + id));
     }
 }

@@ -44,7 +44,7 @@ public class User implements Serializable  {
     private String email;
 
     @ManyToOne
-    @JoinColumn(name = "prestador_id", nullable = true)  // "nullable = true" torna a coluna opcional
+    @JoinColumn(name = "prestador_id", nullable = true, referencedColumnName = "id")  // "nullable = true" torna a coluna opcional
     private Prestador prestador;
 
 }

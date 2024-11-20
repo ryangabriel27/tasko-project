@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -18,13 +19,14 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.disable())
                 .cors().configurationSource(corsConfigurationSource()) // Habilita o CORS
                 .and()
+                .csrf(csrf -> csrf.disable()) // Desabilita CSRF
+                .sessionManagement()
+                    .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED) // Cria a sessão apenas quando necessário
+                .and()
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/**").permitAll() // Permite acesso às rotas de autenticação sem
-                                                                 // autenticação
-                        .anyRequest().authenticated() // Qualquer outra requisição precisa de autenticação
+                        .anyRequest().permitAll() // Qualquer outra requisição precisa de autenticação
                 );
         return http.build();
     }
@@ -47,8 +49,9 @@ public class SecurityConfig {
         config.addAllowedOrigin("http://localhost:3000"); // URL do frontend React
         config.addAllowedHeader("*"); // Permite qualquer cabeçalho
         config.addAllowedMethod("*"); // Permite qualquer método (GET, POST, PUT, DELETE, etc.)
-        source.registerCorsConfiguration("/**", config);
         config.setAllowCredentials(true); // Permite o envio de credenciais (cookies, etc.)
+        source.registerCorsConfiguration("/**", config);
         return source;
     }
 }
+

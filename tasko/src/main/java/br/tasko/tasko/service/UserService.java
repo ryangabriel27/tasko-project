@@ -17,7 +17,7 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public User registerUser(RegisterDTO registerDTO) {
+    public User registerUser(User registerDTO) {
         // Verificar se email ou CPF já existem
         if (userRepository.existsByEmail(registerDTO.getEmail())) {
             throw new RuntimeException("Email já cadastrado");
@@ -29,6 +29,8 @@ public class UserService {
 
         User user = new User();
         user.setNome(registerDTO.getNome());
+        user.setData_nasc(registerDTO.getData_nasc());
+        user.setFoto(registerDTO.getFoto());
         user.setSobrenome(registerDTO.getSobrenome());
         user.setEmail(registerDTO.getEmail());
         user.setCpf(registerDTO.getCpf());
@@ -48,4 +50,13 @@ public class UserService {
 
         return user;
     }
+
+    public User findUser(Long id) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+
+        return user;
+    }
+
+    
 }

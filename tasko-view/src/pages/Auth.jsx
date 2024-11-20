@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 const AuthPage = () => {
-  const [isLogin, setIsLogin] = useState(true);
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [nome, setNome] = useState('');
@@ -9,13 +10,11 @@ const AuthPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const endpoint = isLogin 
-        ? 'http://localhost:8080/auth/login' 
-        : 'http://localhost:8080/auth/register';
-      
-      const payload = isLogin 
-        ? { email, senha }
-        : { nome, email, senha };
+      const endpoint = 'http://localhost:8080/auth/login';
+
+
+      const payload = { email, senha };
+
 
       const response = await fetch(endpoint, {
         method: 'POST',
@@ -29,7 +28,8 @@ const AuthPage = () => {
 
       if (response.ok) {
         const data = await response.json();
-        alert(isLogin ? 'Login realizado com sucesso!' : 'Cadastro realizado com sucesso!');
+        alert('Login realizado com sucesso!');
+        navigate('/inicio');
       } else {
         const errorMessage = await response.text();
         alert('Erro: ' + errorMessage);
@@ -43,19 +43,9 @@ const AuthPage = () => {
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="bg-white p-8 rounded shadow-md w-96">
         <h2 className="text-2xl mb-4">
-          {isLogin ? 'Login' : 'Cadastro'}
+          Login
         </h2>
         <form onSubmit={handleSubmit}>
-          {!isLogin && (
-            <input
-              type="text"
-              placeholder="Nome"
-              value={nome}
-              onChange={(e) => setNome(e.target.value)}
-              className="w-full p-2 mb-4 border rounded"
-              required
-            />
-          )}
           <input
             type="email"
             placeholder="Email"
@@ -72,21 +62,18 @@ const AuthPage = () => {
             className="w-full p-2 mb-4 border rounded"
             required
           />
-          <button 
-            type="submit" 
+          <button
+            type="submit"
             className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
           >
-            {isLogin ? 'Entrar' : 'Cadastrar'}
+            Entrar
           </button>
         </form>
-        <button 
-          onClick={() => setIsLogin(!isLogin)}
+        <Link to="/cadastro"
           className="w-full mt-4 text-blue-500 hover:underline"
         >
-          {isLogin 
-            ? 'Não tem conta? Cadastre-se' 
-            : 'Já tem conta? Faça login'}
-        </button>
+        Não tem conta? Cadastre-se
+        </Link>
       </div>
     </div>
   );

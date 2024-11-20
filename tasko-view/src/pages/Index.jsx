@@ -26,7 +26,7 @@ const App = () => {
                     </div>
                     <div className="header-buttons">
                         <a href="/cadastro"><button className="button">Cadastre-se</button></a>
-                        <a href="/login"><button className="button button-outline">Entrar</button></a>
+                        <a href="/auth"><button className="button button-outline">Entrar</button></a>
                     </div>
                 </header>
             </div>
