@@ -7,6 +7,7 @@ import CarouselCard from "../components/CarouselCard";
 import "../assets/css/inicioStyle.css";
 import image1 from "../assets/img/profile1.png";
 import image2 from "../assets/img/profile2.png";
+import { Helmet } from "react-helmet"; // Importe o Helmet
 
 const Home = () => {
     const navigate = useNavigate();
@@ -69,6 +70,11 @@ const Home = () => {
 
     return (
         <>
+            <Helmet>
+                <title>
+                    Início - Tasko
+                </title>
+            </Helmet>
             <Navbar />
             <h1>Bem - vindo, {user.nome}!</h1>
             <button onClick={handleLogout}>SAIR</button>
