@@ -1,30 +1,31 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom"; // Importa o hook useNavigate
 import Navbar from "../components/Navbar";
 import "../assets/css/perfilStyle.css";
 import image from "../assets/img/perfil1.jfif";
 
 const Perfil = () => {
-    const [user, setUser] = useState(null); // Armazena informações do usuário
+    const [user, setUser] = useState(null);
     const [prestador, setPrestador] = useState(null);
-    const [isPrestador, setIsPrestador] = useState(false); // Indica se o usuário é um prestador
-    const [loading, setLoading] = useState(true); // Indica se os dados ainda estão carregando
+    const [isPrestador, setIsPrestador] = useState(false);
+    const [loading, setLoading] = useState(true);
+    const navigate = useNavigate(); // Inicializa o hook useNavigate
 
     useEffect(() => {
-        // Chamar a API para obter o usuário atual
         const fetchUserData = async () => {
             try {
                 const response = await fetch("http://localhost:8080/auth/current", {
                     method: "GET",
                     credentials: "include",
                     headers: {
-                        "Content-Type": "application/json"
+                        "Content-Type": "application/json",
                     },
                 });
 
                 if (response.ok) {
                     const userData = await response.json();
                     setUser(userData);
-                    // Após obter os dados do usuário, verificar se existe um prestador associado
+
                     if (userData.id) {
                         fetchPrestadorData(userData.id);
                     }
@@ -34,28 +35,27 @@ const Perfil = () => {
             } catch (error) {
                 console.error("Erro na requisição:", error);
             } finally {
-                setLoading(false); // Conclui o carregamento
+                setLoading(false);
             }
         };
 
-        // Função para buscar dados do prestador com base no id do usuário
         const fetchPrestadorData = async (usuarioId) => {
             try {
                 const response = await fetch(`http://localhost:8080/api/prestadores/usuario/${usuarioId}`, {
                     method: "GET",
-                    credentials: 'include',
+                    credentials: "include",
                     headers: {
-                        "Content-Type": "application/json"
+                        "Content-Type": "application/json",
                     },
                 });
 
                 if (response.ok) {
                     const prestadorData = await response.json();
                     setPrestador(prestadorData);
-                    setIsPrestador(true); // Se existir prestador, define como prestador
+                    setIsPrestador(true);
                 } else {
                     setPrestador(null);
-                    setIsPrestador(false); // Caso contrário, o usuário não é um prestador
+                    setIsPrestador(false);
                 }
             } catch (error) {
                 console.error("Erro ao buscar prestador:", error);
@@ -66,22 +66,21 @@ const Perfil = () => {
     }, []);
 
     if (loading) {
-        return <p>Carregando...</p>; // Indica que os dados estão carregando
+        return <p>Carregando...</p>;
     }
 
     if (!user) {
-        return <p>Erro ao carregar os dados do usuário</p>; // Mostra erro se os dados não carregarem
+        return <p>Erro ao carregar os dados do usuário</p>;
     }
 
     return (
         <>
             <Navbar />
             <div>
-                {/* Seção de Perfil */}
                 <div className="profile-section">
                     <div className="profile-info">
                         <img
-                            src={user.foto || image} // Foto do usuário, se disponível
+                            src={user.foto || image}
                             alt="Foto de Perfil"
                             className="profile-pic"
                         />
@@ -104,9 +103,16 @@ const Perfil = () => {
                             <span>Bem-vindo ao seu perfil!</span>
                         )}
                     </div>
+                    {/* Botão de configuração */}
+                    <div className="config-button-wrapper">
+                        <button
+                            className="config-button"
+                            onClick={() => navigate("/configuracoes")} // Redireciona para Configurações
+                        >
+                            Configurações
+                        </button>
+                    </div>
                 </div>
-
-                {/* Seção de Trabalhos apenas para prestadores */}
                 {isPrestador && (
                     <>
                         <div className="about-me">

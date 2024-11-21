@@ -153,3 +153,31 @@ body {
     flex: 0.5; /* Ocupa menos espaço */
     text-align: right; /* Alinha à direita */
 }
+
+.config-button-wrapper {
+    text-align: center; /* Centraliza horizontalmente */
+    margin-top: 20px; /* Espaçamento superior */
+}
+
+.config-button {
+    padding: 10px 20px; /* Espaçamento interno do botão */
+    background-color: #FFA500; /* Cor de fundo laranja */
+    color: #fff; /* Texto branco */
+    font-size: 18px; /* Tamanho do texto */
+    font-weight: bold; /* Texto em negrito */
+    border: none; /* Remove a borda padrão */
+    border-radius: 5px; /* Arredonda os cantos do botão */
+    cursor: pointer; /* Muda o cursor para indicar que o botão é clicável */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Animações suaves */
+    font-family: 'Figtree', sans-serif; /* Fonte coerente com o restante da página */
+}
+
+.config-button:hover {
+    background-color: #e69500; /* Cor mais escura no hover */
+    transform: scale(1.05); /* Aumenta ligeiramente o botão */
+}
+
+.config-button:active {
+    background-color: #cc8400; /* Cor ainda mais escura ao clicar */
+    transform: scale(0.95); /* Diminui ligeiramente o botão ao clicar */
+}

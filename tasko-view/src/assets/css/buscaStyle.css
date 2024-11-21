@@ -1,8 +1,11 @@
 /* Estilos básicos da Navbar */
+@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;600&display=swap');
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Figtree', sans-serif;
     margin: 0;
     padding: 0;
+    font-weight: 300; 
 }
 
 /* Seção de Categorias */
@@ -19,18 +22,63 @@ body {
     margin-bottom: 20px;
 }
 
-.busca-box input, .busca-box button {
-    padding: 8px;
+/* Barra de Pesquisa */
+.busca-box {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* Alinha o conteúdo à direita */
+    background-color: #fff;
+    border-radius: 50px;
     border: 1px solid #ddd;
-    border-radius: 4px;
+    padding: 6px 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    transition: box-shadow 0.3s ease, transform 0.3s ease; /* Efeito de transição */
+    margin-top: 20px; /* Distância da Navbar */
+    position: relative;
+    max-width: 350px; /* Largura reduzida */
+    width: 100%;
 }
 
-.busca-box button {
-    background-color: #333;
-    color: white;
+/* Estilo do Input */
+.busca-box input {
     border: none;
-    cursor: pointer;
+    outline: none;
+    padding: 8px 12px;
+    font-size: 14px;
+    font-family: 'Figtree', sans-serif;
+    width: 100%;
+    border-radius: 50px;
+    color: #333;
+    transition: background-color 0.3s ease;
 }
+
+/* Efeito de foco no campo de texto */
+.busca-box input:focus {
+    background-color: #f9f9f9;
+}
+
+/* Estilo do botão */
+.busca-box button {
+    background-color: #FF7F0F;
+    border: none;
+    border-radius: 50%;
+    padding: 10px;
+    margin-left: 8px;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.busca-box button:hover {
+    background-color: #cf6b13;
+    transform: scale(1.1);
+}
+
+/* Ícone dentro do botão */
+.busca-box button i {
+    font-size: 20px;
+    color: white;
+}
+
 
 /* Cards de Categorias */
 .categorias {
@@ -89,14 +137,14 @@ body {
 }
 
 .card-content i {
-    font-size: 40px; /* Tamanho do ícone */
+    font-size: 20px; /* Tamanho do ícone */
     color: #fff; /* Cor do ícone */
     margin-bottom: 10px; /* Adiciona um espaço entre o ícone e o texto */
 }
 
 .card-text {
     font-size: 16px;
-    font-weight: bold;
-    color: #fff; /* Cor do texto */
-    margin-top: 15px; /* Adiciona o espaço entre o ícone e o texto */
+    font-weight: 300;  /* Aplica peso 300 ao texto, deixando mais fino */
+    color: #fff;
+    margin-top: 15px;
 }

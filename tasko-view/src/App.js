@@ -8,6 +8,7 @@ import Index from "./pages/Index"
 import AuthPage from "./pages/Auth";
 import EscolhaObjetivo from "./pages/EscolhaObjetivo";
 import CadastroPrestador from "./pages/CadastroPrestador";
+import Configuracoes  from "./pages/Configuracoes";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/auth" element={<AuthPage />} />
         <Route path="/escolha-objetivo" element={<EscolhaObjetivo />} />
         <Route path="/cadastro-prestador" element={<CadastroPrestador />} />
+        <Route path="/configuracoes" element={<Configuracoes />} />
       </Routes>
     </Router>
   );
