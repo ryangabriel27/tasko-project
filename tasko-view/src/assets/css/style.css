@@ -2,7 +2,8 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: w;
+    padding: 0;
+    overflow-x: hidden;
   }
   
   /* Linha do topo */
@@ -47,6 +48,7 @@ body {
   .header-buttons {
     display: flex;
     align-items: center;
+    margin-left: auto;
   }
   
   .header-buttons .button {
@@ -58,6 +60,17 @@ body {
     cursor: pointer;
     background-color: #4a148c;
     color: white;
+  }
+
+  .button{
+    margin-left: 10px;
+    border: none;
+    border-radius: 100px;
+    font-size: 14px;
+    cursor: pointer;
+    background-color: #4a148c;
+    color: white;
+
   }
   
   .header-buttons .button-outline {
@@ -100,7 +113,7 @@ body {
 }
 
 .hero-text .highlight {
-    color: #4a148c;
+    color: #FF7F0F;
     font-weight: bold;
 }
 
@@ -187,41 +200,90 @@ body {
 }
 
 
-  
-  /* Cards */
-  .cards-section {
-    display: flex;
-    justify-content: space-around;
-    padding: 20px 30px;
-  }
-  
-  .card {
-    background-color: white;
-    width: 45%;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  }
-  
-  .card h2 {
-    font-size: 20px;
-    margin: 0 0 10px;
-  }
-  
-  .card p {
-    font-size: 14px;
-    margin: 0 0 15px;
-  }
-  
-  .card .button {
-    background-color: #4a148c;
-    color: white;
-    font-size: 14px;
-    padding: 8px 15px;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
-  }
+/* Seção geral (ajustar para permitir que a imagem cubra parcialmente os cards) */
+.cards-section {
+  position: relative; /* Permite que os cards sejam posicionados sobre a imagem */
+  padding: 40px 20px;
+  background: rgb(255,127,15);
+  background: linear-gradient(90deg, rgba(255,127,15,1) 0%, rgba(255,0,178,1) 100%);
+  overflow: hidden; /* Garante que os cards que ultrapassam a imagem não sejam visíveis */
+  height: 428px;
+  justify-content: center; /* Centraliza horizontalmente */
+}
+
+/* Div exclusiva para a imagem */
+.image-container {
+  position: absolute; /* Coloca a imagem sobre os cards */
+  width: 30%; /* A imagem ocupa mais da largura disponível */
+  height: 88%; /* A imagem vai ocupar toda a altura */
+  z-index: 1; /* Garante que a imagem fique sobre os cards */
+  justify-content: flex-start;
+  margin-top: 10px;
+
+}
+
+.image-container img {
+  width: 100%;
+  height: 100%; /* A imagem irá preencher toda a altura da div */
+  object-fit: cover; /* Garante que a imagem cubra a área sem distorcer */
+  border-radius: 10px;
+  margin-left: 120px; /* Ajuste da imagem para a esquerda */
+}
+
+/* Cards - os cards agora estarão posicionados atrás da imagem */
+.cards {
+  display: flex; /* Disposição horizontal dos cards */
+  gap: 20px; /* Espaçamento entre os cards */
+  position: relative; /* Garante que os cards fiquem sobre a seção de cards */
+  transform: translateY(40px); /* Levanta os cards para que o topo do primeiro card fique parcialmente coberto pela imagem */
+  z-index: 0; /* Coloca os cards atrás da imagem */
+  margin-left: 30%; /* Ajusta os cards para a direita, para não ficarem em cima da imagem */
+}
+
+/* Card */
+.card {
+  background-color: rgba(255, 255, 255, 0.3); /* Fundo branco com 30% de opacidade */
+  width: 320px; /* Largura fixa */
+  height: 300px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  overflow: hidden; /* Garante que nada ultrapasse os limites do card */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 20px 20px 20px;
+  text-align: center;
+  backdrop-filter: blur(5px); /* Aplica desfoque no fundo, se necessário */
+  transition: background-color 0.3s ease; /* Adiciona transição para efeito */
+}
+
+/* Card hover (opcional) */
+.card:hover {
+  background-color: rgba(255, 255, 255, 0.5); /* Aumenta a opacidade ao passar o mouse */
+}
+
+.card h2 {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.card p {
+  font-size: 14px;
+  margin: 10px 0;
+}
+
+.card .button {
+  background-color: #4a148c;
+  color: white;
+  font-size: 14px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+
   
   /* Responsividade */
 @media (max-width: 768px) {

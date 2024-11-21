@@ -16,7 +16,8 @@ const EscolhaObjetivo = () => {
             navigate("/cadastro-prestador");
         } else {
             alert(`Usuário ID ${userId}: Você escolheu ser um usuário comum.`);
-            // Pode redirecionar ou exibir uma mensagem para usuários comuns
+            sessionStorage.removeItem("userId");
+            navigate("/auth");
         }
     };
 

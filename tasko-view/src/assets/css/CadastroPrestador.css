@@ -1,0 +1,76 @@
+/* Estilos gerais */
+body {
+    font-family: sans-serif;
+    background-color: #f2f2f2; /* Cor de fundo aproximada da imagem */
+    margin: 0;
+  }
+  
+  
+  /* Estilos do formulário */
+  form {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px; /* Bordas mais arredondadas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra mais suave */
+  }
+  
+  h2 {
+    text-align: center;
+    color: #673ab7; /* Roxo escuro */
+    margin-bottom: 20px;
+    font-size: 2em; /* Título maior */
+  }
+  
+  input[type="text"],
+  input[type="url"],
+  input[type="number"] {
+    width: calc(100% - 22px); /* Ajuste para o espaçamento interno */
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 1em; /* Tamanho da fonte do texto */
+  }
+  
+  button[type="submit"] {
+    background-color: #ff9800;
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.2em; /* Botão um pouco maior */
+    display: block; /* Ocupa toda a largura do contêiner */
+    width: 100%; /* Largura total */
+    margin-top: 20px; /* Espaçamento superior */
+  }
+  
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #fff;
+  }
+  
+  .voltar-button {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-size: 1em;
+  }
+  
+  .logo-container {
+    text-align: center;
+    margin-bottom: 20px;
+    display: flex; /* Adicionado display flex */
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+    width: 100%; /* Ocupa toda a largura do contêiner pai */
+  }
+  
+  .logo {
+    max-width: 100px;
+  }
