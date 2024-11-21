@@ -1,69 +1,54 @@
 import React from "react";
 import Navbar from "../components/Navbar";
+import categoriaazul from "../assets/img/categoria1.png";
+import categoriarosa from "../assets/img/categoriarosa.png";
+import categoriaamarelo from "../assets/img/categoriaamarelo.png";
 import "../assets/css/buscaStyle.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { 
-    faLaptopCode, 
-    faBullhorn, 
-    faPaintBrush, 
-    faPen, 
-    faClipboard, 
-    faClipboardList, 
-    faHeart, 
-    faChalkboardTeacher, 
-    faTheaterMasks, 
-    faBuilding, 
-    faWrench, 
-    faCalendarAlt,
-    faSearch 
-} from "@fortawesome/free-solid-svg-icons";
 
 const Busca = () => {
     const categorias = [
-        { id: 2, classe: "card3", icone: faLaptopCode, texto: "Tecnologia e Desenvolvimento" },
-        { id: 1, classe: "card1", icone: faBullhorn, texto: "Marketing e Venda" },
-        { id: 5, classe: "card3", icone: faPaintBrush, texto: "Design e Criatividade" },
-        { id: 4, classe: "card4", icone: faPen, texto: "Escrita e Tradução" },
-        { id: 2, classe: "card5", icone: faClipboard, texto: "Consultoria e Estratégia" },
-        { id: 3, classe: "card3", icone: faClipboardList, texto: "Administração e Suporte" },
-        { id: 1, classe: "card1", icone: faHeart, texto: "Saúde e Bem-Estar" },
-        { id: 2, classe: "card2", icone: faChalkboardTeacher, texto: "Educação" },
-        { id: 3, classe: "card2", icone: faTheaterMasks, texto: "Arte, Teatro e Música" },
-        { id: 5, classe: "card5", icone: faBuilding, texto: "Arquitetura e Engenharia" },
-        { id: 3, classe: "card1", icone: faWrench, texto: "Serviços Domésticos e Manutenção" },
-        { id: 4, classe: "card4", icone: faCalendarAlt, texto: "Eventos e Produção" },
+        { id: 2, imagem: categoriaazul, texto: "Tecnologia e Desenvolvimento" },
+        { id: 1, imagem: categoriarosa, texto: "Marketing e Venda" },
+        { id: 5, imagem: categoriaamarelo, texto: "Design e Criatividade" },
+        { id: 4, imagem: categoriarosa, texto: "Escrita e Tradução" },
+        { id: 2, imagem: categoriaamarelo, texto: "Consultoria e Estratégia" },
+        { id: 3, imagem: categoriaazul, texto: "Administração e Suporte" },
+        { id: 1, imagem: categoriaamarelo, texto: "Saúde e Bem-Estar" },
+        { id: 2, imagem: categoriaazul, texto: "Educação" },
+        { id: 3, imagem: categoriarosa, texto: "Arte, Teatro e Música" },
+        { id: 5, imagem: categoriaazul, texto: "Arquitetura e Engenharia" },
+        { id: 3, imagem: categoriarosa, texto: "Serviços Domésticos e Manutenção" },
+        { id: 4, imagem: categoriaamarelo, texto: "Eventos e Produção" },
     ];
 
     return (
         <>
             <Navbar />
             <div>
-                {/* Seção de Categorias */}
                 <section className="categoria-section">
                     <div className="categoria-header">
                         <h2>Categoria</h2>
                         <div className="busca-box">
                             <input type="text" placeholder="Buscar..." />
-                            <button>
-                                <FontAwesomeIcon icon={faSearch} />
-                            </button>
+                            <button>🔍</button>
                         </div>
                     </div>
 
-                    {/* Lista de Categorias */}
                     <div className="categorias">
-                        {categorias.map((categoria, index) => (
+                        {categorias.map((categoria) => (
                             <a
-                                key={index}
+                                key={categoria.id}
                                 href={`/categoria/${categoria.id}`}
-                                className={categoria.classe}
+                                className="categoria-card"
                             >
-                                <div className="card-content">
-                                    <FontAwesomeIcon 
-                                        icon={categoria.icone} 
-                                        style={{ fontSize: "35px", color: "#fff" }}  // Aplicando o estilo diretamente no ícone
+                                <div className="categoria-imagem">
+                                    <img
+                                        src={categoria.imagem}
+                                        alt={categoria.texto}
                                     />
-                                    <span className="card-text">{categoria.texto}</span>
+                                </div>
+                                <div className="categoria-texto">
+                                    <h3>{categoria.texto}</h3>
                                 </div>
                             </a>
                         ))}
