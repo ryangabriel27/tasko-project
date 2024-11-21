@@ -223,3 +223,52 @@ body {
     cursor: pointer;
   }
   
+  /* Responsividade */
+@media (max-width: 768px) {
+  .header {
+      flex-wrap: wrap;
+      justify-content: center;
+      text-align: center;
+  }
+
+  .hero {
+      flex-direction: column;
+      text-align: center;
+  }
+
+  .hero-text {
+      border-radius: 20px;
+      max-width: 100%;
+  }
+
+  .cards-section {
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .card {
+      max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-text h1 {
+      font-size: 1.5rem;
+  }
+
+  .hero-text p {
+      font-size: 0.9rem;
+  }
+
+  .testimonial blockquote {
+      font-size: 1rem;
+  }
+
+  .card h2 {
+      font-size: 1rem;
+  }
+
+  .card p {
+      font-size: 0.9rem;
+  }
+}
