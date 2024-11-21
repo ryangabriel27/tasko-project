@@ -5,9 +5,11 @@ import "../assets/css/perfilStyle.css";
 import image from "../assets/img/perfil1.jfif";
 
 const Perfil = () => {
+    const navigate = useNavigate();
     const [user, setUser] = useState(null);
     const [rating, setRating] = useState(null);
     const [prestador, setPrestador] = useState(null);
+    const [servicos, setServicos] = useState([]);
     const [isPrestador, setIsPrestador] = useState(false); // Indica se o usuário é um prestador
     const [loading, setLoading] = useState(true); // Indica se os dados ainda estão carregando
 

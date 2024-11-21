@@ -4,8 +4,10 @@ import br.tasko.tasko.model.Prestador;
 import br.tasko.tasko.model.User;
 
 import java.util.Optional;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -16,4 +18,7 @@ public interface PrestadorRepository extends JpaRepository<Prestador, Long> {
 
     // Método customizado para buscar o prestador pelo ID do usuário
     Prestador findByUsuarioId(Long usuarioId);
+
+    @Query(value = "SELECT * FROM prestador ORDER BY RANDOM() LIMIT :limite", nativeQuery = true)
+    List<Prestador> obterPrestadoresAleatorios(int limite);
 }
