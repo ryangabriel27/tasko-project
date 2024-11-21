@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
 import Navbar from "../components/Navbar";
@@ -14,6 +14,8 @@ const Home = () => {
     const [user, setUser] = useState(null);
 
     useEffect(() => {
+
+
         const verificarAuth = async () => {
             try {
                 const response = await fetch('http://localhost:8080/auth/current', {
@@ -76,7 +78,7 @@ const Home = () => {
                 </title>
             </Helmet>
             <Navbar />
-            <h1>Bem - vindo, {user.nome}!</h1>
+            <h1>Bem - vindo, {user.nome} {user.sobrenome}!</h1>
             <button onClick={handleLogout}>SAIR</button>
             <section className="container-section">
                 <div className="inicio-container">
