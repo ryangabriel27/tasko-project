@@ -61,12 +61,12 @@ body {
 }
 
 /* Estilos da avaliação (estrela e valor) */
-.rating {
+.rating-perfil {
     display: flex;
     align-items: center;
 }
 
-.star {
+.rating-perfil span {
     color: #FFD700; /* Cor dourada para a estrela */
     font-size: 80px; /* Aumentando o tamanho da estrela */
     margin-right: 10px;
