@@ -48,6 +48,7 @@ body {
   .header-buttons {
     display: flex;
     align-items: center;
+    margin-left: auto;
   }
   
   .header-buttons .button {
