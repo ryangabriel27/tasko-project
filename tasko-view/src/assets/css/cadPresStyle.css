@@ -1,0 +1,69 @@
+/* Navbar menor */
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  background-color: #4F00A3;
+  position: relative;
+}
+
+.voltar-link {
+  position: absolute;
+  left: 20px;
+  color: white;
+  font-size: 1.5rem;
+  text-decoration: none;
+}
+
+.logo {
+  height: 40px;
+  max-width: 9%;
+}
+
+/* Estilização da imagem e texto */
+.content {
+  display: flex;
+  height: calc(100vh - 60px); /* Descontando a altura da navbar */
+  width: 100%;
+}
+
+.left-side {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.background-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.overlay-text {
+  position: absolute;
+  color: white;
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+}
+
+/* Estilização do formulário */
+.right-side {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background-color: #f5f5f5;
+}
+
+.form {
+  width: 80%;
+  max-width: 400px;
+}
+

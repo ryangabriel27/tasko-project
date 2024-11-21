@@ -1,0 +1,43 @@
+/* Estilos do Footer */
+.footer2 {
+    background-color: #4a148c;
+    color: white;
+    padding: 10px 10px 10px 10px;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Div Inferior */
+.footer-bottom2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-image2 {
+    width: 60px;
+    height: auto;
+    margin-top: 5px;
+}
+
+.footer-links2 {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 20px;
+}
+
+.footer-links2 a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+
+.footer-links2 a:hover {
+    color: #ff6f00;
+}
