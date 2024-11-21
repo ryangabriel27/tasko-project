@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import "../assets/css/CadastroPrestador.css";
+import "../assets/css/cadPresStyle.css";
 import taskoWhite from "../assets/img/TaskoWhite.png";
+import fundo from "../assets/img/Background1.png";
+import FooterSimples from "../components/FooterSimples";
 
 const CadastroPrestador = () => {
   const navigate = useNavigate();
@@ -47,65 +49,77 @@ const CadastroPrestador = () => {
 
   return (
     <div>
+      {/* Navbar menor */}
       <nav className="navbar">
-        <Link to="/escolha-objetivo">
-          <button className="voltar-button">Voltar</button>
+        <Link to="/escolha-objetivo" className="voltar-link">
+          ←
         </Link>
-        <div className="logo-container">
-          <img src={taskoWhite} alt="tasko" className="logo" />
-        </div>
+        <img src={taskoWhite} alt="tasko" className="logo" />
       </nav>
-      <div className="content"> {/* Adicionei uma div com a classe content */}
-        <form onSubmit={handleSubmit} className="form">
-          <h2>Cadastro de Prestador</h2>
-          <div>
-            <input
-              type="text"
-              name="descricaoServicos"
-              placeholder="Descrição dos Serviços"
-              required
-              onChange={handleInputChange}
-            />
+
+      <div className="content">
+        {/* Lado esquerdo: imagem com texto */}
+        <div className="left-side">
+          <img src={fundo} alt="Background" className="background-image" />
+          <div className="overlay-text">
+            <h1>Seja um Prestador de Serviços</h1>
           </div>
-          <div>
-            <input
-              type="text"
-              name="categoriaServicos"
-              placeholder="Categoria dos Serviços"
-              required
-              onChange={handleInputChange}
-            />
-          </div>
-          <div>
-            <input
-              type="url"
-              name="links"
-              placeholder="Links de Portfólio"
-              required
-              onChange={handleInputChange}
-            />
-          </div>
-          <div>
-            <input
-              type="number"
-              name="valorHora"
-              placeholder="Valor por Hora"
-              required
-              onChange={handleInputChange}
-            />
-          </div>
-          <div>
-            <input
-              type="text"
-              name="cnpj"
-              placeholder="CNPJ"
-              required
-              onChange={handleInputChange}
-            />
-          </div>
-          <button type="submit">Cadastrar</button>
-        </form>
+        </div>
+
+        {/* Lado direito: formulário */}
+        <div className="right-side">
+          <form onSubmit={handleSubmit} className="form">
+            <h2>Cadastro de Prestador</h2>
+            <div>
+              <input
+                type="text"
+                name="descricaoServicos"
+                placeholder="Descrição dos Serviços"
+                required
+                onChange={handleInputChange}
+              />
+            </div>
+            <div>
+              <input
+                type="text"
+                name="categoriaServicos"
+                placeholder="Categoria dos Serviços"
+                required
+                onChange={handleInputChange}
+              />
+            </div>
+            <div>
+              <input
+                type="url"
+                name="links"
+                placeholder="Links de Portfólio"
+                required
+                onChange={handleInputChange}
+              />
+            </div>
+            <div>
+              <input
+                type="number"
+                name="valorHora"
+                placeholder="Valor por Hora"
+                required
+                onChange={handleInputChange}
+              />
+            </div>
+            <div>
+              <input
+                type="text"
+                name="cnpj"
+                placeholder="CNPJ"
+                required
+                onChange={handleInputChange}
+              />
+            </div>
+            <button type="submit">Cadastrar</button>
+          </form>
+        </div>
       </div>
+        <FooterSimples></FooterSimples>
     </div>
   );
 };

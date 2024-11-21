@@ -1,5 +1,7 @@
 package br.tasko.tasko.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,10 @@ public class PrestadorService {
 
     @Autowired
     private UserRepository userRepository;
+
+    public List<Prestador> listarTodosPrestadores() {
+        return prestadorRepository.findAll();
+    }
 
     public Prestador cadastrarPrestador(Prestador prestador) {
         // Verificar se o usuário já é prestador
@@ -32,5 +38,10 @@ public class PrestadorService {
     // Método para buscar um prestador pelo ID do usuário associado
     public Prestador obterPrestadorPorUsuarioId(Long usuarioId) {
         return prestadorRepository.findByUsuarioId(usuarioId); // Nova consulta no repositório
+    }
+
+    // Método para buscar prestadores aleatórios
+    public List<Prestador> obterPrestadoresAleatorios(int limite) {
+        return prestadorRepository.obterPrestadoresAleatorios(limite);
     }
 }

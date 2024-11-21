@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
 import Navbar from "../components/Navbar";
@@ -12,6 +12,7 @@ import { Helmet } from "react-helmet"; // Importe o Helmet
 const Home = () => {
     const navigate = useNavigate();
     const [user, setUser] = useState(null);
+    const [randomProviders, setRandomProviders] = useState([]); // Estado para armazenar os prestadores
 
     useEffect(() => {
         const verificarAuth = async () => {
@@ -36,6 +37,29 @@ const Home = () => {
         verificarAuth();
     }, [navigate]);
 
+    // Função para buscar prestadores aleatórios
+    useEffect(() => {
+        const fetchRandomProviders = async () => {
+            try {
+                const response = await fetch('http://localhost:8080/api/prestadores/random?limite=12', {
+                    method: 'GET',
+                    credentials: 'include',
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    setRandomProviders(data); // Salva os dados no estado
+                } else {
+                    console.error('Erro ao buscar prestadores:', response.status);
+                }
+            } catch (error) {
+                console.error('Erro na requisição dos prestadores:', error);
+            }
+        };
+
+        fetchRandomProviders();
+    }, []);
+
     const handleLogout = async () => {
         try {
             await fetch('http://localhost:8080/auth/logout', {
@@ -52,31 +76,13 @@ const Home = () => {
         return <div>Carregando...</div>;
     }
 
-    const categories = [
-        { image: image1, name: "Ronaldo Cupim", profession: "Designer Gráfico", rating: 4.8 },
-        // Adicione mais objetos conforme necessário
-    ];
-
-    const carouselItems = [
-        { image: image2, name: "Polibe Murici", profession: "Desenvolvedor JAVA", rating: 4.8 },
-        { image: image2, name: "Polibe Murici", profession: "Desenvolvedor JAVA", rating: 4.8 },
-        { image: image2, name: "Polibe Murici", profession: "Desenvolvedor JAVA", rating: 4.8 },
-        { image: image2, name: "Polibe Murici", profession: "Desenvolvedor JAVA", rating: 4.8 },
-        { image: image2, name: "Polibe Murici", profession: "Desenvolvedor JAVA", rating: 4.8 },
-        { image: image2, name: "Polibe Murici", profession: "Desenvolvedor JAVA", rating: 4.8 },
-        { image: image2, name: "Polibe Murici", profession: "Desenvolvedor JAVA", rating: 4.8 },
-        // Adicione mais objetos conforme necessário
-    ];
-
     return (
         <>
             <Helmet>
-                <title>
-                    Início - Tasko
-                </title>
+                <title>Início - Tasko</title>
             </Helmet>
             <Navbar />
-            <h1>Bem - vindo, {user.nome}!</h1>
+            <h1>Bem - vindo, {user.nome} {user.sobrenome}!</h1>
             <button onClick={handleLogout}>SAIR</button>
             <section className="container-section">
                 <div className="inicio-container">
@@ -88,9 +94,19 @@ const Home = () => {
                         </div>
                     </div>
                     <div className="card-grid">
-                        {categories.map((category, index) => (
-                            <CategoryCard key={index} {...category} />
-                        ))}
+                        {randomProviders.length > 0 ? (
+                            randomProviders.slice(0,6).map((provider, index) => (
+                                <CategoryCard
+                                    key={index}
+                                    image={provider.usuario.foto || image1} // Use a imagem padrão caso não tenha
+                                    name={`${provider.usuario.nome} ${provider.usuario.sobrenome}`}
+                                    profession={provider.categoriaServicos}
+                                    rating={""}
+                                />
+                            ))
+                        ) : (
+                            <p>Carregando prestadores...</p>
+                        )}
                     </div>
                 </div>
             </section>
@@ -100,8 +116,14 @@ const Home = () => {
                         <h3>Você também pode gostar de:</h3>
                     </div>
                     <div className="carousel-content" id="carouselContent">
-                        {carouselItems.map((item, index) => (
-                            <CarouselCard key={index} {...item} />
+                        {randomProviders.map((item, index) => (
+                            <CarouselCard
+                                key={index}
+                                image={item.usuario.foto || image1} // Use a imagem padrão caso não tenha
+                                name={`${item.usuario.nome} ${item.usuario.sobrenome}`}
+                                profession={item.categoriaServicos}
+                                rating={""}
+                            />
                         ))}
                     </div>
                     <div className="carousel-nav-buttons">

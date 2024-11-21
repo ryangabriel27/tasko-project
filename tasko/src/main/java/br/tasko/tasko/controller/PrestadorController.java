@@ -1,5 +1,7 @@
 package br.tasko.tasko.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,6 +42,16 @@ public class PrestadorController {
             return ResponseEntity.ok(prestador);
         } catch (Exception e) {
             return ResponseEntity.status(500).body("Erro ao buscar prestador: " + e.getMessage());
+        }
+    }
+
+    @GetMapping("/random")
+    public ResponseEntity<?> obterPrestadoresAleatorios(int limite) {
+        try {
+            List<Prestador> prestadores = prestadorService.obterPrestadoresAleatorios(limite);
+            return ResponseEntity.ok(prestadores);
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("Erro ao buscar prestadores aleatórios: " + e.getMessage());
         }
     }
 

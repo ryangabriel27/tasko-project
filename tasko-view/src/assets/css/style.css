@@ -48,6 +48,7 @@ body {
   .header-buttons {
     display: flex;
     align-items: center;
+    margin-left: auto;
   }
   
   .header-buttons .button {
@@ -98,6 +99,7 @@ body {
     border-top-right-radius:1000px;
     border-bottom-right-radius: 1000px;
     max-width: 700px;  /* Limita a largura máxima do texto */
+    
 }
 
 /* Título e texto */

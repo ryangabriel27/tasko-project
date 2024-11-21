@@ -5,11 +5,13 @@ import "../assets/css/perfilStyle.css";
 import image from "../assets/img/perfil1.jfif";
 
 const Perfil = () => {
+    const navigate = useNavigate();
     const [user, setUser] = useState(null);
+    const [rating, setRating] = useState(null);
     const [prestador, setPrestador] = useState(null);
-    const [isPrestador, setIsPrestador] = useState(false);
-    const [loading, setLoading] = useState(true);
-    const navigate = useNavigate(); // Inicializa o hook useNavigate
+    const [servicos, setServicos] = useState([]);
+    const [isPrestador, setIsPrestador] = useState(false); // Indica se o usuário é um prestador
+    const [loading, setLoading] = useState(true); // Indica se os dados ainda estão carregando
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -53,6 +55,8 @@ const Perfil = () => {
                     const prestadorData = await response.json();
                     setPrestador(prestadorData);
                     setIsPrestador(true);
+                    fetchServicos(prestadorData.id); // Buscar serviços do prestador
+                    fetchRating(prestadorData.id);
                 } else {
                     setPrestador(null);
                     setIsPrestador(false);
@@ -61,6 +65,53 @@ const Perfil = () => {
                 console.error("Erro ao buscar prestador:", error);
             }
         };
+
+        // Função para buscar serviços do prestador
+        const fetchServicos = async (prestadorId) => {
+            try {
+                const response = await fetch(`http://localhost:8080/api/servicos/prestador/${prestadorId}`, {
+                    method: "GET",
+                    credentials: 'include',
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                });
+
+                if (response.ok) {
+                    const servicosData = await response.json();
+                    setServicos(servicosData);
+                } else {
+                    console.error("Erro ao buscar serviços:", response.status);
+                }
+            } catch (error) {
+                console.error("Erro na requisição de serviços:", error);
+            }
+        };
+
+        const fetchRating = async (prestadorId) => {
+            try {
+                const response = await fetch(`http://localhost:8080/api/avaliacoes/prestador/${prestadorId}/media`, {
+                    method: "GET",
+                    credentials: 'include',
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                });
+
+                if (response.ok) {
+                    const media = await response.json();
+                    setRating(media); // O número retornado é diretamente atribuído
+                } else {
+                    console.error("Erro ao buscar avaliacoes:", response.status);
+                }
+            } catch (error) {
+                console.error("Erro na requisição de avaliacoes:", error);
+            }
+        };
+
+
+
+
 
         fetchUserData();
     }, []);
@@ -85,7 +136,7 @@ const Perfil = () => {
                             className="profile-pic"
                         />
                         <div className="description">
-                            <span className="username">{user.nome}</span>
+                            <span className="username">{user.nome} {user.sobrenome}</span>
                             {isPrestador && (
                                 <p className="bio">
                                     {prestador.categoriaServicos || "Descrição do serviço não informada"}
@@ -93,11 +144,15 @@ const Perfil = () => {
                             )}
                         </div>
                     </div>
-                    <div className="rating">
+                    <div className="rating-perfil">
                         {isPrestador ? (
                             <>
-                                <span className="star">&#9733;</span>
-                                <span className="rating-value">{user.rating || "N/A"}</span>
+                                <div className="rating-perfil">
+                                    <span className="star">&#9733;</span>
+                                    <p className="rating-value">
+                                        {rating ? rating.toFixed(1) : "Sem avaliações"} {/* Exibe a média ou mensagem */}
+                                    </p>
+                                </div>
                             </>
                         ) : (
                             <span>Bem-vindo ao seu perfil!</span>
@@ -112,6 +167,7 @@ const Perfil = () => {
                             Configurações
                         </button>
                     </div>
+
                 </div>
                 {isPrestador && (
                     <>
@@ -123,11 +179,13 @@ const Perfil = () => {
                         </div>
                         <div className="separator-line"></div>
                         <div className="work-cards">
-                            {prestador.trabalhos?.map((trabalho, index) => (
-                                <div className="work-card" key={index}>
-                                    <div className="work-title">{trabalho.titulo}</div>
-                                    <div className="work-value">{trabalho.valor}</div>
-                                    <div className="work-arrow">&#10132;</div>
+                            {servicos.map((servico) => (
+                                <div className="work-card" key={servico.id}>
+                                    <div className="work-title">{servico.descricao}</div>
+                                    <div className="work-value">
+                                        R$ {servico.valor.toFixed(2)}
+                                    </div>
+                                    <div class="work-arrow">&#10132;</div>
                                 </div>
                             ))}
                         </div>
