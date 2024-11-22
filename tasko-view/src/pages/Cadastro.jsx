@@ -5,7 +5,6 @@ import taskoPurple from "../assets/img/TaskoPurple.png";
 import InputMask from "react-input-mask";
 import { validarCPF, validarEmail, validarTelefone, validarCEP } from "../components/Auth";
 
-
 const Cadastro = () => {
   const [formData, setFormData] = useState({
     nome: "",
@@ -35,12 +34,48 @@ const Cadastro = () => {
 
   const navigate = useNavigate();
 
-  const handleInputChange = (e) => {
+  const handleInputChange = async (e) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
 
     // Limpa o erro do campo quando o usuário digita
     setErrors((prevErrors) => ({ ...prevErrors, [name]: "" }));
+
+    if (name === "cep") {
+      // Remove caracteres não numéricos e atualiza o estado do formulário
+      const cep = value.replace(/\D/g, "");
+      setFormData((prevData) => ({ ...prevData, cep: cep }));
+
+      // Consulta a API após um pequeno atraso
+      setTimeout(async () => {
+        if (cep.length === 8) {
+          try {
+            const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+            const data = await response.json();
+
+            if (!data.erro) {
+              setFormData((prevData) => ({
+                ...prevData,
+                endereco: `${data.logradouro}, ${data.bairro}`,
+              }));
+            } else {
+              setErrors((prevErrors) => ({
+                ...prevErrors,
+                cep: "CEP não encontrado.",
+              }));
+            }
+          } catch (error) {
+            console.error("Erro ao consultar CEP:", error);
+            setErrors((prevErrors) => ({
+              ...prevErrors,
+              cep: "Erro ao consultar CEP.",
+            }));
+          }
+        }
+      }, 500); // Atraso de 500 milissegundos (meio segundo)
+    } else {
+      // Atualiza o estado do formulário para outros campos
+      setFormData((prevData) => ({ ...prevData, [name]: value }));
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -90,7 +125,6 @@ const Cadastro = () => {
 
     setErrors(newErrors);
 
-    // Se houver algum erro, interrompe o envio
     if (Object.keys(newErrors).length > 0) {
       return;
     }
@@ -176,7 +210,7 @@ const Cadastro = () => {
             />
             {errors.email && <span className="error">{errors.email}</span>}
             <input
-              type="password" 
+              type="password"
               name="senha"
               placeholder="Senha"
               required
@@ -202,7 +236,7 @@ const Cadastro = () => {
               placeholder="CEP"
               required
               value={formData.cep}
-              onChange={handleInputChange}
+              onChange={handleInputChange} 
             />
             {errors.cep && <span className="error">{errors.cep}</span>}
             <input
