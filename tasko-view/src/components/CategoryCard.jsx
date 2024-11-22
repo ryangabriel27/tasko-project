@@ -21,7 +21,7 @@ const CategoryCard = ({ image, name, profession, rating, id}) => {
         <span>
           <i className="fas fa-star"></i> {rating}
         </span>
-        <button onClick={() => navigate(`/perfil-prestador/${id}`)}>
+        <button class="noBorder noBack orange pointer" onClick={() => navigate(`/perfil-prestador/${id}`)}>
         <FontAwesomeIcon icon={faArrowRight}  />
         </button>
       </div>

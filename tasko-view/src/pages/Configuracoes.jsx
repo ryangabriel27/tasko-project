@@ -76,11 +76,11 @@ const Configuracoes = () => {
     return (
         <>
             <Navbar />
-            <div className="config-container">
+            <div className="config-container lightBack">
                 <h1>Configurações</h1>
                 {isPrestador ? (
                     <div className="config-section">
-                        <h2>Configurações para Prestadores</h2>
+                        <h2 className="lightBack w100">Configurações para Prestadores</h2>
                         <ul>
                             <li>
                                 <button className="config-button">

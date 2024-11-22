@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "../assets/css/cadStyle.css";
-import taskoPurple from "../assets/img/TaskoPurple.png";
+import fundo from "../assets/img/Background1.png"; // Certifique-se de ter a imagem 'fundo.jpg' no caminho correto
 import InputMask from "react-input-mask";
 import { validarCPF, validarEmail, validarTelefone, validarCEP, verificarMaioridade } from "../components/Auth";
+import taskoWhite from "../assets/img/TaskoWhite.png";
+import FooterSimples from "../components/FooterSimples";
 
 const Cadastro = () => {
   const [formData, setFormData] = useState({
@@ -110,6 +112,7 @@ const Cadastro = () => {
           required={isRequired}
           value={formData[name]}
           onChange={handleInputChange}
+          className="in-cad"
         />
       ) : (
         <input
@@ -119,6 +122,7 @@ const Cadastro = () => {
           required={isRequired}
           value={formData[name]}
           onChange={handleInputChange}
+          className="in-cad"
         />
       )}
       {errors[name] && <span className="error">{errors[name]}</span>}
@@ -126,45 +130,61 @@ const Cadastro = () => {
   );
 
   return (
-    <div className="container">
-      <div className="header">
-        <button onClick={() => window.history.back()} className="voltar">
-          <i className="fas fa-arrow-left"></i>
-        </button>
-        <img src={taskoPurple} alt="Tasko Logo" />
-        <h2>CADASTRO</h2>
-      </div>
-      <form onSubmit={handleSubmit}>
-        <div className="grid-container">
-          <div className="grid-item">
-            <InputField type="text" name="nome" placeholder="Nome" isRequired={true} />
-            <InputField type="text" name="sobrenome" placeholder="Sobrenome" isRequired={true} />
-            <InputField type="text" name="cpf" placeholder="CPF" mask="999.999.999-99" isRequired={true} />
-          </div>
-          <div className="grid-item">
-            <InputField
-              type="text"
-              name="telefone"
-              placeholder="Telefone"
-              mask="(99) 99999-9999"
-              isRequired={true}
-            />
-            <InputField type="email" name="email" placeholder="E-mail" isRequired={true} />
-            <InputField type="password" name="senha" placeholder="Senha" isRequired={true} />
-          </div>
-          <div className="grid-item">
-            <InputField type="date" name="data_nasc" placeholder="Data de Nascimento" isRequired={true} />
-          </div>
-          <div className="grid-item">
-            <InputField type="text" name="cep" placeholder="CEP" mask="99999-999" isRequired={true} />
-            <InputField type="text" name="endereco" placeholder="Endereço" isRequired={true} />
-            <InputField type="text" name="foto" placeholder="Link para foto" isRequired={false} />
+
+    <div>
+
+      <nav className="navbarsimples">
+        <Link to="/escolha-objetivo" className="voltar-link">
+          ←
+        </Link>
+        <img src={taskoWhite} alt="tasko" className="logoNavSimples" />
+      </nav>
+
+      <div className="container">
+        <div className="left-side">
+          <img src={fundo} alt="Background" className="background-image" />
+          <div className="overlay-text">
+            <h1>Cadastro de <span className="hi-text">Usuário</span></h1>
           </div>
         </div>
-        <button type="submit" className="button primary">
-          Continuar
-        </button>
-      </form>
+
+        <div className="right-side">
+          <form onSubmit={handleSubmit}>
+            <div className="grid-container">
+              {/* Primeira Coluna */}
+              <div className="grid-item">
+                <InputField type="text" name="nome" placeholder="Nome" isRequired={true} />
+                <InputField type="text" name="cpf" placeholder="CPF" mask="999.999.999-99" isRequired={true} />
+                <InputField
+                  type="text"
+                  name="telefone"
+                  placeholder="Telefone"
+                  mask="(99) 99999-9999"
+                  isRequired={true}
+                />
+                <InputField type="text" name="endereco" placeholder="Endereço" isRequired={true} />
+                <InputField type="text" name="foto" placeholder="Link para foto" isRequired={false} />
+
+              </div>
+
+              {/* Segunda Coluna */}
+              <div className="grid-item">
+                <InputField type="text" name="sobrenome" placeholder="Sobrenome" isRequired={true} />
+                <InputField type="email" name="email" placeholder="E-mail" isRequired={true} />
+                <InputField type="text" name="cep" placeholder="CEP" mask="99999-999" isRequired={true} />
+                <InputField type="date" name="data_nasc" placeholder="Data de Nascimento" isRequired={true} />
+                <InputField type="password" name="senha" placeholder="Senha" isRequired={true} />
+              </div>
+            </div>
+            <button type="submit" className="button-cad">
+              Continuar
+            </button>
+          </form>
+        </div>
+      </div>
+      <FooterSimples>
+
+      </FooterSimples>
     </div>
   );
 };

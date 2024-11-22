@@ -37,6 +37,26 @@ h2 {
     color: #fdffff;
 }
 
+.noBack {
+    background-color: #fdffff00;
+}
+
+.noBorder {
+    border: 1px solid #fdffff00;
+}
+
+.red {
+    color: #F50035;
+}
+
+.orange {
+    color: #FF7F0F;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
 ul {
     list-style: none;
     padding: 0;

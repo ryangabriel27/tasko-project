@@ -78,6 +78,10 @@ body {
   max-width: 400px;
 }
 
+.w100 {
+  font-weight: 100;
+}
+
 .w900 {
   font-weight: 900;
 }
