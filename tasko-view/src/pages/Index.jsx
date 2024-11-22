@@ -31,8 +31,8 @@ const App = () => {
                         />
                     </div>
                     <div className="header-buttons">
-                        <a href="/cadastro"><button className="button">Cadastre-se</button></a>
-                        <a href="/auth"><button className="button button-outline">Entrar</button></a>
+                        <a href="/cadastro"><button className="button-index">Cadastre-se</button></a>
+                        <a href="/auth"><button className="button-index button-index-outline">Entrar</button></a>
                     </div>
                 </header>
             </div>
@@ -45,7 +45,7 @@ const App = () => {
                     <p>
                         Busque por prestadores competentes e avaliados em nosso sistema.
                     </p>
-                    <a href="/busca"><button className="button button-outline">Buscar por categoria</button></a>
+                    <a href="/busca"><button className="button-index button-outline">Buscar por categoria</button></a>
                 </div>
                 <div className="hero-image">
                     <img
@@ -86,14 +86,14 @@ const App = () => {
                             A plataforma ideal para trabalhadores autônomos ganharem
                             visibilidade e crescerem profissionalmente.
                         </p>
-                        <button className="button">Cadastre-se</button>
+                        <button className="button-index">Cadastre-se</button>
                     </div>
                     <div className="card">
                         <h2>Busque por prestadores para a categoria que você quiser</h2>
                         <p>
                             Uma plataforma feita para que... ah sei lá, coloca alguma coisa aí.
                         </p>
-                        <button className="button">Cadastre-se</button>
+                        <button className="button-index">Cadastre-se</button>
                     </div>
                 </div>
             </section>

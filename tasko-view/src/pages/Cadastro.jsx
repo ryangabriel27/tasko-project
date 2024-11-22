@@ -154,117 +154,61 @@ const Cadastro = () => {
   };
 
   return (
-    <div className="container">
-      <div className="header">
-        <button onClick={() => window.history.back()} className="voltar">
-          <i className="fas fa-arrow-left"></i>
-        </button>
-        <img src={taskoPurple} alt="Tasko Logo" />
-        <h2>CADASTRO</h2>
-      </div>
-      <form onSubmit={handleSubmit}>
-        <div className="grid-container">
-          <div className="grid-item">
-            <input
-              type="text"
-              name="nome"
-              placeholder="Nome"
-              required
-              value={formData.nome}
-              onChange={handleInputChange}
-            />
-            {errors.nome && <span className="error">{errors.nome}</span>}
-            <input
-              type="text"
-              name="sobrenome"
-              placeholder="Sobrenome"
-              required
-              value={formData.sobrenome}
-              onChange={handleInputChange}
-            />
-            {errors.sobrenome && <span className="error">{errors.sobrenome}</span>}
-            <InputMask
-              mask="999.999.999-99"
-              name="cpf"
-              placeholder="CPF"
-              required
-              value={formData.cpf}
-              onChange={handleInputChange}
-            />
-            {errors.cpf && <span className="error">{errors.cpf}</span>}
-          </div>
-          <div className="grid-item">
-            <InputMask
-              mask="(99) 99999-9999"
-              name="telefone"
-              placeholder="Telefone"
-              required
-              value={formData.telefone}
-              onChange={handleInputChange}
-            />
-            {errors.telefone && <span className="error">{errors.telefone}</span>}
-            <input
-              type="email"
-              name="email"
-              placeholder="E-mail"
-              required
-              value={formData.email}
-              onChange={handleInputChange}
-            />
-            {errors.email && <span className="error">{errors.email}</span>}
-            <input
-              type="password"
-              name="senha"
-              placeholder="Senha"
-              required
-              value={formData.senha}
-              onChange={handleInputChange}
-            />
-            {errors.senha && <span className="error">{errors.senha}</span>}
-          </div>
-          <div className="grid-item">
-            <input
-              type="date"
-              name="data_nasc"
-              required
-              value={formData.data_nasc}
-              onChange={handleInputChange}
-            />
-            {errors.data_nasc && <span className="error">{errors.data_nasc}</span>}
-          </div>
-          <div className="grid-item">
-            <InputMask
-              mask="99999-999"
-              name="cep"
-              placeholder="CEP"
-              required
-              value={formData.cep}
-              onChange={handleInputChange}
-            />
-            {errors.cep && <span className="error">{errors.cep}</span>}
-            <input
-              type="text"
-              name="endereco"
-              placeholder="Endereço"
-              required
-              value={formData.endereco}
-              onChange={handleInputChange}
-            />
-            {errors.endereco && <span className="error">{errors.endereco}</span>}
-            <input
-              type="text"
-              name="foto"
-              placeholder="Link"
-              value={formData.foto}
-              onChange={handleInputChange}
-            />
-            {errors.foto && <span className="error">{errors.foto}</span>}
+
+    <div>
+
+      <nav className="navbarsimples">
+        <Link to="/" className="voltar-link">
+          ←
+        </Link>
+        <img src={taskoWhite} alt="tasko" className="logoNavSimples" />
+      </nav>
+
+      <div className="container">
+        <div className="left-side">
+          <img src={fundo} alt="Background" className="background-image" />
+          <div className="overlay-text">
+            <h1>Cadastro de <span className="hi-text">Usuário</span></h1>
           </div>
         </div>
-        <button type="submit" className="button primary">
-          Continuar
-        </button>
-      </form>
+
+        <div className="right-side">
+          <form onSubmit={handleSubmit}>
+            <div className="grid-container">
+              {/* Primeira Coluna */}
+              <div className="grid-item">
+                <InputField type="text" name="nome" placeholder="Nome" isRequired={true} />
+                <InputField type="text" name="cpf" placeholder="CPF" mask="999.999.999-99" isRequired={true} />
+                <InputField
+                  type="text"
+                  name="telefone"
+                  placeholder="Telefone"
+                  mask="(99) 99999-9999"
+                  isRequired={true}
+                />
+                <InputField type="text" name="endereco" placeholder="Endereço" isRequired={true} />
+                <InputField type="text" name="foto" placeholder="Link para foto" isRequired={false} />
+
+              </div>
+
+              {/* Segunda Coluna */}
+              <div className="grid-item">
+                <InputField type="text" name="sobrenome" placeholder="Sobrenome" isRequired={true} />
+                <InputField type="email" name="email" placeholder="E-mail" isRequired={true} />
+                <InputField type="text" name="cep" placeholder="CEP" mask="99999-999" isRequired={true} />
+                <InputField type="date" name="data_nasc" placeholder="Data de Nascimento" isRequired={true} />
+                <InputField type="password" name="senha" placeholder="Senha" isRequired={true} />
+              </div>
+            </div>
+            <button type="submit" className="button-cad">
+              Continuar
+            </button>
+          </form>
+        </div>
+      </div>
+      <FooterSimples>
+
+      </FooterSimples>
     </div>
   );
 };
