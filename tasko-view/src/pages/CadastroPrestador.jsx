@@ -47,14 +47,41 @@ const CadastroPrestador = () => {
     }
   };
 
+  const categorias = [
+    { value: "Tecnologia e Desenvolvimento", titulo: "Tecnologia e Desenvolvimento" },
+    { value: "Saude e Bem Estar", titulo: "Saúde e Bem-Estar" },
+    { value: "Arquitetura e Engenharia", titulo: "Arquitetura e Engenharia" },
+    { value: "Gestao e Projetos", titulo: "Gestão de Projetos" },
+    { value: "Comercio e Vendas", titulo: "Comércio e Vendas" },
+    { value: "Beleza e Estetica", titulo: "Beleza e Estética" },
+    { value: "Marketing e Vendas", titulo: "Marketing e Vendas" },
+    { value: "Consultoria e Estrategia", titulo: "Consultoria e Estratégia" },
+    { value: "Educacao", titulo: "Educação" },
+    { value: "Servicos Domesticos", titulo: "Serviços Domésticos" },
+    { value: "Psicologia e Coaching", titulo: "Psicologia e Coaching" },
+    { value: "Turismo e Lazer", titulo: "Turismo e Lazer" },
+    { value: "Consultoria Empresarial", titulo: "Consultoria Empresarial" },
+    { value: "Design e Criatividade", titulo: "Design e Criatividade" },
+    { value: "Administracao e Suporte", titulo: "Administração e Suporte" },
+    { value: "Arte e Teatro e Musica", titulo: "Arte, Teatro e Música" },
+    { value: "Eventos e Producao", titulo: "Eventos e Produção" },
+    { value: "Fotografia e Video", titulo: "Fotografia e Vídeo" },
+    { value: "Inovacao e Startups", titulo: "Inovação e Startups" },
+    { value: "Redacao e Copywriting", titulo: "Redação e Copywriting" },
+    { value: "Mnutencao Geral", titulo: "Manutenção Geral" },
+    { value: "Financas e Investimentos", titulo: "Finanças e Investimentos" },
+    { value: "Culinaria e Gastronomia", titulo: "Culinária e Gastronomia" },
+  ];
+
+
   return (
     <div>
       {/* Navbar menor */}
-      <nav className="navbar">
+      <nav className="navbarsimples">
         <Link to="/escolha-objetivo" className="voltar-link">
           ←
         </Link>
-        <img src={taskoWhite} alt="tasko" className="logo" />
+        <img src={taskoWhite} alt="tasko" className="logoNavSimples" />
       </nav>
 
       <div className="content">
@@ -62,14 +89,14 @@ const CadastroPrestador = () => {
         <div className="left-side">
           <img src={fundo} alt="Background" className="background-image" />
           <div className="overlay-text">
-            <h1>Seja um Prestador de Serviços</h1>
+            <h1 class="darkBack w900">Seja um prestador de serviços</h1>
           </div>
         </div>
 
         {/* Lado direito: formulário */}
         <div className="right-side">
           <form onSubmit={handleSubmit} className="form">
-            <h2>Cadastro de Prestador</h2>
+            <h2 class="lightBack">Cadastro de Prestador</h2>
             <div>
               <input
                 type="text"
@@ -118,8 +145,10 @@ const CadastroPrestador = () => {
             <button type="submit">Cadastrar</button>
           </form>
         </div>
+
+
       </div>
-        <FooterSimples></FooterSimples>
+      <FooterSimples></FooterSimples>
     </div>
   );
 };

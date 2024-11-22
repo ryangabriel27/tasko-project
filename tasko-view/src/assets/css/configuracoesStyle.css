@@ -1,8 +1,9 @@
 body {
-    font-family: "Arial", sans-serif;
-    background-color: #f9f9f9;
+    font-family: 'Figtree', sans-serif;
+    background-color: #fdffff;
     margin: 0;
     padding: 0;
+    font-weight: 300; 
 }
 
 .config-container {
@@ -14,9 +15,9 @@ body {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-h1 {
+.h1 {
 
-    color: #333;
+    color: #242A36;
 }
 
 .config-section {
@@ -24,8 +25,16 @@ h1 {
 }
 
 h2 {
-    color: #555;
+    color: #ffffff;
     margin-bottom: 15px;
+}
+
+.lightBack {
+    color: #242A36;
+}
+
+.darkBack {
+    color: #fdffff;
 }
 
 ul {
@@ -39,7 +48,7 @@ li {
 
 .config-button {
     padding: 10px 15px;
-    background-color: #007bff;
+    background-color: #510EF3;
     color: #fff;
     font-size: 16px;
     font-weight: bold;
@@ -52,9 +61,9 @@ li {
 }
 
 .config-button:hover {
-    background-color: #0056b3;
+    background-color: #510EF3;
 }
 
 .config-button:active {
-    background-color: #003f7f;
+    background-color: #400bbb;
 }

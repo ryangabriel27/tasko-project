@@ -1,103 +1,89 @@
-import React, { useState, useContext, createContext } from 'react';
-import { AlertCircle, CheckCircle2 } from 'lucide-react';
+// components/Auth.jsx
+export const validarCPF = (cpf) => {
+  // Remove caracteres não numéricos
+  cpf = cpf.replace(/[^\d]+/g, "");
 
-// Criar contexto de autenticação
-const AuthContext = createContext(null);
-
-// Provider do contexto de autenticação
-export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-
-  const login = async (email, password) => {
-    try {
-      setLoading(true);
-      setError(null);
-      const response = await fetch('/api/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        credentials: 'include', // Importante para manter a sessão
-        body: JSON.stringify({ email, password })
-      });
-
-      if (!response.ok) {
-        const errorText = await response.text();
-        throw new Error(errorText);
-      }
-
-      const userData = await response.json();
-      setUser(userData);
-      return userData;
-    } catch (err) {
-      setError(err.message || 'Erro ao fazer login');
-      throw err;
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const register = async (userData) => {
-    try {
-      setLoading(true);
-      setError(null);
-      const response = await fetch('/api/auth/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(userData)
-      });
-
-      if (!response.ok) {
-        const errorText = await response.text();
-        throw new Error(errorText);
-      }
-
-      return await response.json();
-    } catch (err) {
-      setError(err.message || 'Erro ao registrar');
-      throw err;
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const getCurrentUser = async () => {
-    try {
-      const response = await fetch('/api/auth/user', {
-        credentials: 'include'
-      });
-
-      if (!response.ok) {
-        throw new Error('Não autenticado');
-      }
-
-      const userData = await response.json();
-      setUser(userData);
-      return userData;
-    } catch (err) {
-      setUser(null);
-      throw err;
-    }
-  };
-
-  return (
-    <AuthContext.Provider value={{ user, login, register, getCurrentUser, loading, error }}>
-      {children}
-    </AuthContext.Provider>
-  );
-};
-
-// Hook personalizado para usar o contexto
-export const useAuth = () => {
-  const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error('useAuth deve ser usado dentro de um AuthProvider');
+  // Verifica se o CPF tem 11 dígitos
+  if (cpf.length !== 11) {
+    return "CPF deve ter 11 dígitos.";
   }
-  return context;
+
+  // Validação do primeiro dígito verificador
+  let soma = 0;
+  for (let i = 0; i < 9; i++) {
+    soma += parseInt(cpf.charAt(i)) * (10 - i);
+  }
+  let resto = 11 - (soma % 11);
+  if (resto === 10 || resto === 11) {
+    resto = 0;
+  }
+  if (resto !== parseInt(cpf.charAt(9))) {
+    return "CPF inválido.";
+  }
+
+  // Validação do segundo dígito verificador
+  soma = 0;
+  for (let i = 0; i < 10; i++) {
+    soma += parseInt(cpf.charAt(i)) * (11 - i);
+  }
+  resto = 11 - (soma % 11);
+  if (resto === 10 || resto === 11) {
+    resto = 0;
+  }
+  if (resto !== parseInt(cpf.charAt(10))) {
+    return "CPF inválido.";
+  }
+
+  return ""; // CPF válido
 };
 
-    
+export const validarEmail = (email) => {
+  // Expressão regular para validar formato de email
+  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!re.test(email)) {
+    return "E-mail inválido.";
+  }
+  return ""; // Email válido
+};
+
+export const validarTelefone = (telefone) => {
+  // Remove caracteres não numéricos
+  telefone = telefone.replace(/[^\d]+/g, "");
+
+  // Verifica se o telefone tem 10 ou 11 dígitos
+  if (telefone.length < 10 || telefone.length > 11) {
+    return "Telefone deve ter 10 ou 11 dígitos.";
+  }
+
+  return ""; // Telefone válido
+};
+
+export const validarCEP = (cep) => {
+  // Remove caracteres não numéricos
+  cep = cep.replace(/[^\d]+/g, "");
+
+  // Verifica se o CEP tem 8 dígitos
+  if (cep.length !== 8) {
+    return "CEP deve ter 8 dígitos.";
+  }
+
+  return ""; // CEP válido
+};
+// components/Auth.jsx
+export const verificarMaioridade = (dataNascimento) => {
+  const hoje = new Date();
+  const [ano, mes, dia] = dataNascimento.split("-").map(Number); // Supondo data no formato 'YYYY-MM-DD'
+  const dataNascimentoDate = new Date(ano, mes - 1, dia);
+
+  // Calcula a idade
+  let idade = hoje.getFullYear() - dataNascimentoDate.getFullYear();
+  const mesAtual = hoje.getMonth();
+  const diaAtual = hoje.getDate();
+
+  // Verifica se ainda não fez aniversário este ano
+  if (mesAtual < mes - 1 || (mesAtual === mes - 1 && diaAtual < dia)) {
+    idade--;
+  }
+
+  return idade >= 18 ? "" : "Usuário deve ser maior de 18 anos.";
+};

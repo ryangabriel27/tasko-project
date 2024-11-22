@@ -1,8 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap');
 
-body{
+body {
+    font-family: 'Figtree', sans-serif;
     margin: 0;
+    padding: 0;
+    font-weight: 300; 
 }
+
 /* Seção de Categorias */
 .container-section {
     max-width: 1200px;
