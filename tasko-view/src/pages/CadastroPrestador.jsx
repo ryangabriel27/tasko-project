@@ -62,14 +62,14 @@ const CadastroPrestador = () => {
         <div className="left-side">
           <img src={fundo} alt="Background" className="background-image" />
           <div className="overlay-text">
-            <h1>Seja um Prestador de Serviços</h1>
+            <h1 class="darkBack w900">Seja um prestador de serviços</h1>
           </div>
         </div>
 
         {/* Lado direito: formulário */}
         <div className="right-side">
           <form onSubmit={handleSubmit} className="form">
-            <h2>Cadastro de Prestador</h2>
+            <h2 class="lightBack">Cadastro de Prestador</h2>
             <div>
               <input
                 type="text"
