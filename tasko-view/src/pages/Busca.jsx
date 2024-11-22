@@ -4,7 +4,6 @@ import categoriaazul from "../assets/img/categoria1.png";
 import categoriarosa from "../assets/img/categoriarosa.png";
 import categoriaamarelo from "../assets/img/categoriaamarelo.png";
 import "../assets/css/buscaStyle.css";
-import 'font-awesome/css/font-awesome.min.css'; // Importação correta
 
 const Busca = () => {
     const categorias = [

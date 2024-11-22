@@ -134,7 +134,7 @@ const Cadastro = () => {
     <div>
 
       <nav className="navbarsimples">
-        <Link to="/escolha-objetivo" className="voltar-link">
+        <Link to="/" className="voltar-link">
           ←
         </Link>
         <img src={taskoWhite} alt="tasko" className="logoNavSimples" />

@@ -84,60 +84,56 @@ const CadastroPrestador = () => {
         <div className="left-side">
           <img src={fundo} alt="Background" className="background-image" />
           <div className="overlay-text">
-            <h1 class="darkBack w900">Seja um prestador de serviços</h1>
+            <h1 class="darkBack w900">Cadastro de <span className="hi-text">Prestador</span></h1>
           </div>
         </div>
 
         {/* Lado direito: formulário */}
         <div className="right-side">
           <form onSubmit={handleSubmit} className="form">
-            <h2 class="lightBack">Cadastro de Prestador</h2>
-            <div>
-              <input
-                type="text"
-                name="descricaoServicos"
-                placeholder="Descrição dos Serviços"
-                required
-                onChange={handleInputChange}
-              />
-            </div>
-            <div>
-              <input
-                type="text"
-                name="categoriaServicos"
-                placeholder="Categoria dos Serviços"
-                required
-                onChange={handleInputChange}
-              />
-            </div>
-            <div>
-              <input
-                type="url"
-                name="links"
-                placeholder="Links de Portfólio"
-                required
-                onChange={handleInputChange}
-              />
-            </div>
-            <div>
-              <input
-                type="number"
-                name="valorHora"
-                placeholder="Valor por Hora"
-                required
-                onChange={handleInputChange}
-              />
-            </div>
-            <div>
-              <input
-                type="text"
-                name="cnpj"
-                placeholder="CNPJ"
-                required
-                onChange={handleInputChange}
-              />
-            </div>
-            <button type="submit">Cadastrar</button>
+            <input className="in-class"
+              type="text"
+              name="links"
+              placeholder="Links de Portfólio"
+              required
+              onChange={handleInputChange}
+            />
+            <input className="in-class"
+              type="text"
+              name="valorHora"
+              placeholder="Valor por Hora"
+              required
+              onChange={handleInputChange}
+            />
+            <select
+              className="se-class"
+              name="categoriaServicos"
+              required
+              onChange={handleInputChange}
+              defaultValue=""
+            > 
+              <option value="" disabled>
+                Categoria dos Serviços
+              </option>
+              {categorias.map((categoria) => (
+                <option key={categoria.value} value={categoria.value}>
+                  {categoria.titulo}
+                </option>
+              ))}
+            </select>
+            <input className="in-class"
+              type="text"
+              name="cnpj"
+              placeholder="CNPJ"
+              required
+              onChange={handleInputChange}
+            />
+            <textarea className="text-class"
+              placeholder="Descrição dos Serviços"
+              required
+              onChange={handleInputChange}
+            ></textarea>
+            <button className="cad-pres" type="submit">Cadastrar</button>
           </form>
         </div>
 
