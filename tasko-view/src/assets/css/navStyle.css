@@ -9,13 +9,13 @@ nav {
     font-family: 'Figtree', sans-serif;
 }
 
-.logo {
+.logoNav {
     flex-grow: 1;
     /* Isso faz a logo ficar no centro */
     text-align: center;
 }
 
-.logo img {
+.logoNav img {
     height: 45px;
     /* Tamanho da logo */
 }

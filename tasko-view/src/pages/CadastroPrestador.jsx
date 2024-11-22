@@ -47,14 +47,41 @@ const CadastroPrestador = () => {
     }
   };
 
+  const categorias = [
+    { value: "tec-dev", titulo: "Tecnologia e Desenvolvimento" },
+    { value: "saude-bem-estar", titulo: "Saúde e Bem-Estar" },
+    { value: "arq-eng", titulo: "Arquitetura e Engenharia" },
+    { value: "gestao-projetos", titulo: "Gestão de Projetos" },
+    { value: "comercio-vendas", titulo: "Comércio e Vendas" },
+    { value: "beleza-estetica", titulo: "Beleza e Estética" },
+    { value: "marketing-vendas", titulo: "Marketing e Vendas" },
+    { value: "consultoria-estrategia", titulo: "Consultoria e Estratégia" },
+    { value: "educacao", titulo: "Educação" },
+    { value: "servicos-domesticos", titulo: "Serviços Domésticos" },
+    { value: "psicologia-coaching", titulo: "Psicologia e Coaching" },
+    { value: "turismo-lazer", titulo: "Turismo e Lazer" },
+    { value: "consultoria-empresarial", titulo: "Consultoria Empresarial" },
+    { value: "design-criatividade", titulo: "Design e Criatividade" },
+    { value: "admin-suporte", titulo: "Administração e Suporte" },
+    { value: "arte-teatro-musica", titulo: "Arte, Teatro e Música" },
+    { value: "eventos-producao", titulo: "Eventos e Produção" },
+    { value: "fotografia-video", titulo: "Fotografia e Vídeo" },
+    { value: "inovacao-startups", titulo: "Inovação e Startups" },
+    { value: "redacao-copywriting", titulo: "Redação e Copywriting" },
+    { value: "manutencao-geral", titulo: "Manutenção Geral" },
+    { value: "financas-investimentos", titulo: "Finanças e Investimentos" },
+    { value: "culinaria-gastronomia", titulo: "Culinária e Gastronomia" },
+  ];
+
+
   return (
     <div>
       {/* Navbar menor */}
-      <nav className="navbar">
+      <nav className="navbarsimples">
         <Link to="/escolha-objetivo" className="voltar-link">
           ←
         </Link>
-        <img src={taskoWhite} alt="tasko" className="logo" />
+        <img src={taskoWhite} alt="tasko" className="logoNavSimples" />
       </nav>
 
       <div className="content">
@@ -62,64 +89,63 @@ const CadastroPrestador = () => {
         <div className="left-side">
           <img src={fundo} alt="Background" className="background-image" />
           <div className="overlay-text">
-            <h1>Seja um Prestador de Serviços</h1>
+            <h1>Cadastro de <span className="high-text">Prestador</span></h1>
           </div>
         </div>
 
         {/* Lado direito: formulário */}
         <div className="right-side">
           <form onSubmit={handleSubmit} className="form">
-            <h2>Cadastro de Prestador</h2>
-            <div>
-              <input
-                type="text"
-                name="descricaoServicos"
-                placeholder="Descrição dos Serviços"
-                required
-                onChange={handleInputChange}
-              />
-            </div>
-            <div>
-              <input
-                type="text"
-                name="categoriaServicos"
-                placeholder="Categoria dos Serviços"
-                required
-                onChange={handleInputChange}
-              />
-            </div>
-            <div>
-              <input
-                type="url"
-                name="links"
-                placeholder="Links de Portfólio"
-                required
-                onChange={handleInputChange}
-              />
-            </div>
-            <div>
-              <input
-                type="number"
-                name="valorHora"
-                placeholder="Valor por Hora"
-                required
-                onChange={handleInputChange}
-              />
-            </div>
-            <div>
-              <input
-                type="text"
-                name="cnpj"
-                placeholder="CNPJ"
-                required
-                onChange={handleInputChange}
-              />
-            </div>
-            <button type="submit">Cadastrar</button>
+            <input className="in-class"
+              type="text"
+              name="links"
+              placeholder="Links de Portfólio"
+              required
+              onChange={handleInputChange}
+            />
+            <input className="in-class"
+              type="text"
+              name="valorHora"
+              placeholder="Valor por Hora"
+              required
+              onChange={handleInputChange}
+            />
+            <select
+              className="se-class"
+              name="categoriaServicos"
+              required
+              onChange={handleInputChange}
+              defaultValue=""
+            > 
+              <option value="" disabled>
+                Categoria dos Serviços
+              </option>
+              {categorias.map((categoria) => (
+                <option key={categoria.value} value={categoria.value}>
+                  {categoria.titulo}
+                </option>
+              ))}
+            </select>
+
+            <input className="in-class"
+              type="text"
+              name="cnpj"
+              placeholder="CNPJ"
+              required
+              onChange={handleInputChange}
+            />
+            <textarea className="text-class"
+              placeholder="Descrição dos Serviços"
+              required
+              onChange={handleInputChange}
+            ></textarea>
+            <button className="cad-pres" type="submit">Cadastrar</button>
           </form>
         </div>
+
+
       </div>
-        <FooterSimples></FooterSimples>
+      <FooterSimples></FooterSimples>
     </div>
   );
 };
