@@ -104,10 +104,11 @@ body {
 
 /* Título e texto */
 .hero-text h1 {
-    font-size: 115px;
-    margin: 0 0 10px;
-    font-weight: 500;
-    line-height: 66%;
+  font-size: 115px;
+  margin: 0 0 10px;
+  font-weight: 500;
+  line-height: 66%;
+  color: #242A36;
 }
 
 .hero-text p {

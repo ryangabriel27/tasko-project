@@ -84,7 +84,7 @@ const Home = () => {
             </Helmet>
             <Navbar />
             <h1>Bem - vindo, {user.nome} {user.sobrenome}!</h1>
-            <button onClick={handleLogout}>SAIR</button>
+            <button class="buttonGradient5 forceCenter" onClick={handleLogout}>Sair</button>
             <section className="container-section">
                 <div className="inicio-container">
                     <div className="container-header">
