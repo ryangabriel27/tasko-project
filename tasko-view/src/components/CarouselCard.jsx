@@ -23,11 +23,11 @@ const CarouselCard = ({ image, name, profession, rating, id }) => {
         </div>
       </div>
       <div className="carousel-card-content">
-        <h3>{name}</h3>
-        <p>{profession}</p>
+        <h3 class="lightBack">{name}</h3>
+        <p class="lightBack">{profession}</p>
       </div>
       <div className="carousel-card-button">
-        <button onClick={() => navigate(`/perfil-prestador/${id}`)}>
+        <button class="noBack noBorder red" onClick={() => navigate(`/perfil-prestador/${id}`)}>
           <FontAwesomeIcon icon={faArrowRight}  />
         </button>
       </div>
