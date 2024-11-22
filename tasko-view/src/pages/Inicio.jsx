@@ -80,6 +80,7 @@ const Home = () => {
         <>
             <Helmet>
                 <title>Início - Tasko</title>
+                <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet"></link>
             </Helmet>
             <Navbar />
             <h1>Bem - vindo, {user.nome} {user.sobrenome}!</h1>

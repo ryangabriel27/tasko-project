@@ -1,8 +1,9 @@
 /* Estilos básicos da Navbar */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Figtree', sans-serif;
     margin: 0;
     padding: 0;
+    font-weight: 300; 
 }
 
 nav {

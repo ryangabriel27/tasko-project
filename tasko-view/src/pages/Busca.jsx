@@ -4,6 +4,7 @@ import categoriaazul from "../assets/img/categoria1.png";
 import categoriarosa from "../assets/img/categoriarosa.png";
 import categoriaamarelo from "../assets/img/categoriaamarelo.png";
 import "../assets/css/buscaStyle.css";
+import 'font-awesome/css/font-awesome.min.css'; // Importação correta
 
 const Busca = () => {
     const categorias = [
@@ -17,8 +18,20 @@ const Busca = () => {
         { id: 2, imagem: categoriaazul, texto: "Educação" },
         { id: 3, imagem: categoriarosa, texto: "Arte, Teatro e Música" },
         { id: 5, imagem: categoriaazul, texto: "Arquitetura e Engenharia" },
-        { id: 3, imagem: categoriarosa, texto: "Serviços Domésticos e Manutenção" },
+        { id: 3, imagem: categoriarosa, texto: "Serviços Domésticos" },
         { id: 4, imagem: categoriaamarelo, texto: "Eventos e Produção" },
+        { id: 6, imagem: categoriarosa, texto: "Gestão de Projetos" },
+        { id: 7, imagem: categoriaamarelo, texto: "Psicologia e Coaching" },
+        { id: 8, imagem: categoriaazul, texto: "Fotografia e Vídeo" },
+        { id: 9, imagem: categoriaamarelo, texto: "Comércio e Vendas" },
+        { id: 10, imagem: categoriaazul, texto: "Turismo e Lazer" },
+        { id: 11, imagem: categoriarosa, texto: "Inovação e Startups" },
+        { id: 12, imagem: categoriaazul, texto: "Beleza e Estética" },
+        { id: 13, imagem: categoriarosa, texto: "Consultoria Empresarial" },
+        { id: 14, imagem: categoriaamarelo, texto: "Redação e Copywriting" },
+        { id: 15, imagem: categoriarosa, texto: "Manutenção Geral" },
+        { id: 16, imagem: categoriaamarelo, texto: "Finanças e Investimentos" },
+        { id: 17, imagem: categoriaazul, texto: "Culinária e Gastronomia" },
     ];
 
     return (
@@ -29,8 +42,11 @@ const Busca = () => {
                     <div className="categoria-header">
                         <h2>Categoria</h2>
                         <div className="busca-box">
+                            <button>
+                                {/* Ícone de busca com Font Awesome */}
+                                <i className="fa fa-search"></i>
+                            </button>
                             <input type="text" placeholder="Buscar..." />
-                            <button>🔍</button>
                         </div>
                     </div>
 

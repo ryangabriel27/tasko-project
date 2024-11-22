@@ -9,9 +9,13 @@
 
 /* Estilos do body */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-}
+    font-family: 'Figtree', sans-serif;
+    display: flex;
+    color: #fdffff;
+    margin: 0;
+    padding: 0;
+  }
+
 
 /* Estilos da seção de perfil (ficará abaixo da navbar) */
 .profile-section {
