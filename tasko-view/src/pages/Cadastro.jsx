@@ -4,7 +4,7 @@ import "../assets/css/cadStyle.css";
 import fundo from "../assets/img/Background1.png"; // Certifique-se de ter a imagem 'fundo.jpg' no caminho correto
 import InputMask from "react-input-mask";
 import { validarCPF, validarEmail, validarTelefone, validarCEP, verificarMaioridade } from "../components/Auth";
-import taskoWhite from "../assets/img/TaskoWhite.png";
+import taskoPurple from "../assets/img/TaskoPurple.png";
 import FooterSimples from "../components/FooterSimples";
 
 const Cadastro = () => {
