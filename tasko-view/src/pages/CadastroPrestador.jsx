@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "../assets/css/cadPresStyle.css";
-import taskoWhite from "../assets/img/TaskoWhite.png";
 import fundo from "../assets/img/Background1.png";
 import FooterSimples from "../components/FooterSimples";
+import NavbarMenor from "../components/NavbarMenor";
 
 const CadastroPrestador = () => {
   const navigate = useNavigate();
@@ -77,69 +77,67 @@ const CadastroPrestador = () => {
   return (
     <div>
       {/* Navbar menor */}
-      <nav className="navbarsimples">
-        <Link to="/escolha-objetivo" className="voltar-link">
-          ←
-        </Link>
-        <img src={taskoWhite} alt="tasko" className="logoNavSimples" />
-      </nav>
+      <NavbarMenor link={"/escolha-objetivo"}/>
 
       <div className="content">
         {/* Lado esquerdo: imagem com texto */}
         <div className="left-side">
           <img src={fundo} alt="Background" className="background-image" />
           <div className="overlay-text">
-            <h1>Cadastro de <span className="high-text">Prestador</span></h1>
+            <h1 class="darkBack w900">Seja um prestador de serviços</h1>
           </div>
         </div>
 
         {/* Lado direito: formulário */}
         <div className="right-side">
           <form onSubmit={handleSubmit} className="form">
-            <input className="in-class"
-              type="text"
-              name="links"
-              placeholder="Links de Portfólio"
-              required
-              onChange={handleInputChange}
-            />
-            <input className="in-class"
-              type="text"
-              name="valorHora"
-              placeholder="Valor por Hora"
-              required
-              onChange={handleInputChange}
-            />
-            <select
-              className="se-class"
-              name="categoriaServicos"
-              required
-              onChange={handleInputChange}
-              defaultValue=""
-            > 
-              <option value="" disabled>
-                Categoria dos Serviços
-              </option>
-              {categorias.map((categoria) => (
-                <option key={categoria.value} value={categoria.value}>
-                  {categoria.titulo}
-                </option>
-              ))}
-            </select>
-
-            <input className="in-class"
-              type="text"
-              name="cnpj"
-              placeholder="CNPJ"
-              required
-              onChange={handleInputChange}
-            />
-            <textarea className="text-class"
-              placeholder="Descrição dos Serviços"
-              required
-              onChange={handleInputChange}
-            ></textarea>
-            <button className="cad-pres" type="submit">Cadastrar</button>
+            <h2 class="lightBack">Cadastro de Prestador</h2>
+            <div>
+              <input
+                type="text"
+                name="descricaoServicos"
+                placeholder="Descrição dos Serviços"
+                required
+                onChange={handleInputChange}
+              />
+            </div>
+            <div>
+              <input
+                type="text"
+                name="categoriaServicos"
+                placeholder="Categoria dos Serviços"
+                required
+                onChange={handleInputChange}
+              />
+            </div>
+            <div>
+              <input
+                type="url"
+                name="links"
+                placeholder="Links de Portfólio"
+                required
+                onChange={handleInputChange}
+              />
+            </div>
+            <div>
+              <input
+                type="number"
+                name="valorHora"
+                placeholder="Valor por Hora"
+                required
+                onChange={handleInputChange}
+              />
+            </div>
+            <div>
+              <input
+                type="text"
+                name="cnpj"
+                placeholder="CNPJ"
+                required
+                onChange={handleInputChange}
+              />
+            </div>
+            <button type="submit">Cadastrar</button>
           </form>
         </div>
 

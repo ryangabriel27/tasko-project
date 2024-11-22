@@ -56,6 +56,7 @@ const Perfil = () => {
                     setPrestador(prestadorData);
                     setIsPrestador(true);
                     fetchServicos(prestadorData.id); // Buscar serviços do prestador
+                    sessionStorage.setItem("prestadorId", prestadorData.id); // Salva o ID no sessionStorage
                     fetchRating(prestadorData.id);
                 } else {
                     setPrestador(null);
@@ -158,13 +159,21 @@ const Perfil = () => {
                             <span>Bem-vindo ao seu perfil!</span>
                         )}
                     </div>
-                    {/* Botão de configuração */}
+
                     <div className="config-button-wrapper">
                         <button
                             className="config-button"
                             onClick={() => navigate("/configuracoes")} // Redireciona para Configurações
                         >
                             Configurações
+                        </button>
+                    </div>
+                    <div className="config-button-wrapper">
+                        <button
+                            className="config-button"
+                            onClick={() => navigate("/adicionar-servico")} // Redireciona para Configurações
+                        >
+                            Adicionar novo serviço
                         </button>
                     </div>
 
@@ -185,7 +194,6 @@ const Perfil = () => {
                                     <div className="work-value">
                                         R$ {servico.valor.toFixed(2)}
                                     </div>
-                                    <div class="work-arrow">&#10132;</div>
                                 </div>
                             ))}
                         </div>

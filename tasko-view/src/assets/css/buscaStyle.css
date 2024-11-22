@@ -22,56 +22,61 @@ body {
     margin-bottom: 20px;
 }
 
+/* Estilo para o título "Categoria" */
+.categoria-header h2 {
+    font-family: 'Figtree', sans-serif; /* Usando a fonte Figtree */
+    font-weight: 700; /* Bold */
+    color: #F50035; /* Laranja */
+}
+/* Barra de Pesquisa */
 /* Barra de Pesquisa */
 .busca-box {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: flex-start;
     background-color: #fff;
-    border-radius: 50px;
-    border: 1px solid #ddd;
-    padding: 6px 12px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    padding: 1px 15px;
+    box-shadow: none;
     margin-top: 20px;
     position: relative;
-    max-width: 350px;
+    max-width: 250px;
     width: 100%;
 }
 
-/* Estilo do Input */
 .busca-box input {
     border: none;
     outline: none;
-    padding: 8px 12px;
+    padding: 6px 8px;
     font-size: 14px;
     font-family: 'Figtree', sans-serif;
     width: 100%;
-    border-radius: 50px;
-    color: #333;
-    transition: background-color 0.3s ease;
+    border-radius: 20px;
+    color: #aaa;
+    background-color: transparent;
 }
 
-/* Efeito de foco no campo de texto */
-.busca-box input:focus {
-    background-color: #f9f9f9;
-}
-
-/* Estilo do botão */
 .busca-box button {
-    background-color: #FF7F0F;
+    background-color: transparent;
     border: none;
-    border-radius: 50%;
-    padding: 10px;
-    margin-left: 8px;
+    padding: 6px 8px;
+    margin-left: 0px;
     cursor: pointer;
-    transition: transform 0.3s ease, background-color 0.3s ease;
+    color: #aaa;
+    font-size: 18px;
+}
+
+.busca-box button i {
+    font-size: 18px; /* Tamanho ajustado */
+    color: #aaa;    /* Cor do ícone */
 }
 
 .busca-box button:hover {
-    background-color: #cf6b13;
+    color: #555;
     transform: scale(1.1);
 }
+
 
 /* Cards de Categorias */
 .categorias {
@@ -85,11 +90,11 @@ body {
     border-radius: 8px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     text-decoration: none;
-    color: #fff; /* Deixa o texto sempre branco */
+    color: #fff;
     overflow: hidden;
     transition: transform 0.2s ease-in-out;
-    height: 120px;
-    background: linear-gradient(135deg, #242A36, #510EF3); /* Gradiente aplicado */
+    height: 80px;
+    background: linear-gradient(135deg, #242A36, #510EF3);
 }
 
 .categoria-card:hover {
@@ -114,13 +119,16 @@ body {
     flex: 2;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     padding: 0 20px;
 }
 
+/* Estilo do Texto no Card */
 .categoria-texto h3 {
+    font-family: 'Figtree', sans-serif; /* Usando a fonte Figtree */
+    font-weight: 800; /* ExtraBold */
     font-size: 16px;
-    font-weight: 600;
-    color: #fff; /* Mantém o texto legível sobre o gradiente */
-    text-align: center;
+    color: #fff; /* Mantém o texto branco */
+    text-align: left;
+    margin: 0;
 }

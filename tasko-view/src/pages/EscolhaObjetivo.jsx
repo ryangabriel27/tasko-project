@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import NavbarMenor from "../components/NavbarMenor";
 
 const EscolhaObjetivo = () => {
     const navigate = useNavigate();
@@ -22,11 +23,13 @@ const EscolhaObjetivo = () => {
     };
 
     return (
-        <div className="escolha-container">
-            <h2>Qual é o seu objetivo?</h2>
-            <button onClick={() => handleChoice("usuario")}>Usuário Comum</button>
-            <button onClick={() => handleChoice("prestador")}>Prestador</button>
-        </div>
+        <>
+            <NavbarMenor link={""}/>
+            <div className="escolha-container">
+                <h2>Qual é o seu objetivo?</h2>
+                <button onClick={() => handleChoice("usuario")}>Usuário Comum</button>
+                <button onClick={() => handleChoice("prestador")}>Prestador</button>
+            </div></>
     );
 };
 
