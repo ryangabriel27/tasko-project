@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "../assets/css/cadPresStyle.css";
-import taskoWhite from "../assets/img/TaskoWhite.png";
 import fundo from "../assets/img/Background1.png";
 import FooterSimples from "../components/FooterSimples";
+import NavbarMenor from "../components/NavbarMenor";
 
 const CadastroPrestador = () => {
   const navigate = useNavigate();
@@ -77,12 +77,7 @@ const CadastroPrestador = () => {
   return (
     <div>
       {/* Navbar menor */}
-      <nav className="navbarsimples">
-        <Link to="/escolha-objetivo" className="voltar-link">
-          ←
-        </Link>
-        <img src={taskoWhite} alt="tasko" className="logoNavSimples" />
-      </nav>
+      <NavbarMenor link={"/escolha-objetivo"}/>
 
       <div className="content">
         {/* Lado esquerdo: imagem com texto */}

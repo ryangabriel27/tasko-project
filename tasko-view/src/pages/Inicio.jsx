@@ -102,6 +102,7 @@ const Home = () => {
                                     name={`${provider.usuario.nome} ${provider.usuario.sobrenome}`}
                                     profession={provider.categoriaServicos}
                                     rating={""}
+                                    id= {provider.id}
                                 />
                             ))
                         ) : (
@@ -123,6 +124,7 @@ const Home = () => {
                                 name={`${item.usuario.nome} ${item.usuario.sobrenome}`}
                                 profession={item.categoriaServicos}
                                 rating={""}
+                                id= {item.id}
                             />
                         ))}
                     </div>
