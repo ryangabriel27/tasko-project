@@ -69,3 +69,21 @@ export const validarCEP = (cep) => {
 
   return ""; // CEP válido
 };
+// components/Auth.jsx
+export const verificarMaioridade = (dataNascimento) => {
+  const hoje = new Date();
+  const [ano, mes, dia] = dataNascimento.split("-").map(Number); // Supondo data no formato 'YYYY-MM-DD'
+  const dataNascimentoDate = new Date(ano, mes - 1, dia);
+
+  // Calcula a idade
+  let idade = hoje.getFullYear() - dataNascimentoDate.getFullYear();
+  const mesAtual = hoje.getMonth();
+  const diaAtual = hoje.getDate();
+
+  // Verifica se ainda não fez aniversário este ano
+  if (mesAtual < mes - 1 || (mesAtual === mes - 1 && diaAtual < dia)) {
+    idade--;
+  }
+
+  return idade >= 18 ? "" : "Usuário deve ser maior de 18 anos.";
+};
