@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../assets/css/cadStyle.css";
 import taskoPurple from "../assets/img/TaskoPurple.png";
+import InputMask from "react-input-mask";
+import { validarCPF, validarEmail, validarTelefone, validarCEP } from "../components/Auth";
 
 
 const Cadastro = () => {
@@ -17,15 +19,82 @@ const Cadastro = () => {
     endereco: "",
     foto: "",
   });
+
+  const [errors, setErrors] = useState({
+    nome: "",
+    sobrenome: "",
+    cpf: "",
+    telefone: "",
+    email: "",
+    senha: "",
+    data_nasc: "",
+    cep: "",
+    endereco: "",
+    foto: "",
+  });
+
   const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
+
+    // Limpa o erro do campo quando o usuário digita
+    setErrors((prevErrors) => ({ ...prevErrors, [name]: "" }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const newErrors = {};
+
+    if (formData.nome.trim() === "") {
+      newErrors.nome = "Nome é obrigatório.";
+    }
+
+    if (formData.sobrenome.trim() === "") {
+      newErrors.sobrenome = "Sobrenome é obrigatório.";
+    }
+
+    const cpfError = validarCPF(formData.cpf);
+    if (cpfError) {
+      newErrors.cpf = cpfError;
+    }
+
+    const telefoneError = validarTelefone(formData.telefone);
+    if (telefoneError) {
+      newErrors.telefone = telefoneError;
+    }
+
+    const emailError = validarEmail(formData.email);
+    if (emailError) {
+      newErrors.email = emailError;
+    }
+
+    if (formData.senha.trim() === "") {
+      newErrors.senha = "Senha é obrigatória.";
+    }
+
+    if (formData.data_nasc === "") {
+      newErrors.data_nasc = "Data de nascimento é obrigatória.";
+    }
+
+    const cepError = validarCEP(formData.cep);
+    if (cepError) {
+      newErrors.cep = cepError;
+    }
+
+    if (formData.endereco.trim() === "") {
+      newErrors.endereco = "Endereço é obrigatório.";
+    }
+
+    setErrors(newErrors);
+
+    // Se houver algum erro, interrompe o envio
+    if (Object.keys(newErrors).length > 0) {
+      return;
+    }
+
     try {
       console.log(formData);
       const response = await fetch("http://localhost:8080/auth/register", {
@@ -35,10 +104,10 @@ const Cadastro = () => {
       });
 
       if (response.ok) {
-        const data = await response.json(); // Supondo que a API retorna o `userId`
-        sessionStorage.setItem("userId", data.id); // Salva o ID no sessionStorage
+        const data = await response.json();
+        sessionStorage.setItem("userId", data.id);
         alert("Cadastro realizado com sucesso!");
-        navigate("/escolha-objetivo"); // Redireciona para a página de objetivo
+        navigate("/escolha-objetivo");
       } else {
         alert("Erro ao realizar o cadastro.");
       }
@@ -67,6 +136,7 @@ const Cadastro = () => {
               value={formData.nome}
               onChange={handleInputChange}
             />
+            {errors.nome && <span className="error">{errors.nome}</span>}
             <input
               type="text"
               name="sobrenome"
@@ -75,24 +145,27 @@ const Cadastro = () => {
               value={formData.sobrenome}
               onChange={handleInputChange}
             />
-            <input
-              type="text"
+            {errors.sobrenome && <span className="error">{errors.sobrenome}</span>}
+            <InputMask
+              mask="999.999.999-99"
               name="cpf"
               placeholder="CPF"
               required
               value={formData.cpf}
               onChange={handleInputChange}
             />
+            {errors.cpf && <span className="error">{errors.cpf}</span>}
           </div>
           <div className="grid-item">
-            <input
-              type="tel"
+            <InputMask
+              mask="(99) 99999-9999"
               name="telefone"
               placeholder="Telefone"
               required
               value={formData.telefone}
               onChange={handleInputChange}
             />
+            {errors.telefone && <span className="error">{errors.telefone}</span>}
             <input
               type="email"
               name="email"
@@ -101,14 +174,16 @@ const Cadastro = () => {
               value={formData.email}
               onChange={handleInputChange}
             />
+            {errors.email && <span className="error">{errors.email}</span>}
             <input
-              type="password"
+              type="password" 
               name="senha"
               placeholder="Senha"
               required
               value={formData.senha}
               onChange={handleInputChange}
             />
+            {errors.senha && <span className="error">{errors.senha}</span>}
           </div>
           <div className="grid-item">
             <input
@@ -118,16 +193,18 @@ const Cadastro = () => {
               value={formData.data_nasc}
               onChange={handleInputChange}
             />
+            {errors.data_nasc && <span className="error">{errors.data_nasc}</span>}
           </div>
           <div className="grid-item">
-            <input
-              type="text"
+            <InputMask
+              mask="99999-999"
               name="cep"
               placeholder="CEP"
               required
               value={formData.cep}
               onChange={handleInputChange}
             />
+            {errors.cep && <span className="error">{errors.cep}</span>}
             <input
               type="text"
               name="endereco"
@@ -136,6 +213,7 @@ const Cadastro = () => {
               value={formData.endereco}
               onChange={handleInputChange}
             />
+            {errors.endereco && <span className="error">{errors.endereco}</span>}
             <input
               type="text"
               name="foto"
@@ -143,6 +221,7 @@ const Cadastro = () => {
               value={formData.foto}
               onChange={handleInputChange}
             />
+            {errors.foto && <span className="error">{errors.foto}</span>}
           </div>
         </div>
         <button type="submit" className="button primary">
