@@ -16,7 +16,7 @@ const Header = () => {
             </div>
 
             {/* Logo central */}
-            <div className="logo">
+            <div className="logoNav">
                 <img src={logo} alt="Logo Tasko" />
             </div>
 

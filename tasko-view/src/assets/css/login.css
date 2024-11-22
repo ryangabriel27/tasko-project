@@ -1,11 +1,12 @@
 body {
     background-color: #4B0082;
-    font-family: sans-serif;
+    font-family: 'Figtree', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     margin: 0;
+    padding: 0;
   }
   
   .container {

@@ -1,5 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap');
 
+body {
+    font-family: 'Figtree', sans-serif;
+    display: flex;
+    margin: 0;
+    padding: 0;
+  }
+
+
 nav {
     display: flex;
     justify-content: space-between;
@@ -9,13 +17,13 @@ nav {
     font-family: 'Figtree', sans-serif;
 }
 
-.logo {
+.logoNav {
     flex-grow: 1;
     /* Isso faz a logo ficar no centro */
     text-align: center;
 }
 
-.logo img {
+.logoNav img {
     height: 45px;
     /* Tamanho da logo */
 }
