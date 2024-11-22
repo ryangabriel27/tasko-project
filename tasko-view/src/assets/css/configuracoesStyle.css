@@ -45,6 +45,29 @@ h2 {
     border: 1px solid #fdffff00;
 }
 
+.forceCenter {
+    display: flex;
+    margin: 0px auto;
+    align-items: center;
+}
+
+.buttonGradient5 {
+    background: linear-gradient(to right, #242A36, #510EF3);
+    font-family: 'Figtree';
+    border: none;
+    color: #fff;
+    padding: 4px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.5s ease-in-out;
+}
+
+.buttonGradient5:hover {
+    transform: translateY(-2px);
+    background-position: to left;
+    transition: 0.5s ease-in-out;
+}
+
 .red {
     color: #F50035;
 }
