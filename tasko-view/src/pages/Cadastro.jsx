@@ -4,7 +4,7 @@ import "../assets/css/cadStyle.css";
 import fundo from "../assets/img/Background1.png"; // Certifique-se de ter a imagem 'fundo.jpg' no caminho correto
 import InputField from "react-input-mask"
 import { validarCPF, validarEmail, validarTelefone, validarCEP, verificarMaioridade } from "../components/Auth";
-import taskoPurple from "../assets/img/TaskoPurple.png";
+import taskoWhite from "../assets/img/TaskoWhite.png";
 import FooterSimples from "../components/FooterSimples";
 
 const Cadastro = () => {
@@ -79,58 +79,62 @@ const Cadastro = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const newErrors = {};
+    console.log(e);
 
-    if (formData.nome.trim() === "") {
-      newErrors.nome = "Nome é obrigatório.";
-    }
+    console.log(formData)
 
-    if (formData.sobrenome.trim() === "") {
-      newErrors.sobrenome = "Sobrenome é obrigatório.";
-    }
+    // const newErrors = {};
 
-    const cpfError = validarCPF(formData.cpf);
-    if (cpfError) {
-      newErrors.cpf = cpfError;
-    }
+    // if (formData.nome.trim() === "") {
+    //   newErrors.nome = "Nome é obrigatório.";
+    // }
 
-    const telefoneError = validarTelefone(formData.telefone);
-    if (telefoneError) {
-      newErrors.telefone = telefoneError;
-    }
+    // if (formData.sobrenome.trim() === "") {
+    //   newErrors.sobrenome = "Sobrenome é obrigatório.";
+    // }
 
-    const emailError = validarEmail(formData.email);
-    if (emailError) {
-      newErrors.email = emailError;
-    }
+    // const cpfError = validarCPF(formData.cpf);
+    // if (cpfError) {
+    //   newErrors.cpf = cpfError;
+    // }
 
-    if (formData.senha.trim() === "") {
-      newErrors.senha = "Senha é obrigatória.";
-    }
+    // const telefoneError = validarTelefone(formData.telefone);
+    // if (telefoneError) {
+    //   newErrors.telefone = telefoneError;
+    // }
 
-    if (formData.data_nasc === "") {
-      newErrors.data_nasc = "Data de nascimento é obrigatória.";
-    } else {
-      const maioridadeError = verificarMaioridade(formData.data_nasc);
-      if (maioridadeError) {
-        newErrors.data_nasc = maioridadeError;
-      }
-    }
+    // const emailError = validarEmail(formData.email);
+    // if (emailError) {
+    //   newErrors.email = emailError;
+    // }
 
-    const cepError = validarCEP(formData.cep);
-    if (cepError) {
-      newErrors.cep = cepError;
-    }
+    // if (formData.senha.trim() === "") {
+    //   newErrors.senha = "Senha é obrigatória.";
+    // }
 
-    if (formData.endereco.trim() === "") {
-      newErrors.endereco = "Endereço é obrigatório.";
-    }
+    // if (formData.data_nasc === "") {
+    //   newErrors.data_nasc = "Data de nascimento é obrigatória.";
+    // } else {
+    //   const maioridadeError = verificarMaioridade(formData.data_nasc);
+    //   if (maioridadeError) {
+    //     newErrors.data_nasc = maioridadeError;
+    //   }
+    // }
 
-    setErrors(newErrors);
+    // const cepError = validarCEP(formData.cep);
+    // if (cepError) {
+    //   newErrors.cep = cepError;
+    // }
 
-    if (Object.keys(newErrors).length > 0) {
-      return;
-    }
+    // if (formData.endereco.trim() === "") {
+    //   newErrors.endereco = "Endereço é obrigatório.";
+    // }
+
+    // setErrors(newErrors);
+
+    // if (Object.keys(newErrors).length > 0) {
+    //   return;
+    // }
 
     try {
       console.log(formData);
@@ -156,7 +160,6 @@ const Cadastro = () => {
   return (
 
     <div>
-
       <nav className="navbarsimples">
         <Link to="/" className="voltar-link">
           ←
@@ -177,27 +180,28 @@ const Cadastro = () => {
             <div className="grid-container">
               {/* Primeira Coluna */}
               <div className="grid-item">
-                <InputField type="text" name="nome" placeholder="Nome" isRequired={true} />
-                <InputField type="text" name="cpf" placeholder="CPF" mask="999.999.999-99" isRequired={true} />
+                <InputField type="text" name="nome" placeholder="Nome" isRequired={true} onChange={handleInputChange} />
+                <InputField type="text" name="cpf" placeholder="CPF" mask="999.999.999-99" isRequired={true} onChange={handleInputChange} />
                 <InputField
                   type="text"
                   name="telefone"
                   placeholder="Telefone"
                   mask="(99) 99999-9999"
                   isRequired={true}
+                  onChange={handleInputChange}
                 />
-                <InputField type="text" name="endereco" placeholder="Endereço" isRequired={true} />
-                <InputField type="text" name="foto" placeholder="Link para foto" isRequired={false} />
+                <InputField type="text" name="endereco" placeholder="Endereço" isRequired={true} onChange={handleInputChange} />
+                <InputField type="text" name="foto" placeholder="Link para foto" isRequired={false} onChange={handleInputChange} />
 
               </div>
 
               {/* Segunda Coluna */}
               <div className="grid-item">
-                <InputField type="text" name="sobrenome" placeholder="Sobrenome" isRequired={true} />
-                <InputField type="email" name="email" placeholder="E-mail" isRequired={true} />
-                <InputField type="text" name="cep" placeholder="CEP" mask="99999-999" isRequired={true} />
-                <InputField type="date" name="data_nasc" placeholder="Data de Nascimento" isRequired={true} />
-                <InputField type="password" name="senha" placeholder="Senha" isRequired={true} />
+                <InputField type="text" name="sobrenome" placeholder="Sobrenome" isRequired={true} onChange={handleInputChange} />
+                <InputField type="email" name="email" placeholder="E-mail" isRequired={true} onChange={handleInputChange} />
+                <InputField type="text" name="cep" placeholder="CEP" mask="99999-999" isRequired={true} onChange={handleInputChange} />
+                <InputField type="date" name="data_nasc" placeholder="Data de Nascimento" isRequired={true} onChange={handleInputChange} />
+                <InputField type="password" name="senha" placeholder="Senha" isRequired={true} onChange={handleInputChange} />
               </div>
             </div>
             <button type="submit" className="button-cad">

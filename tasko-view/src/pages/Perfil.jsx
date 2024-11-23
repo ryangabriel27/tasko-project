@@ -156,7 +156,7 @@ const Perfil = () => {
                                 </div>
                             </>
                         ) : (
-                            <span>Bem-vindo ao seu perfil!</span>
+                            <span></span>
                         )}
                     </div>
 
@@ -168,14 +168,17 @@ const Perfil = () => {
                             Configurações
                         </button>
                     </div>
-                    <div className="config-button-wrapper">
+                    {isPrestador ? (<div className="config-button-wrapper">
                         <button
                             className="config-button"
                             onClick={() => navigate("/adicionar-servico")} // Redireciona para Configurações
                         >
                             Adicionar novo serviço
                         </button>
-                    </div>
+                    </div>) : (
+                        <div></div>
+                    )}
+
 
                 </div>
                 {isPrestador && (
