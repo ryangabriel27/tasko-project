@@ -133,9 +133,10 @@ body {
 /* Imagem do banner */
 .hero-image img {
   max-width: 70%;
+  margin-left: 457px;
   object-fit: cover;
   /* Garante que a imagem cubra bem o espaço disponível */
-  margin-left: 457px;
+
   display: block;
 }
 
@@ -396,7 +397,7 @@ a {
   text-decoration: none;
 }
 
-.cardInfo{
+.cardInfo {
   margin-top: 10px;
   font-weight: 100;
   font-size: 12px;
@@ -411,52 +412,48 @@ a {
   margin-right: 10px;
 }
 
-/* Responsividade */
-@media (max-width: 768px) {
-  .header {
-    flex-wrap: wrap;
-    justify-content: center;
-    text-align: center;
-  }
 
-  .hero {
-    flex-direction: column;
-    text-align: center;
-  }
+/* Responsividade para 150% de zoom */
+/* @media (min-width: 1200px) and (max-width: 1920px),
+(min-resolution: 120dpi) and (max-resolution: 192dpi) { */
 
-  .hero-text {
-    border-radius: 20px;
-    max-width: 100%;
-  }
+  /* Ajustes para o container principal */
+  /* .hero { */
+    /* flex-wrap: wrap; */
+  /* } */
 
-  .cards-section {
-    flex-direction: column;
-    align-items: center;
-  }
+  /* Ajustes para o texto do banner */
+  /* .hero-text {
+    padding: 30px 190px 55px 40px;
+    /* Reduz o espaçamento interno */
+    /* max-width: 600px; */
+    /* Reduz a largura máxima */
+    /* height: auto; */
+    /* Remove a altura fixa */
+  /* } */ 
 
-  .card {
-    max-width: 100%;
-  }
-}
+  /* .hero-text h1 { */
+    /* font-size: 64px; */
+    /* Reduz o tamanho da fonte */
+    /* line-height: 1.2; */
+    /* Ajusta o espaçamento entre linhas */
+  /* } */
 
-@media (max-width: 480px) {
-  .hero-text h1 {
-    font-size: 1.5rem;
-  }
+  /* .hero-text p { */
+    /* font-size: 14px; */
+    /* Reduz o tamanho da fonte */
+    /* margin: 20px 3px 10px; */
+    /* Ajusta as margens */
+  /* } */
 
-  .hero-text p {
-    font-size: 0.9rem;
-  }
-
-  .testimonial blockquote {
-    font-size: 1rem;
-  }
-
-  .card h2 {
-    font-size: 1rem;
-  }
-
-  .card p {
-    font-size: 0.9rem;
-  }
-}
+  /* Ajustes para a imagem do banner */
+  /* .hero-image img { */
+    /* max-width: 70%; */
+    /* Reduz a largura máxima */
+    /* margin-left: 380px; */
+    /* Centraliza a imagem */
+    /* height: 100%; */
+    /* object-fit: cover; */
+    /* display: block; */
+  /* } */
+/* } */
