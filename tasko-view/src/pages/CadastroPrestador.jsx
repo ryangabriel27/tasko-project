@@ -130,6 +130,7 @@ const CadastroPrestador = () => {
             />
             <textarea className="text-class"
               placeholder="Descrição dos Serviços"
+              name="descricaoServicos"
               required
               onChange={handleInputChange}
             ></textarea>
