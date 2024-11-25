@@ -84,58 +84,58 @@ const Cadastro = () => {
 
     console.log(formData)
 
-    // const newErrors = {};
+    const newErrors = {};
 
-    // if (formData.nome.trim() === "") {
-    //   newErrors.nome = "Nome é obrigatório.";
-    // }
+    if (formData.nome.trim() === "") {
+      newErrors.nome = "Nome é obrigatório.";
+    }
 
-    // if (formData.sobrenome.trim() === "") {
-    //   newErrors.sobrenome = "Sobrenome é obrigatório.";
-    // }
+    if (formData.sobrenome.trim() === "") {
+      newErrors.sobrenome = "Sobrenome é obrigatório.";
+    }
 
-    // const cpfError = validarCPF(formData.cpf);
-    // if (cpfError) {
-    //   newErrors.cpf = cpfError;
-    // }
+    const cpfError = validarCPF(formData.cpf);
+    if (cpfError) {
+      newErrors.cpf = cpfError;
+    }
 
-    // const telefoneError = validarTelefone(formData.telefone);
-    // if (telefoneError) {
-    //   newErrors.telefone = telefoneError;
-    // }
+    const telefoneError = validarTelefone(formData.telefone);
+    if (telefoneError) {
+      newErrors.telefone = telefoneError;
+    }
 
-    // const emailError = validarEmail(formData.email);
-    // if (emailError) {
-    //   newErrors.email = emailError;
-    // }
+    const emailError = validarEmail(formData.email);
+    if (emailError) {
+      newErrors.email = emailError;
+    }
 
-    // if (formData.senha.trim() === "") {
-    //   newErrors.senha = "Senha é obrigatória.";
-    // }
+    if (formData.senha.trim() === "") {
+      newErrors.senha = "Senha é obrigatória.";
+    }
 
-    // if (formData.data_nasc === "") {
-    //   newErrors.data_nasc = "Data de nascimento é obrigatória.";
-    // } else {
-    //   const maioridadeError = verificarMaioridade(formData.data_nasc);
-    //   if (maioridadeError) {
-    //     newErrors.data_nasc = maioridadeError;
-    //   }
-    // }
+    if (formData.data_nasc === "") {
+      newErrors.data_nasc = "Data de nascimento é obrigatória.";
+    } else {
+      const maioridadeError = verificarMaioridade(formData.data_nasc);
+      if (maioridadeError) {
+        newErrors.data_nasc = maioridadeError;
+      }
+    }
 
-    // const cepError = validarCEP(formData.cep);
-    // if (cepError) {
-    //   newErrors.cep = cepError;
-    // }
+    const cepError = validarCEP(formData.cep);
+    if (cepError) {
+      newErrors.cep = cepError;
+    }
 
-    // if (formData.endereco.trim() === "") {
-    //   newErrors.endereco = "Endereço é obrigatório.";
-    // }
+    if (formData.endereco.trim() === "") {
+      newErrors.endereco = "Endereço é obrigatório.";
+    }
 
-    // setErrors(newErrors);
+    setErrors(newErrors);
 
-    // if (Object.keys(newErrors).length > 0) {
-    //   return;
-    // }
+    if (Object.keys(newErrors).length > 0) {
+      return;
+    }
 
     try {
       console.log(formData);
