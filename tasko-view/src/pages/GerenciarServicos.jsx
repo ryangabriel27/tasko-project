@@ -10,7 +10,6 @@ const GerenciarMeusServicos = () => {
     const [user, setUser] = useState(null);
 
     useEffect(() => {
-
         const verificarAuth = async () => {
             try {
                 const response = await fetch('http://localhost:8080/auth/current', {
@@ -22,25 +21,20 @@ const GerenciarMeusServicos = () => {
                     return;
                 }
 
-               
-
                 const userData = await response.json();
-                console.log(userData);
-                setUser(userData);
-
-                // setUser(userData);
-                // fetchPrestadorData(user.id);
-
-
+                if (response.ok) {
+                    setUser(userData); // Atualiza o estado do usuário
+                    fetchPrestadorData(userData.id); // Chama fetchPrestadorData com userId
+                }
             } catch (error) {
                 console.error('Erro ao verificar autenticação:', error);
                 navigate('/');
             }
         };
 
-        const fetchPrestadorData = async (usuarioId) => {
+        const fetchPrestadorData = async (userId) => {
             try {
-                const response = await fetch(`http://localhost:8080/api/prestadores/usuario/${usuarioId}`, {
+                const response = await fetch(`http://localhost:8080/api/prestadores/usuario/${userId}`, {
                     method: "GET",
                     credentials: "include",
                     headers: {
@@ -51,7 +45,7 @@ const GerenciarMeusServicos = () => {
                 if (response.ok) {
                     const prestadorData = await response.json();
                     setPrestador(prestadorData);
-                    fetchContratos();
+                    fetchContratos(prestadorData.id); // Chama fetchContratos com prestadorId
                 } else {
                     setPrestador(null);
                 }
@@ -60,9 +54,9 @@ const GerenciarMeusServicos = () => {
             }
         };
 
-        const fetchContratos = async () => {
+        const fetchContratos = async (prestadorId) => {
             try {
-                const response = await fetch(`http://localhost:8080/api/contratos/prestador/${prestador.id}`, {
+                const response = await fetch(`http://localhost:8080/api/contratos/prestador/${prestadorId}`, {
                     method: 'GET',
                     credentials: 'include',
                 });
@@ -116,10 +110,10 @@ const GerenciarMeusServicos = () => {
                             <p><strong>Serviço:</strong> {contrato.servico.descricao}</p>
                             <p><strong>Contratado por:</strong> {contrato.usuario.nome}</p>
                             <p><strong>Status:</strong> {contrato.status}</p>
-                            <button onClick={() => handleAction(contrato.id, 'finalizar')}>
+                            <button className='button-dashboard' onClick={() => handleAction(contrato.id, 'finalizar')}>
                                 Finalizar
                             </button>
-                            <button onClick={() => handleAction(contrato.id, 'cancelar')}>
+                            <button className='button-dashboard' onClick={() => handleAction(contrato.id, 'cancelar')}>
                                 Cancelar
                             </button>
                         </li>
