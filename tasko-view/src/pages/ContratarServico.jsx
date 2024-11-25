@@ -54,7 +54,7 @@ const ContratarServico = () => {
         fetchServico(); // Busca os dados do serviço
     }, [id, navigate]);
 
-    const handleContratar = async () => {
+    const handlePagamento = () => {
         if (!usuario) {
             alert('Usuário não autenticado.');
             return;
@@ -65,29 +65,13 @@ const ContratarServico = () => {
             return;
         }
 
-        try {
-            const response = await fetch('http://localhost:8080/api/contratos', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                credentials: 'include',
-                body: JSON.stringify({
-                    servico: { id: id },
-                    usuario: { id: usuario.id }, // Inclui o ID do usuário autenticado
-                }),
-            });
-
-            if (response.ok) {
-                alert('Serviço contratado com sucesso!');
-                navigate('/inicio'); // Redireciona para a página inicial ou outra página
-            } else {
-                alert('Erro ao contratar serviço.');
-            }
-        } catch (error) {
-            console.error('Erro ao contratar serviço:', error);
-            alert('Erro ao contratar serviço.');
-        }
+        // Redireciona para a página de pagamento com os dados do serviço
+        navigate(`/pagamento/${id}`, {
+            state: {
+                servico,
+                usuario,
+            },
+        });
     };
 
     if (loading) {
@@ -105,8 +89,9 @@ const ContratarServico = () => {
                 <h1>{servico.descricao}</h1>
                 <p>Valor: R$ {servico.valor.toFixed(2)}</p>
                 <p>Prestador: {servico.prestador.usuario.nome} {servico.prestador.usuario.sobrenome}</p>
-                <button onClick={handleContratar}>Confirmar Contratação</button>
-            </div></>
+                <button onClick={handlePagamento}>Ir para Pagamento</button>
+            </div>
+        </>
     );
 };
 

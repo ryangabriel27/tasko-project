@@ -4,13 +4,14 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "contratos")
 @Getter
 @Setter
-public class Contrato {
+public class Contrato implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

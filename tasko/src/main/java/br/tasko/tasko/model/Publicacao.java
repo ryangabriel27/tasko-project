@@ -1,5 +1,7 @@
 package br.tasko.tasko.model;
 
+import java.io.Serializable;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,7 +14,7 @@ import lombok.Setter;
 @Table(name = "publicacao")
 @Getter
 @Setter
-public class Publicacao {
+public class Publicacao implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
