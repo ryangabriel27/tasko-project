@@ -1,7 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import NavbarMenor from "../components/NavbarMenor";
 import "../assets/css/choiceStyle.css";
+import fundo3 from "../assets/img/Back3.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; // Componente de ícone
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons"; // Ícone específico
+
 
 const EscolhaObjetivo = () => {
     const navigate = useNavigate();
@@ -24,31 +27,42 @@ const EscolhaObjetivo = () => {
     };
 
     return (
-        <>
-            <NavbarMenor link={""} />
-            <div className="escolha-container">
+        <div className="background-container">
+            {/* Imagem de fundo */}
+            <div className="background-image">
+                <img src={fundo3} alt="Background" />
+            </div>
+
+            {/* Conteúdo sobreposto */}
+            <div className="escolha-overlay">
+                <button className="back-button" onClick={() => navigate(-1)}>
+                    <FontAwesomeIcon icon={faArrowLeft} />
+                </button>
+
+
+
+                {/* Título */}
                 <h1 className="escolha-title">Qual é o seu objetivo na Tasko?</h1>
 
-                <div class="container-button">
-
-                    <a href="#" className="button-choice type--A">
-                        <div class="button__line"></div>
-                        <div class="button__line"></div>
-                        <span class="button__text">ENTRY</span>
-                        <div class="button__drow1"></div>
-                        <div class="button__drow2"></div>
+                {/* Botões */}
+                <div className="container-button">
+                    <a href="#" className="button-choice type--A" onClick={() => handleChoice("usuario")}>
+                        <div className="button__line"></div>
+                        <div className="button__line"></div>
+                        <span className="button__text">Usuário</span>
+                        <div className="button__drow1"></div>
+                        <div className="button__drow2"></div>
                     </a>
-                    <a href="#" class="button-choice type--B">
-                        <div class="button__line"></div>
-                        <div class="button__line"></div>
-                        <span class="button__text">ENTRY</span>
-                        <div class="button__drow1"></div>
-                        <div class="button__drow2"></div>
+                    <a href="#" className="button-choice type--B" onClick={() => handleChoice("prestador")}>
+                        <div className="button__line"></div>
+                        <div className="button__line"></div>
+                        <span className="button__text">Prestador</span>
+                        <div className="button__drow1"></div>
+                        <div className="button__drow2"></div>
                     </a>
-
                 </div>
             </div>
-        </>
+        </div>
     );
 };
 

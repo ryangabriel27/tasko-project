@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "../assets/css/cadStyle.css";
-import fundo from "../assets/img/Background1.png"; // Certifique-se de ter a imagem 'fundo.jpg' no caminho correto
+import fundo from "../assets/img/Background2.png"; // Certifique-se de ter a imagem 'fundo.jpg' no caminho correto
 import InputField from "react-input-mask"
 import { validarCPF, validarEmail, validarTelefone, validarCEP, verificarMaioridade } from "../components/Auth";
 import taskoWhite from "../assets/img/TaskoWhite.png";

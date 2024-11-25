@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Navbar from "../components/Navbar";
-import fundo from "../assets/img/Background1.png";
+import fundo from "../assets/img/Back3.png";
 import NavbarMenor from '../components/NavbarMenor';
 
 const AuthPage = () => {
@@ -44,7 +44,7 @@ const AuthPage = () => {
 
   return (
     <>
-      <Navbar />
+      <NavbarMenor />
       <div className="background-image-login">
         <img src={fundo} />
       </div>
