@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import NavbarMenor from "../components/NavbarMenor";
+import "../assets/css/choiceStyle.css";
 
 const EscolhaObjetivo = () => {
     const navigate = useNavigate();
@@ -24,12 +25,30 @@ const EscolhaObjetivo = () => {
 
     return (
         <>
-            <NavbarMenor link={""}/>
+            <NavbarMenor link={""} />
             <div className="escolha-container">
-                <h2>Qual é o seu objetivo?</h2>
-                <button onClick={() => handleChoice("usuario")}>Usuário Comum</button>
-                <button onClick={() => handleChoice("prestador")}>Prestador</button>
-            </div></>
+                <h1 className="escolha-title">Qual é o seu objetivo na Tasko?</h1>
+
+                <div class="container-button">
+
+                    <a href="#" className="button-choice type--A">
+                        <div class="button__line"></div>
+                        <div class="button__line"></div>
+                        <span class="button__text">ENTRY</span>
+                        <div class="button__drow1"></div>
+                        <div class="button__drow2"></div>
+                    </a>
+                    <a href="#" class="button-choice type--B">
+                        <div class="button__line"></div>
+                        <div class="button__line"></div>
+                        <span class="button__text">ENTRY</span>
+                        <div class="button__drow1"></div>
+                        <div class="button__drow2"></div>
+                    </a>
+
+                </div>
+            </div>
+        </>
     );
 };
 
