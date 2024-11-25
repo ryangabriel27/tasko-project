@@ -14,6 +14,7 @@ import PerfilPrestador from "./pages/PerfilPrestador";
 import ContratarServico from "./pages/ContratarServico";
 import Pagamento from "./pages/Pagamento";
 import GerenciarMeusServicos from "./pages/GerenciarServicos";
+import MeusServicosContratados from "./pages/MeusServicos";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
         <Route path="/contratar-servico/:id" element={<ContratarServico />} />
         <Route path="/pagamento/:id" element={<Pagamento />} />
         <Route path="/dashboard" element={<GerenciarMeusServicos />} />
+        <Route path="/meus-servicos" element={<MeusServicosContratados />} />
       </Routes>
     </Router>
   );
