@@ -44,7 +44,7 @@ const AuthPage = () => {
 
   return (
     <>
-      <NavbarMenor />
+      <NavbarMenor link={"/"} />
       <div className="background-image-login">
         <img src={fundo} />
       </div>
