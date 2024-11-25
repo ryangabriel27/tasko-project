@@ -1,5 +1,9 @@
 package br.tasko.tasko.model;
 
+import java.io.Serializable;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,7 +18,8 @@ import lombok.Setter;
 @Table(name = "servicos")
 @Getter
 @Setter
-public class Servico {
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+public class Servico implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

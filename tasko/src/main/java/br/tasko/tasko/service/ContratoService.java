@@ -20,6 +20,9 @@ public class ContratoService {
     private ContratoRepository contratoRepository;
 
     @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
     private ServicoRepository servicoRepository;
 
     @Autowired
@@ -40,6 +43,11 @@ public class ContratoService {
     }
 
     public List<Contrato> listarContratosPorUsuario(Long usuarioId) {
-        return contratoRepository.findByUsuarioId(usuarioId);
+        Optional<User> usuario = userRepository.findById(usuarioId);
+        return contratoRepository.findByUsuario(usuario.get());
+    }
+
+    public List<Contrato> listarContratosPorPrestador(Long prestadorId) {
+        return contratoRepository.findByPrestadorId(prestadorId);
     }
 }
