@@ -130,9 +130,9 @@ const PerfilPrestador = () => {
                                 R$ {servico.valor.toFixed(2)}
                             </div>
                             <div className="work-arrow">
-                                <button onClick={() => navigate(`/contratar-servico/${servico.id}`)}>
+                                <a onClick={() => navigate(`/contratar-servico/${servico.id}`)}>
                                     <FontAwesomeIcon icon={faPen} />
-                                </button>
+                                </a>
                             </div>
                         </div>
                     ))

@@ -343,11 +343,17 @@ a {
   flex-direction: column;
   align-items: center;
   background-color: #ffffff00;
-  backdrop-filter: blur(64px);
+  backdrop-filter: blur(32px);
   border-radius: 16px;
   justify-content: center;
   margin: 80px 300px;
   padding: 120px;
+  transition: 0.5s;
+}
+
+.cardLogin:hover {
+  backdrop-filter: blur(64px);
+  transition: 0.5s;
 }
 
 .h1Login {

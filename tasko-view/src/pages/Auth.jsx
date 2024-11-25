@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Navbar from "../components/Navbar";
 import fundo from "../assets/img/Back3.png";
 import NavbarMenor from '../components/NavbarMenor';
+import Footer from '../components/Footer';
 
 const AuthPage = () => {
   const navigate = useNavigate();
@@ -85,6 +86,7 @@ const AuthPage = () => {
           Não tem conta? Cadastre-se
         </Link>
       </div>
+      <Footer/>
     </>
   );
 };
