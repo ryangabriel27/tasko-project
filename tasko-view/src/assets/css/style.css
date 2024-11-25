@@ -115,6 +115,7 @@ body {
   font-weight: 500;
   line-height: 66%;
   color: #242A36;
+  text-align: left;
 }
 
 .hero-text p {
@@ -299,6 +300,7 @@ body {
   font-size: 22px;
   margin: 10px 0;
   font-weight: 900;
+  color: #fff;
 }
 
 .card p {
@@ -352,6 +354,7 @@ a {
   text-align: center;
   font-size: 90px;
   font-weight: 900;
+  color: #fff;
 }
 
 .row {
