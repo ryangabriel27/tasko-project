@@ -3,7 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import "../assets/css/cadPresStyle.css";
 import FooterSimples from "../components/FooterSimples";
 import NavbarMenor from "../components/NavbarMenor";
-import fundo2 from "../assets/img/Background2.png";
+import fundo2 from "../assets/img/Background1.png";
 
 const CadastroPrestador = () => {
   const navigate = useNavigate();
