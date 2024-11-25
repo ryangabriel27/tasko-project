@@ -1,4 +1,3 @@
-// components/Auth.jsx
 export const validarCPF = (cpf) => {
   // Remove caracteres não numéricos
   cpf = cpf.replace(/[^\d]+/g, "");
