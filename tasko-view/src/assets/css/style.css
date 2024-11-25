@@ -1,105 +1,111 @@
 /* Reset */
 body {
-    margin: 0;
-    font-family: 'Figtree', sans-serif;
-    padding: 0;
-    overflow-x: hidden;
-  }
-  
-  /* Linha do topo */
-  .top-bar {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #4a148c;
-    color: white;
-    padding: 5px 15px;
-    margin-bottom: 3px  ;
-  }
-
-  .top-bar-container {
-    background-color: #4a148c;
+  margin: 0;
+  font-family: 'Figtree', sans-serif;
+  padding: 0;
+  overflow-x: hidden;
 }
-  
-  .top-bar-text {
-    font-size: 12px;
-  }
-  
-  /* Cabeçalho */
+
+/* Linha do topo */
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #4a148c;
+  color: white;
+  padding: 5px 15px;
+  margin-bottom: 3px;
+}
+
+.top-bar-container {
+  background-color: #4a148c;
+}
+
+.top-bar-text {
+  font-size: 12px;
+}
+
+/* Cabeçalho */
 /* Cabeçalho */
 .header {
-    display: flex;
-    align-items: center;
-    padding: 10px 30px;
-    background-color: white;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    border-top-left-radius: 30px;
-    border-top-right-radius: 30px;
-  }
-  
-  .logo {
-    display: flex;
-  }
-  
-  .logo img {
-    height: 40px;
-  }
-  
-  .header-buttons {
-    display: flex;
-    align-items: center;
-    margin-left: auto;
-  }
-  
-  .header-buttons .button-index {
-    margin-left: 10px;
-    padding: 8px 15px;
-    border: none;
-    border-radius: 5px;
-    font-size: 14px;
-    cursor: pointer;
-    background-color: #510EF3;
-    color: white;
-  }
+  display: flex;
+  align-items: center;
+  padding: 10px 30px;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+}
 
-  .button-index{
-    font-family: 'Figtree';
-    font-weight: 800;
-    margin-left: 1px;
-    border: none;
-    border-radius: 4px;
-    font-size: 18px;
-    cursor: pointer;
-    background-color: #510EF3;
-    color: white;
-    padding: 4px 24px;
-  }
-  
-  .header-buttons .button-index-outline {
-    background-color: transparent;
-    border: 1px solid #0000002c;
-    color: #242A36;
-  }
-  
+.logo {
+  display: flex;
+}
+
+.logo img {
+  height: 40px;
+}
+
+.header-buttons {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.header-buttons .button-index {
+  margin-left: 10px;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  background-color: #510EF3;
+  color: white;
+}
+
+.button-index {
+  font-family: 'Figtree';
+  font-weight: 800;
+  margin-left: 1px;
+  border: none;
+  border-radius: 4px;
+  font-size: 18px;
+  cursor: pointer;
+  background-color: #510EF3;
+  color: white;
+  padding: 4px 24px;
+}
+
+.header-buttons .button-index-outline {
+  background-color: transparent;
+  border: 1px solid #0000002c;
+  color: #242A36;
+}
+
 /* Banner principal */
 .hero {
-    display: flex;
-    align-items: center;
-    position: relative;  /* Necessário para o posicionamento absoluto do conteúdo sobre a imagem */
-    background-color: #f3e5f5;
+  display: flex;
+  align-items: center;
+  position: relative;
+  /* Necessário para o posicionamento absoluto do conteúdo sobre a imagem */
+  background-color: #f3e5f5;
 }
 
 /* Texto sobre o círculo */
 .hero-text {
-    position: absolute;  /* Permite que o texto fique sobre a imagem */
-    z-index: 1;  /* Garante que o texto fique acima da imagem */
-    padding: 50px 10px 30px 50px;  /* Adiciona um pouco de espaçamento interno */
-    background-color: rgba(255, 255, 255, 1);  /* Fundo branco com 80% de opacidade */
-    border-top-right-radius:1000px;
-    border-bottom-right-radius: 1000px;
-    max-width: 740px;  /* Limita a largura máxima do texto */
-    height: 401px;
-    
+  position: absolute;
+  /* Permite que o texto fique sobre a imagem */
+  z-index: 1;
+  /* Garante que o texto fique acima da imagem */
+  padding: 50px 10px 30px 50px;
+  /* Adiciona um pouco de espaçamento interno */
+  background-color: rgba(255, 255, 255, 1);
+  /* Fundo branco com 80% de opacidade */
+  border-top-right-radius: 1000px;
+  border-bottom-right-radius: 1000px;
+  max-width: 740px;
+  /* Limita a largura máxima do texto */
+  height: 401px;
+
 }
 
 /* Título e texto */
@@ -112,116 +118,128 @@ body {
 }
 
 .hero-text p {
-    font-size: 16px;
-    margin: 40px 3px 20px;
-    color: #242A36;
+  font-size: 16px;
+  margin: 40px 3px 20px;
+  color: #242A36;
 }
 
 .hero-text .highlight {
-    color: #FF7F0F;
-    font-weight: 900;
+  color: #FF7F0F;
+  font-weight: 900;
 }
 
 
 /* Imagem do banner */
 .hero-image img {
-    max-width: 70%;
-    object-fit: cover;  /* Garante que a imagem cubra bem o espaço disponível */
-    margin-left: 457px;
-    display: block;
+  max-width: 70%;
+  object-fit: cover;
+  /* Garante que a imagem cubra bem o espaço disponível */
+  margin-left: 457px;
+  display: block;
 }
 
 
-  
-  
-  /* Depoimentos */
+
+
+/* Depoimentos */
 .testimonial {
-    padding: 50px 20px;
-    text-align: center;
-    background-color: #4a148c;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    color: white; /* Texto branco */
-    position: relative;
+  padding: 50px 20px;
+  text-align: center;
+  background-color: #4a148c;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  color: white;
+  /* Texto branco */
+  position: relative;
 }
 
 /* Aspas gigantes */
 .testimonial blockquote {
-    font-size: 30px;
-    font-style: italic;
-    margin: 0 0 30px;
-    position: relative;
-    max-width: 40%; /* Limita o tamanho do texto */
-    margin-left: auto;
-    margin-right: auto;
+  font-size: 30px;
+  font-style: italic;
+  margin: 0 0 30px;
+  position: relative;
+  max-width: 40%;
+  /* Limita o tamanho do texto */
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .testimonial blockquote::before {
-    content: '“'; /* Aspa gigante antes do texto */
-    font-size: 100px;
-    color: white;
-    position: absolute;
-    left: -50px;
-    top: -35px;
+  content: '“';
+  /* Aspa gigante antes do texto */
+  font-size: 100px;
+  color: white;
+  position: absolute;
+  left: -50px;
+  top: -35px;
 }
 
 .testimonial blockquote::after {
-    content: '”'; /* Aspa gigante após o texto */
-    font-size: 100px;
-    color: white;
-    position: absolute;
-    right: -30px;
-    bottom: -85px;
+  content: '”';
+  /* Aspa gigante após o texto */
+  font-size: 100px;
+  color: white;
+  position: absolute;
+  right: -30px;
+  bottom: -85px;
 }
 
 /* Autor e foto */
 .testimonial-author {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
 }
 
 .testimonial-author img {
-    border-radius: 0%;
-    width: 60px;
-    height: 60px;
-    margin-right: 15px;
+  border-radius: 0%;
+  width: 60px;
+  height: 60px;
+  margin-right: 15px;
 }
 
 .testimonial-author-text {
-    text-align: left;
+  text-align: left;
 }
 
 .testimonial-author-name {
-    font-size: 18px;
-    font-weight: bold;
-    color: white;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
 
 }
 
 .testimonial-author-description {
-    font-size: 14px;
-    color: #f3e5f5;
+  font-size: 14px;
+  color: #f3e5f5;
 }
 
 
 /* Seção geral (ajustar para permitir que a imagem cubra parcialmente os cards) */
 .cards-section {
-  position: relative; /* Permite que os cards sejam posicionados sobre a imagem */
+  position: relative;
+  /* Permite que os cards sejam posicionados sobre a imagem */
   padding: 40px 20px;
-  background: rgb(255,127,15);
-  background: linear-gradient(90deg, rgba(255,127,15,1) 0%, rgba(255,0,178,1) 100%);
-  overflow: hidden; /* Garante que os cards que ultrapassam a imagem não sejam visíveis */
+  background: rgb(255, 127, 15);
+  background: linear-gradient(90deg, rgba(255, 127, 15, 1) 0%, rgba(255, 0, 178, 1) 100%);
+  overflow: hidden;
+  /* Garante que os cards que ultrapassam a imagem não sejam visíveis */
   height: 428px;
-  justify-content: center; /* Centraliza horizontalmente */
+  justify-content: center;
+  /* Centraliza horizontalmente */
 }
 
 /* Div exclusiva para a imagem */
 .image-container {
-  position: absolute; /* Coloca a imagem sobre os cards */
-  width: 30%; /* A imagem ocupa mais da largura disponível */
-  height: 88%; /* A imagem vai ocupar toda a altura */
-  z-index: 1; /* Garante que a imagem fique sobre os cards */
+  position: absolute;
+  /* Coloca a imagem sobre os cards */
+  width: 30%;
+  /* A imagem ocupa mais da largura disponível */
+  height: 88%;
+  /* A imagem vai ocupar toda a altura */
+  z-index: 1;
+  /* Garante que a imagem fique sobre os cards */
   justify-content: flex-start;
   margin-top: 10px;
 
@@ -234,35 +252,47 @@ body {
 
 /* Cards - os cards agora estarão posicionados atrás da imagem */
 .cards {
-  display: flex; /* Disposição horizontal dos cards */
-  gap: 20px; /* Espaçamento entre os cards */
-  position: relative; /* Garante que os cards fiquem sobre a seção de cards */
-  transform: translateY(40px); /* Levanta os cards para que o topo do primeiro card fique parcialmente coberto pela imagem */
-  z-index: 0; /* Coloca os cards atrás da imagem */
-  margin-left: 30%; /* Ajusta os cards para a direita, para não ficarem em cima da imagem */
+  display: flex;
+  /* Disposição horizontal dos cards */
+  gap: 20px;
+  /* Espaçamento entre os cards */
+  position: relative;
+  /* Garante que os cards fiquem sobre a seção de cards */
+  transform: translateY(40px);
+  /* Levanta os cards para que o topo do primeiro card fique parcialmente coberto pela imagem */
+  z-index: 0;
+  /* Coloca os cards atrás da imagem */
+  margin-left: 30%;
+  /* Ajusta os cards para a direita, para não ficarem em cima da imagem */
 }
 
 /* Card */
 .card {
-  background-color: rgba(255, 255, 255, 0.3); /* Fundo branco com 30% de opacidade */
-  width: 320px; /* Largura fixa */
+  background-color: rgba(255, 255, 255, 0.3);
+  /* Fundo branco com 30% de opacidade */
+  width: 320px;
+  /* Largura fixa */
   height: 300px;
   border-radius: 10px;
   border: 1px solid #ffffff25;
-  overflow: hidden; /* Garante que nada ultrapasse os limites do card */
+  overflow: hidden;
+  /* Garante que nada ultrapasse os limites do card */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 30px 20px 20px 20px;
   text-align: center;
-  backdrop-filter: blur(5px); /* Aplica desfoque no fundo, se necessário */
-  transition: background-color 0.3s ease; /* Adiciona transição para efeito */
+  backdrop-filter: blur(5px);
+  /* Aplica desfoque no fundo, se necessário */
+  transition: background-color 0.3s ease;
+  /* Adiciona transição para efeito */
 }
 
 /* Card hover (opcional) */
 .card:hover {
-  background-color: rgba(255, 255, 255, 0.5); /* Aumenta a opacidade ao passar o mouse */
+  background-color: rgba(255, 255, 255, 0.5);
+  /* Aumenta a opacidade ao passar o mouse */
 }
 
 .card h2 {
@@ -296,56 +326,134 @@ a {
 
 .buttonsProfile {
   display: flex;
+  justify-content: end;
+  margin-right: 70px;
 }
 
+.background-image-login img {
+  position: absolute;
+  width: 100%;
+  z-index: -1;
+}
 
-  
-  /* Responsividade */
+.cardLogin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffffff00;
+  backdrop-filter: blur(64px);
+  border-radius: 16px;
+  justify-content: center;
+  margin: 80px 300px;
+  padding: 120px;
+}
+
+.h1Login {
+  text-align: center;
+  font-size: 90px;
+  font-weight: 900;
+}
+
+.row {
+  display: flex;
+}
+
+.buttonGradient6 {
+  width: 100%;
+  background: linear-gradient(to right, #FF00B2, #F7C216);
+  padding: 7px;
+  border-radius: 4px;
+  border: none;
+  font-family: 'Figtree';
+  color: #fff;
+  font-weight: 700;
+  font-size: 12px;
+  margin-top: 22px;
+}
+
+.inputLogin {
+  background: none;
+  border: 1px solid #ffffff1c;
+  outline: none;
+  transition: 0.5s;
+  color: #fff;
+  font-family: 'Figtree';
+}
+
+.inputLogin:active {
+  outline: 1px solid #ffffff60;
+}
+
+.inputLogin:focus {
+  outline: 1px solid #ffffff60;
+  transition: 0.5s;
+}
+
+.noDecoration {
+  text-decoration: none;
+}
+
+.cardInfo{
+  margin-top: 10px;
+  font-weight: 100;
+  font-size: 12px;
+}
+
+.row input {
+  margin-top: 10px;
+  margin-bottom: -3px;
+}
+
+.row input:first-child {
+  margin-right: 10px;
+}
+
+/* Responsividade */
 @media (max-width: 768px) {
   .header {
-      flex-wrap: wrap;
-      justify-content: center;
-      text-align: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
   }
 
   .hero {
-      flex-direction: column;
-      text-align: center;
+    flex-direction: column;
+    text-align: center;
   }
 
   .hero-text {
-      border-radius: 20px;
-      max-width: 100%;
+    border-radius: 20px;
+    max-width: 100%;
   }
 
   .cards-section {
-      flex-direction: column;
-      align-items: center;
+    flex-direction: column;
+    align-items: center;
   }
 
   .card {
-      max-width: 100%;
+    max-width: 100%;
   }
 }
 
 @media (max-width: 480px) {
   .hero-text h1 {
-      font-size: 1.5rem;
+    font-size: 1.5rem;
   }
 
   .hero-text p {
-      font-size: 0.9rem;
+    font-size: 0.9rem;
   }
 
   .testimonial blockquote {
-      font-size: 1rem;
+    font-size: 1rem;
   }
 
   .card h2 {
-      font-size: 1rem;
+    font-size: 1rem;
   }
 
   .card p {
-      font-size: 0.9rem;
+    font-size: 0.9rem;
   }
 }

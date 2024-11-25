@@ -27,7 +27,7 @@ const CarouselCard = ({ image, name, profession, rating, id }) => {
         <p class="lightBack">{profession}</p>
       </div>
       <div className="carousel-card-button">
-        <button class="noBack noBorder red" onClick={() => navigate(`/perfil-prestador/${id}`)}>
+        <button class="noBack noBorder red pointer" onClick={() => navigate(`/perfil-prestador/${id}`)}>
           <FontAwesomeIcon icon={faArrowRight}  />
         </button>
       </div>

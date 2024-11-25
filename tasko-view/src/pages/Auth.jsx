@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import Navbar from "../components/Navbar";
+import fundo from "../assets/img/Background1.png";
+import NavbarMenor from '../components/NavbarMenor';
 
 const AuthPage = () => {
   const navigate = useNavigate();
@@ -40,42 +43,49 @@ const AuthPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="bg-white p-8 rounded shadow-md w-96">
-        <h2 className="text-2xl mb-4">
+    <>
+      <Navbar />
+      <div className="background-image-login">
+        <img src={fundo} />
+      </div>
+      <div className="cardLogin">
+        <h1 className="h1Login">
           Login
-        </h2>
+        </h1>
+        <p>Insira o e-mail e a senha da sua conta:</p>
         <form onSubmit={handleSubmit}>
-          <input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="w-full p-2 mb-4 border rounded"
-            required
-          />
-          <input
-            type="password"
-            placeholder="Senha"
-            value={senha}
-            onChange={(e) => setSenha(e.target.value)}
-            className="w-full p-2 mb-4 border rounded"
-            required
-          />
+          <div className="row">
+            <input
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="inputLogin"
+              required
+            />
+            <input
+              type="password"
+              placeholder="Senha"
+              value={senha}
+              onChange={(e) => setSenha(e.target.value)}
+              className="inputLogin"
+              required
+            />
+          </div>
           <button
             type="submit"
-            className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
+            className="buttonGradient6 pointer"
           >
             Entrar
           </button>
         </form>
         <Link to="/cadastro"
-          className="w-full mt-4 text-blue-500 hover:underline"
+          className="darkBack noDecoration cardInfo"
         >
-        Não tem conta? Cadastre-se
+          Não tem conta? Cadastre-se
         </Link>
       </div>
-    </div>
+    </>
   );
 };
 
