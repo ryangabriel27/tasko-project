@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "../assets/css/cadPresStyle.css";
-import fundo from "../assets/img/Background1.png";
 import FooterSimples from "../components/FooterSimples";
 import NavbarMenor from "../components/NavbarMenor";
+import fundo2 from "../assets/img/Background2.png";
 
 const CadastroPrestador = () => {
   const navigate = useNavigate();
@@ -82,9 +82,9 @@ const CadastroPrestador = () => {
       <div className="content">
         {/* Lado esquerdo: imagem com texto */}
         <div className="left-side">
-          <img src={fundo} alt="Background" className="background-image" />
+          <img src={fundo2} alt="Background" className="background-image" />
           <div className="overlay-text">
-            <h1 class="darkBack w900">Cadastro de <span className="hi-text">Prestador</span></h1>
+            <h1 class="darkBack w900">Cadastro de <span className="high-text">Prestador</span></h1>
           </div>
         </div>
 
