@@ -100,7 +100,7 @@ const GerenciarMeusServicos = () => {
 
     return (
         <div className="dashboard">
-            <h1>Gerenciar Meus Serviços</h1>
+            <h1 className='title-dashboard'>Gerenciar Meus Serviços</h1>
             {contratos.length === 0 ? (
                 <p>Nenhum serviço foi contratado ainda.</p>
             ) : (
