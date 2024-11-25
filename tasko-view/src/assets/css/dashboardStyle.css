@@ -50,7 +50,7 @@ h2 {
     color: #333;
 }
 
-button {
+.button-dashboard {
     display: inline-block;
     padding: 10px 15px;
     margin-top: 10px;
@@ -64,15 +64,15 @@ button {
     transition: background-color 0.2s;
 }
 
-button:last-child {
+.button-dashboard:last-child {
     margin-right: 0;
 }
 
-button:hover {
+.button-dashboard:hover {
     background-color: #0056b3;
 }
 
-button:disabled {
+.button-dashboard:disabled {
     background-color: #ccc;
     cursor: not-allowed;
 }
