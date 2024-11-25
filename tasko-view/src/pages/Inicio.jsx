@@ -83,8 +83,7 @@ const Home = () => {
                 <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet"></link>
             </Helmet>
             <Navbar />
-            <h1>Bem - vindo, {user.nome} {user.sobrenome}!</h1>
-            <button class="buttonGradient5 forceCenter" onClick={handleLogout}>Sair</button>
+            <h1 class="lightBack dashboardMargin">Bem-vindo, {user.nome} {user.sobrenome}!</h1>
             <section className="container-section">
                 <div className="inicio-container">
                     <div className="container-header">

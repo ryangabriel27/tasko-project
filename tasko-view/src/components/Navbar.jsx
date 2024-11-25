@@ -46,10 +46,10 @@ const Header = () => {
                     <span>Perfil</span>
                 </a>
 
-                <button onClick={() => handleLogout()}>
+                <a onClick={() => handleLogout()}>
                     <FontAwesomeIcon icon={faArrowRightToBracket} />
                     <span>Sair</span>
-                </button>
+                </a>
 
 
             </div>
