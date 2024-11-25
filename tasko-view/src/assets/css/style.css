@@ -58,7 +58,7 @@ body {
     border-radius: 5px;
     font-size: 14px;
     cursor: pointer;
-    background-color: #4a148c;
+    background-color: #510EF3;
     color: white;
   }
 
@@ -72,12 +72,12 @@ body {
     cursor: pointer;
     background-color: #510EF3;
     color: white;
-
+    padding: 4px 24px;
   }
   
   .header-buttons .button-index-outline {
     background-color: transparent;
-    border: 2px solid #4a148c;
+    border: 1px solid #4a148c;
     color: #4a148c;
   }
   
@@ -228,9 +228,8 @@ body {
 }
 
 .image-container img {
-  width: 100%;
   object-fit: cover;
-  margin-left: 170px;
+  margin-left: 200px;
 }
 
 /* Cards - os cards agora estarão posicionados atrás da imagem */
