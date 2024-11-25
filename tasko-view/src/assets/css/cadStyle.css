@@ -62,7 +62,7 @@
   justify-content: center;
   align-items: center;
   padding: 20px;
-  background-color: #f5f5f5;
+  background-color: #FDFFFF;
 }
 
 /* Estilização do formulário com grid */
@@ -136,7 +136,7 @@ textarea {
   width: 100%;
   padding: 10px;
   font-size: 1rem;
-  border: 1px solid #ccc;
+  border: 1px solid #00000031;
   border-radius: 4px;
 }
 
@@ -145,6 +145,11 @@ textarea {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  font-family: 'Figtree';
+}
+
+.grid-item input {
+  font-family: 'Figtree';
 }
 
 input[type="text"],
@@ -155,9 +160,11 @@ input[type="password"] {
 }
 
 .button-cad {
-  background-color: #4F00A3;
+  background: linear-gradient(to right, #242A36, #510EF3);
+  font-family: 'Figtree';
+  font-weight: 700;
   color: white;
-  font-size: 1.2rem;
+  font-size: 12px;
   font-weight: bold;
   padding: 10px;
   border: none;
@@ -165,10 +172,12 @@ input[type="password"] {
   cursor: pointer;
   width: 100%;
   margin-top: 10px;
+  transition: 0.5s;
 }
 
 .button-cad:hover {
-  background-color: #6b00d6;
+  background-position: to left;
+  transition: 0.5s;
 }
 
 /* Estilo para o erro de validação */
