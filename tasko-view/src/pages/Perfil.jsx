@@ -110,10 +110,6 @@ const Perfil = () => {
             }
         };
 
-
-
-
-
         fetchUserData();
     }, []);
 
@@ -159,50 +155,51 @@ const Perfil = () => {
                             <span></span>
                         )}
                     </div>
-
+                </div>
+            </div>
+            <div className="buttonsProfile">
+                <div className="config-button-wrapper">
+                    <button
+                        className="config-button"
+                        onClick={() => navigate("/configuracoes")} // Redireciona para Configurações
+                    >
+                        Configurações
+                    </button>
+                </div>
+                {isPrestador ? (
                     <div className="config-button-wrapper">
                         <button
                             className="config-button"
-                            onClick={() => navigate("/configuracoes")} // Redireciona para Configurações
-                        >
-                            Configurações
-                        </button>
-                    </div>
-                    {isPrestador ? (<div className="config-button-wrapper">
-                        <button
-                            className="config-button"
-                            onClick={() => navigate("/adicionar-servico")} // Redireciona para Configurações
+                            onClick={() => navigate("/adicionar-servico")} // Redireciona para Adicionar Serviço
                         >
                             Adicionar novo serviço
                         </button>
-                    </div>) : (
-                        <div></div>
-                    )}
-
-
-                </div>
-                {isPrestador && (
-                    <>
-                        <div className="about-me">
-                            <h3 className="about-title">Sobre mim:</h3>
-                            <p className="about-text">
-                                {prestador.descricaoServicos || "Nenhuma descrição fornecida"}
-                            </p>
-                        </div>
-                        <div className="separator-line"></div>
-                        <div className="work-cards">
-                            {servicos.map((servico) => (
-                                <div className="work-card" key={servico.id}>
-                                    <div className="work-title">{servico.descricao}</div>
-                                    <div className="work-value">
-                                        R$ {servico.valor.toFixed(2)}
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </>
+                    </div>
+                ) : (
+                    <div></div>
                 )}
             </div>
+            {isPrestador && (
+                <>
+                    <div className="about-me">
+                        <h3 className="about-title">Sobre mim:</h3>
+                        <p className="about-text">
+                            {prestador.descricaoServicos || "Nenhuma descrição fornecida"}
+                        </p>
+                    </div>
+                    <div className="separator-line"></div>
+                    <div className="work-cards">
+                        {servicos.map((servico) => (
+                            <div className="work-card" key={servico.id}>
+                                <div className="work-title">{servico.descricao}</div>
+                                <div className="work-value">
+                                    R$ {servico.valor.toFixed(2)}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </>
+            )}
         </>
     );
 };
