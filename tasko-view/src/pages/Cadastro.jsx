@@ -6,6 +6,7 @@ import InputField from "react-input-mask"
 import { validarCPF, validarEmail, validarTelefone, validarCEP, verificarMaioridade } from "../components/Auth";
 import taskoWhite from "../assets/img/TaskoWhite.png";
 import FooterSimples from "../components/FooterSimples";
+import NavbarMenor from "../components/NavbarMenor";
 
 const Cadastro = () => {
   const [formData, setFormData] = useState({
@@ -160,12 +161,7 @@ const Cadastro = () => {
   return (
 
     <div>
-      <nav className="navbarsimples">
-        <Link to="/" className="voltar-link">
-          ←
-        </Link>
-        <img src={taskoWhite} alt="tasko" className="logoNavSimples" />
-      </nav>
+      <NavbarMenor link={"/"}/>
 
       <div className="container">
         <div className="left-side">
