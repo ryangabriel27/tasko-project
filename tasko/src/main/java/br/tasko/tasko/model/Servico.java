@@ -25,6 +25,7 @@ public class Servico implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String titulo;
     private String descricao;
     private double horas;
     private float valor;

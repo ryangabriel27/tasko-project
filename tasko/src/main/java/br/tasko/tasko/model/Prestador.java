@@ -23,8 +23,11 @@ public class Prestador implements Serializable {
     @JoinColumn(name = "usuario_id", referencedColumnName = "id") // Supomos que User tem uma coluna `id`
     private User usuario;
 
+    @ManyToOne
+    @JoinColumn(name = "categoria_id", referencedColumnName = "id", nullable = false)
+    private Categoria categoria;
+
     private String descricaoServicos;
-    private String categoriaServicos;
     private String links;
     private int valorHora;
 

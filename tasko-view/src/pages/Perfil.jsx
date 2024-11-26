@@ -136,7 +136,7 @@ const Perfil = () => {
                             <span className="username">{user.nome} {user.sobrenome}</span>
                             {isPrestador && (
                                 <p className="bio">
-                                    {prestador.categoriaServicos || "Descrição do serviço não informada"}
+                                    {prestador.categoria.nome || "Descrição do serviço não informada"}
                                 </p>
                             )}
                         </div>
