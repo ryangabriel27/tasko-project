@@ -1,10 +1,10 @@
-
 body {
   font-family: 'Figtree', sans-serif;
   margin: 0;
   padding: 0;
-  font-weight: 300; 
+  font-weight: 300;
 }
+
 .navbar {
   display: flex;
   justify-content: center;
@@ -30,7 +30,8 @@ body {
 /* Estilização da imagem e texto */
 .content {
   display: flex;
-  height: calc(100vh - 60px); /* Descontando a altura da navbar */
+  height: calc(100vh - 60px);
+  /* Descontando a altura da navbar */
   width: 100%;
 }
 
@@ -81,13 +82,17 @@ body {
 /* Estilização do formulário com grid */
 .form {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* Duas colunas */
-  grid-template-rows: auto auto auto auto; /* Quatro linhas: campos, campos, descrição e botão */
-  grid-gap: 20px; /* Espaço entre os campos */
+  grid-template-columns: 1fr 1fr;
+  /* Duas colunas */
+  grid-template-rows: auto auto auto auto;
+  /* Quatro linhas: campos, campos, descrição e botão */
+  grid-gap: 20px;
+  /* Espaço entre os campos */
   width: 80%;
   max-width: 600px;
   margin: 0 auto;
 }
+
 /* Campos de entrada padrão */
 .se-class,
 .in-class,
@@ -98,27 +103,36 @@ body {
   border: 1px solid #ccc;
   border-radius: 4px;
 }
+
 /* Campo de descrição ocupa toda a largura */
 .text-class {
-  grid-column: 1 / 3; /* Ocupa as duas colunas */
-  grid-row: 3; /* Terceira linha */
+  grid-column: 1 / 3;
+  /* Ocupa as duas colunas */
+  grid-row: 3;
+  /* Terceira linha */
   height: 100px;
   resize: none;
   font-size: 1rem;
   padding: 10px;
 }
+
 .cad-pres {
-  grid-column: 1 / 3; /* Ocupa as duas colunas */
-  grid-row: 4; /* Quarta linha */
-  background-color: #4F00A3;
+  grid-column: 1 / 3;
+  /* Ocupa as duas colunas */
+  grid-row: 4;
+  /* Quarta linha */
+  background: rgb(255, 127, 15);
+  background: linear-gradient(90deg, rgba(255, 127, 15, 1) 0%, rgba(255, 0, 178, 1) 100%);
   color: white;
   font-weight: bold;
   border: none;
   cursor: pointer;
   height: 50px;
   font-size: 1.2rem;
-  max-width: 100%; /* Limita o tamanho ao contêiner pai */
-  width: 100%; /* Ajusta o botão para ocupar a largura total do formulário */
+  max-width: 100%;
+  /* Limita o tamanho ao contêiner pai */
+  width: 100%;
+  /* Ajusta o botão para ocupar a largura total do formulário */
   align-items: center;
   border-radius: 10px;
 }
