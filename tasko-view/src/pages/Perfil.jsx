@@ -4,7 +4,7 @@ import Navbar from "../components/Navbar";
 import "../assets/css/perfilStyle.css";
 import image from "../assets/img/perfil1.jfif";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; // Componente de ícone
-import { faCog, faPencilAlt } from "@fortawesome/free-solid-svg-icons"; // Ícones específicos
+import { faCog, faPencilAlt, faTrashAlt } from "@fortawesome/free-solid-svg-icons"; // Ícones específicos
 
 const Perfil = () => {
     const navigate = useNavigate();
@@ -14,6 +14,7 @@ const Perfil = () => {
     const [servicos, setServicos] = useState([]);
     const [isPrestador, setIsPrestador] = useState(false); // Indica se o usuário é um prestador
     const [loading, setLoading] = useState(true); // Indica se os dados ainda estão carregando
+
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -123,6 +124,44 @@ const Perfil = () => {
         return <p>Erro ao carregar os dados do usuário</p>;
     }
 
+    // Função para editar um serviço
+    const handleEdit = (id) => {
+        // Navegue para a página de edição do serviço
+        navigate(`/editar-servico/${id}`);
+    };
+
+    // Função para excluir um serviço
+    const handleDelete = async (id) => {
+        const confirmDelete = window.confirm("Tem certeza que deseja excluir este serviço?");
+        if (confirmDelete) {
+            try {
+                // Chamada à API para excluir o serviço no backend
+                const response = await fetch(`http://localhost:8080/api/servicos/${id}`, {
+                    method: "DELETE",
+                    credentials: "include",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                });
+
+                if (response.ok) {
+                    // Atualiza o estado local para remover o serviço excluído
+                    setServicos((prevServicos) =>
+                        prevServicos.filter((servico) => servico.id !== id)
+                    );
+                    alert("Serviço excluído com sucesso!");
+                } else {
+                    alert("Erro ao excluir o serviço no servidor.");
+                }
+            } catch (error) {
+                console.error("Erro na exclusão do serviço:", error);
+                alert("Erro ao excluir o serviço. Tente novamente.");
+            }
+        }
+    };
+
+
+
     return (
         <>
             <Navbar />
@@ -187,15 +226,29 @@ const Perfil = () => {
                         <div className="work-cards">
                             {servicos.map((servico) => (
                                 <div className="work-card" key={servico.id}>
-                                    <div className="work-title">{servico.descricao}</div>
+                                    <div className="work-title">{servico.titulo}</div>
                                     <div className="work-value">
                                         R$ {servico.valor.toFixed(2)}
+                                    </div>
+                                    <div className="work-actions">
+                                        <button
+                                            className="icon-button edit-button"
+                                            onClick={() => handleEdit(servico.id)}
+                                        >
+                                            <FontAwesomeIcon icon={faPencilAlt} />
+                                        </button>
+                                        <button
+                                            className="icon-button delete-button"
+                                            onClick={() => handleDelete(servico.id)}
+                                        >
+                                            <FontAwesomeIcon icon={faTrashAlt} />
+                                        </button>
                                     </div>
                                 </div>
                             ))}
                         </div>
-
                     </div>
+
                 </>
             )}
         </>

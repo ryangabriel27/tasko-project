@@ -287,3 +287,29 @@ body {
     transform: scale(0.95); /* Diminui ligeiramente o botão ao clicar */
 }
 
+.work-actions {
+    display: flex; /* Exibe os botões em linha */
+    gap: 10px; /* Espaçamento entre os ícones */
+}
+
+.icon-button {
+    background: none; /* Remove o fundo padrão */
+    border: none; /* Remove a borda padrão */
+    cursor: pointer; /* Indica que é clicável */
+    font-size: 18px; /* Tamanho do ícone */
+    padding: 5px; /* Espaçamento interno */
+    border-radius: 5px; /* Arredondamento */
+    transition: background-color 0.3s ease; /* Transição suave */
+}
+
+.icon-button:hover {
+    background-color: #f0f0f0; /* Fundo mais claro ao passar o mouse */
+}
+
+.edit-button {
+    color: #FFA500; /* Laranja para editar */
+}
+
+.delete-button {
+    color: #FF0000; /* Vermelho para excluir */
+}
