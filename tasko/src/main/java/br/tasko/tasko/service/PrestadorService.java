@@ -1,7 +1,9 @@
 package br.tasko.tasko.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,6 +13,7 @@ import br.tasko.tasko.Repository.PrestadorRepository;
 import br.tasko.tasko.Repository.UserRepository;
 import br.tasko.tasko.model.Categoria;
 import br.tasko.tasko.model.Prestador;
+import br.tasko.tasko.model.User;
 
 @Service
 public class PrestadorService {
@@ -57,7 +60,25 @@ public class PrestadorService {
         return prestadorRepository.findByCategoria(categoria.get());
     }
 
-    // public List<Prestador> obterPrestadoresPorNome(String nome) {
-    //     return prestadorRepository.findByNomeContainingIgnoreCase(nome);
-    // }
+    public List<Prestador> buscarPrestadoresPorNome(String nome) {
+        // Passo 1: Buscar usuários com nomes semelhantes
+        List<User> usuarios = userRepository.buscarPorNomeAproximado(nome);
+
+        if (usuarios.isEmpty()) {
+            System.out.println("Nenhum usuário encontrado com o nome fornecido.");
+            return new ArrayList<>();
+        }
+
+        // Passo 2: Buscar apenas os prestadores associados aos usuários encontrados
+        List<Prestador> prestadoresEncontrados = new ArrayList<>();
+        for (User usuario : usuarios) {
+            Optional<Prestador> prestador = prestadorRepository.findByUsuario(usuario);
+            if (prestador.get() != null) {
+                prestadoresEncontrados.add(prestador.get());
+            }
+        }
+
+        return prestadoresEncontrados;
+    }
+
 }
