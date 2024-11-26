@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom"; // Importa o hook useNavigate
 import Navbar from "../components/Navbar";
 import "../assets/css/perfilStyle.css";
 import image from "../assets/img/perfil1.jfif";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; // Componente de ícone
+import { faCog, faPencilAlt } from "@fortawesome/free-solid-svg-icons"; // Ícones específicos
 
 const Perfil = () => {
     const navigate = useNavigate();
@@ -133,7 +135,15 @@ const Perfil = () => {
                             className="profile-pic"
                         />
                         <div className="description">
-                            <span className="username">{user.nome} {user.sobrenome}</span>
+                            <span className="username">
+                                {user.nome} {user.sobrenome}
+                                <button
+                                    className="config-button-large"
+                                    onClick={() => navigate("/configuracoes")}
+                                >
+                                    <FontAwesomeIcon icon={faCog} />
+                                </button>
+                            </span>
                             {isPrestador && (
                                 <p className="bio">
                                     {prestador.categoria.nome || "Descrição do serviço não informada"}
@@ -141,44 +151,17 @@ const Perfil = () => {
                             )}
                         </div>
                     </div>
-                    <div className="rating-perfil">
-                        {isPrestador ? (
-                            <>
-                                <div className="rating-perfil">
-                                    <span className="star">&#9733;</span>
-                                    <p className="rating-value">
-                                        {rating ? rating.toFixed(1) : "Sem avaliações"} {/* Exibe a média ou mensagem */}
-                                    </p>
-                                </div>
-                            </>
-                        ) : (
-                            <span></span>
-                        )}
-                    </div>
+                    {isPrestador && (
+                        <div className="rating-perfil">
+                            <span className="star">&#9733;</span>
+                            <p className="rating-value">
+                                {rating ? rating.toFixed(1) : "Sem avaliações"}
+                            </p>
+                        </div>
+                    )}
                 </div>
             </div>
-            <div className="buttonsProfile">
-                <div className="config-button-wrapper">
-                    <button
-                        className="config-button"
-                        onClick={() => navigate("/configuracoes")} // Redireciona para Configurações
-                    >
-                        Configurações
-                    </button>
-                </div>
-                {isPrestador ? (
-                    <div className="config-button-wrapper">
-                        <button
-                            className="config-button"
-                            onClick={() => navigate("/adicionar-servico")} // Redireciona para Adicionar Serviço
-                        >
-                            Adicionar novo serviço
-                        </button>
-                    </div>
-                ) : (
-                    <div></div>
-                )}
-            </div>
+
             {isPrestador && (
                 <>
                     <div className="about-me">
@@ -187,16 +170,31 @@ const Perfil = () => {
                             {prestador.descricaoServicos || "Nenhuma descrição fornecida"}
                         </p>
                     </div>
+                    <div className="services-header">
+                        <span className="services-title">Seus serviços</span>
+                        <button
+                            className="add-service-button"
+                            onClick={() => navigate("/adicionar-servico")}
+                        >
+                            <FontAwesomeIcon icon={faPencilAlt} />
+                            <span>Adicionar Serviço</span>
+                        </button>
+                    </div>
+
+
                     <div className="separator-line"></div>
-                    <div className="work-cards">
-                        {servicos.map((servico) => (
-                            <div className="work-card" key={servico.id}>
-                                <div className="work-title">{servico.descricao}</div>
-                                <div className="work-value">
-                                    R$ {servico.valor.toFixed(2)}
+                    <div className="work-section">
+                        <div className="work-cards">
+                            {servicos.map((servico) => (
+                                <div className="work-card" key={servico.id}>
+                                    <div className="work-title">{servico.descricao}</div>
+                                    <div className="work-value">
+                                        R$ {servico.valor.toFixed(2)}
+                                    </div>
                                 </div>
-                            </div>
-                        ))}
+                            ))}
+                        </div>
+
                     </div>
                 </>
             )}
