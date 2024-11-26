@@ -16,6 +16,7 @@ import Pagamento from "./pages/Pagamento";
 import GerenciarMeusServicos from "./pages/GerenciarServicos";
 import MeusServicosContratados from "./pages/MeusServicos";
 import CategoriaPrestadores from "./pages/Categorias";
+import EditarServico from "./pages/EditarServico";
 
 function App() {
   return (
@@ -37,7 +38,7 @@ function App() {
         <Route path="/dashboard" element={<GerenciarMeusServicos />} />
         <Route path="/meus-servicos" element={<MeusServicosContratados />} />
         <Route path="/categoria/:id" element={<CategoriaPrestadores />} />
-
+        <Route path="/editar-servico/:id" element={<EditarServico />} />
       </Routes>
     </Router>
   );

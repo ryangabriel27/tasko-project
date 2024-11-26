@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom"; // Importa o hook useNavigate
+import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import "../assets/css/perfilStyle.css";
 import image from "../assets/img/perfil1.jfif";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; // Componente de ícone
-import { faCog, faPencilAlt, faTrashAlt } from "@fortawesome/free-solid-svg-icons"; // Ícones específicos
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCog, faPencilAlt, faTrashAlt, faPlus } from "@fortawesome/free-solid-svg-icons";
 
 const Perfil = () => {
     const navigate = useNavigate();
@@ -12,9 +12,8 @@ const Perfil = () => {
     const [rating, setRating] = useState(null);
     const [prestador, setPrestador] = useState(null);
     const [servicos, setServicos] = useState([]);
-    const [isPrestador, setIsPrestador] = useState(false); // Indica se o usuário é um prestador
-    const [loading, setLoading] = useState(true); // Indica se os dados ainda estão carregando
-
+    const [isPrestador, setIsPrestador] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -30,7 +29,6 @@ const Perfil = () => {
                 if (response.ok) {
                     const userData = await response.json();
                     setUser(userData);
-
                     if (userData.id) {
                         fetchPrestadorData(userData.id);
                     }
@@ -58,8 +56,8 @@ const Perfil = () => {
                     const prestadorData = await response.json();
                     setPrestador(prestadorData);
                     setIsPrestador(true);
-                    fetchServicos(prestadorData.id); // Buscar serviços do prestador
-                    sessionStorage.setItem("prestadorId", prestadorData.id); // Salva o ID no sessionStorage
+                    fetchServicos(prestadorData.id);
+                    sessionStorage.setItem("prestadorId", prestadorData.id);
                     fetchRating(prestadorData.id);
                 } else {
                     setPrestador(null);
@@ -70,7 +68,6 @@ const Perfil = () => {
             }
         };
 
-        // Função para buscar serviços do prestador
         const fetchServicos = async (prestadorId) => {
             try {
                 const response = await fetch(`http://localhost:8080/api/servicos/prestador/${prestadorId}`, {
@@ -104,7 +101,7 @@ const Perfil = () => {
 
                 if (response.ok) {
                     const media = await response.json();
-                    setRating(media); // O número retornado é diretamente atribuído
+                    setRating(media);
                 } else {
                     console.error("Erro ao buscar avaliacoes:", response.status);
                 }
@@ -126,8 +123,7 @@ const Perfil = () => {
 
     // Função para editar um serviço
     const handleEdit = (id) => {
-        // Navegue para a página de edição do serviço
-        navigate(`/editar-servico/${id}`);
+        navigate(`/editar-servico/${id}`); // Navega para a página de edição do serviço
     };
 
     // Função para excluir um serviço
@@ -135,7 +131,6 @@ const Perfil = () => {
         const confirmDelete = window.confirm("Tem certeza que deseja excluir este serviço?");
         if (confirmDelete) {
             try {
-                // Chamada à API para excluir o serviço no backend
                 const response = await fetch(`http://localhost:8080/api/servicos/${id}`, {
                     method: "DELETE",
                     credentials: "include",
@@ -145,7 +140,6 @@ const Perfil = () => {
                 });
 
                 if (response.ok) {
-                    // Atualiza o estado local para remover o serviço excluído
                     setServicos((prevServicos) =>
                         prevServicos.filter((servico) => servico.id !== id)
                     );
@@ -159,8 +153,6 @@ const Perfil = () => {
             }
         }
     };
-
-
 
     return (
         <>
@@ -215,11 +207,10 @@ const Perfil = () => {
                             className="add-service-button"
                             onClick={() => navigate("/adicionar-servico")}
                         >
-                            <FontAwesomeIcon icon={faPencilAlt} />
+                            <FontAwesomeIcon icon={faPlus} />
                             <span>Adicionar Serviço</span>
                         </button>
                     </div>
-
 
                     <div className="separator-line"></div>
                     <div className="work-section">
@@ -248,7 +239,6 @@ const Perfil = () => {
                             ))}
                         </div>
                     </div>
-
                 </>
             )}
         </>
