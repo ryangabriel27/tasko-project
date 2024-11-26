@@ -72,6 +72,16 @@ const AdicionarServico = () => {
                 <div className="add-right-side">
                     <form onSubmit={handleSubmit} className="add-form">
                         <div>
+                            <input 
+                            type="text" 
+                            name="titulo" 
+                            placeholder="Título"
+                            required
+                            className="add-input"
+                            onChange={handleInputChange} 
+                            />
+                        </div>
+                        <div>
                             <textarea
                                 name="descricao"
                                 placeholder="Descrição do Serviço"
