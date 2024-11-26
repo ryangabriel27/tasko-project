@@ -34,6 +34,8 @@ const EditarServico = () => {
 
     const handleSave = async () => {
         try {
+            console.log("Salvando serviço:", servico); // Verifique o que está sendo enviado
+    
             const response = await fetch(`http://localhost:8080/api/servicos/${id}`, {
                 method: "PUT",
                 credentials: "include",
@@ -42,7 +44,7 @@ const EditarServico = () => {
                     "Content-Type": "application/json",
                 },
             });
-
+    
             if (response.ok) {
                 navigate("/perfil");
                 alert("Serviço editado com sucesso!");
@@ -54,6 +56,8 @@ const EditarServico = () => {
             alert("Erro ao editar serviço. Tente novamente.");
         }
     };
+    
+    
 
     if (!servico) {
         return <p>Carregando...</p>;

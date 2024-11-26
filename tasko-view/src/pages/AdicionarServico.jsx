@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import taskoWhite from "../assets/img/TaskoWhite.png";
 import fundo from "../assets/img/Background1.png";
@@ -12,8 +12,34 @@ const AdicionarServico = () => {
         categoria: "",
         valor: "",
     });
-
+    const [prestador, setPrestador] = useState(null);
     const prestadorId = sessionStorage.getItem("prestadorId");
+
+    useEffect(() => {
+        const fetchPrestadorData = async () => {
+            try {
+                const response = await fetch(`http://localhost:8080/api/prestadores/${prestadorId}`, {
+                    method: "GET",
+                    credentials: "include",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                });
+
+                if (response.ok) {
+                    const prestadorData = await response.json();
+                    setPrestador(prestadorData);
+                } else {
+                    setPrestador(null);
+                    
+                }
+            } catch (error) {
+                console.error("Erro ao buscar prestador:", error);
+            }
+        };
+
+        fetchPrestadorData();
+    }, []);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -72,13 +98,13 @@ const AdicionarServico = () => {
                 <div className="add-right-side">
                     <form onSubmit={handleSubmit} className="add-form">
                         <div>
-                            <input 
-                            type="text" 
-                            name="titulo" 
-                            placeholder="Título"
-                            required
-                            className="add-input"
-                            onChange={handleInputChange} 
+                            <input
+                                type="text"
+                                name="titulo"
+                                placeholder="Título"
+                                required
+                                className="add-input"
+                                onChange={handleInputChange}
                             />
                         </div>
                         <div>
@@ -98,6 +124,8 @@ const AdicionarServico = () => {
                                 required
                                 className="add-input"
                                 onChange={handleInputChange}
+                                disabled
+                                value={prestador.categoria.nome}
                             />
                         </div>
                         <div>
