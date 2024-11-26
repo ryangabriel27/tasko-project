@@ -17,6 +17,7 @@ import GerenciarMeusServicos from "./pages/GerenciarServicos";
 import MeusServicosContratados from "./pages/MeusServicos";
 import CategoriaPrestadores from "./pages/Categorias";
 import EditarServico from "./pages/EditarServico";
+import EditarUsuario from "./pages/EditarUsuario"; 
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
         <Route path="/meus-servicos" element={<MeusServicosContratados />} />
         <Route path="/categoria/:id" element={<CategoriaPrestadores />} />
         <Route path="/editar-servico/:id" element={<EditarServico />} />
+        <Route path="/editar-usuario" element={<EditarUsuario />} />
       </Routes>
     </Router>
   );
