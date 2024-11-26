@@ -29,9 +29,10 @@ const AdicionarServico = () => {
                 if (response.ok) {
                     const prestadorData = await response.json();
                     setPrestador(prestadorData);
+                    console.log(prestadorData);
                 } else {
                     setPrestador(null);
-                    
+
                 }
             } catch (error) {
                 console.error("Erro ao buscar prestador:", error);
@@ -125,8 +126,9 @@ const AdicionarServico = () => {
                                 className="add-input"
                                 onChange={handleInputChange}
                                 disabled
-                                value={prestador.categoria.nome}
+                                value={prestador && prestador.categoria ? prestador.categoria.nome : "Prestador não encontrado"}
                             />
+
                         </div>
                         <div>
                             <input
