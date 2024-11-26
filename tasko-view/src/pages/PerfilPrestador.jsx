@@ -104,7 +104,7 @@ const PerfilPrestador = () => {
                         <span className="username">
                             {prestador.usuario.nome} {prestador.usuario.sobrenome}
                         </span>
-                        <p className="bio">{prestador.categoriaServicos}</p>
+                        <p className="bio">{prestador.categoria.nome}</p>
                     </div>
                 </div>
                 <div className="rating-perfil">

@@ -9,6 +9,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+import br.tasko.tasko.model.Categoria;
 
 @Repository
 public interface PrestadorRepository extends JpaRepository<Prestador, Long> {
@@ -21,4 +22,10 @@ public interface PrestadorRepository extends JpaRepository<Prestador, Long> {
 
     @Query(value = "SELECT * FROM prestador ORDER BY RANDOM() LIMIT :limite", nativeQuery = true)
     List<Prestador> obterPrestadoresAleatorios(int limite);
+
+    List<Prestador> findByCategoria(Categoria categoria);
+
+    // List<Prestador> findByNomeContainingIgnoreCase(String nome);
+
+
 }

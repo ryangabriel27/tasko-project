@@ -1,12 +1,15 @@
 package br.tasko.tasko.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.tasko.tasko.Repository.CategoriaRepository;
 import br.tasko.tasko.Repository.PrestadorRepository;
 import br.tasko.tasko.Repository.UserRepository;
+import br.tasko.tasko.model.Categoria;
 import br.tasko.tasko.model.Prestador;
 
 @Service
@@ -14,6 +17,9 @@ public class PrestadorService {
 
     @Autowired
     private PrestadorRepository prestadorRepository;
+
+    @Autowired
+    private CategoriaRepository categoriaRepository;
 
     @Autowired
     private UserRepository userRepository;
@@ -44,4 +50,14 @@ public class PrestadorService {
     public List<Prestador> obterPrestadoresAleatorios(int limite) {
         return prestadorRepository.obterPrestadoresAleatorios(limite);
     }
+
+    // Método para buscar prestadores aleatórios
+    public List<Prestador> obterPrestadoresPorCategoria(Long id) {
+        Optional<Categoria> categoria = categoriaRepository.findById(id);
+        return prestadorRepository.findByCategoria(categoria.get());
+    }
+
+    // public List<Prestador> obterPrestadoresPorNome(String nome) {
+    //     return prestadorRepository.findByNomeContainingIgnoreCase(nome);
+    // }
 }
