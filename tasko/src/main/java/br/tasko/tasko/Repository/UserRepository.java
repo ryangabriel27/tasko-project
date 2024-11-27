@@ -18,6 +18,10 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     Optional<User> findByEmail(String email);
 
-    @Query(value = "SELECT * FROM usuario WHERE LOWER(nome) LIKE LOWER(CONCAT('%', :nome, '%'))", nativeQuery = true)
-    List<User> buscarPorNomeAproximado(@Param("nome") String nome);
+    // @Query(value = """
+    //             SELECT u
+    //             FROM User
+    //             WHERE LOWER(u.nome) LIKE LOWER(CONCAT('%', :nome, '%'))
+    //         """)
+    // List<User> buscarPorNomeAproximado(@Param("nome") String nome);
 }

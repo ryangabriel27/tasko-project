@@ -60,25 +60,25 @@ public class PrestadorService {
         return prestadorRepository.findByCategoria(categoria.get());
     }
 
-    public List<Prestador> buscarPrestadoresPorNome(String nome) {
-        // Passo 1: Buscar usuários com nomes semelhantes
-        List<User> usuarios = userRepository.buscarPorNomeAproximado(nome);
+    // public List<Prestador> buscarPrestadoresPorNome(String nome) {
+    //     // Passo 1: Buscar usuários com nomes semelhantes
+    //     List<User> usuarios = userRepository.buscarPorNomeAproximado(nome);
 
-        if (usuarios.isEmpty()) {
-            System.out.println("Nenhum usuário encontrado com o nome fornecido.");
-            return new ArrayList<>();
-        }
+    //     if (usuarios.isEmpty()) {
+    //         System.out.println("Nenhum usuário encontrado com o nome fornecido.");
+    //         return new ArrayList<>();
+    //     }
 
-        // Passo 2: Buscar apenas os prestadores associados aos usuários encontrados
-        List<Prestador> prestadoresEncontrados = new ArrayList<>();
-        for (User usuario : usuarios) {
-            Optional<Prestador> prestador = prestadorRepository.findByUsuario(usuario);
-            if (prestador.get() != null) {
-                prestadoresEncontrados.add(prestador.get());
-            }
-        }
+    //     // Passo 2: Buscar apenas os prestadores associados aos usuários encontrados
+    //     List<Prestador> prestadoresEncontrados = new ArrayList<>();
+    //     for (User usuario : usuarios) {
+    //         Optional<Prestador> prestador = prestadorRepository.findByUsuario(usuario);
+    //         if (prestador.get() != null) {
+    //             prestadoresEncontrados.add(prestador.get());
+    //         }
+    //     }
 
-        return prestadoresEncontrados;
-    }
+    //     return prestadoresEncontrados;
+    // }
 
 }

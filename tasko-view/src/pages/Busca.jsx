@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import categoriaazul from "../assets/img/categoria1.png";
 import categoriarosa from "../assets/img/categoriarosa.png";
 import categoriaamarelo from "../assets/img/categoriaamarelo.png";
 import "../assets/css/buscaStyle.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 const Busca = () => {
+    const [nome, setNome] = useState("");
+    const [carregando, setCarregando] = useState(false);
+    const navigate = useNavigate();
     const categorias = [
         { id: 1, imagem: categoriaazul, texto: "Tecnologia e Desenvolvimento" },
         { id: 2, imagem: categoriarosa, texto: "Marketing e Venda" },
@@ -34,6 +39,22 @@ const Busca = () => {
         { id: 24, imagem: categoriaazul, texto: "Culinária e Gastronomia" },
     ];
 
+    const handleBuscar = async (e) => {
+        e.preventDefault();
+
+        if (nome.trim() === "") return;  // Se não for digitado nada, não faz a busca.
+
+        setCarregando(true);
+        try {
+            // Navega para a página de resultados e passa os dados via state
+            navigate(`/resultados/${nome}`);
+        } catch (error) {
+            console.error("Erro ao buscar serviços:", error);
+        } finally {
+            setCarregando(false);
+        }
+    };
+
     return (
         <>
             <Navbar />
@@ -41,15 +62,19 @@ const Busca = () => {
                 <section className="categoria-section">
                     <div className="categoria-header">
                         <h2>Categoria</h2>
-                        <div className="busca-box">
-                            <form onSubmit={alert('aviadado')}>
-                                <button>
-                                    {/* Ícone de busca com Font Awesome */}
-                                    <i className="fa fa-search"></i>
-                                </button>
-                                <input type="text" placeholder="Buscar..." />
-                            </form>
-                        </div>
+
+                        <form onSubmit={handleBuscar} className="busca-box">
+                            <button type="submit">
+                                <FontAwesomeIcon icon={faSearch} />
+                            </button>
+                            <input
+                                type="text"
+                                placeholder="Buscar serviços..."
+                                value={nome}
+                                onChange={(e) => setNome(e.target.value)}
+                            />
+                        </form>
+
                     </div>
 
                     <div className="categorias">

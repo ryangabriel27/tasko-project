@@ -49,4 +49,12 @@ public class ServicoService {
     public List<Servico> listarServicosPorPrestador(Long prestadorId) {
         return servicoRepository.findByPrestadorId(prestadorId);
     }
+
+    public List<Servico> buscarPorTitulo(String titulo) {
+        return servicoRepository.buscarPorTitulo(titulo);
+    }
+
+    public List<Servico> buscarPorDescricao(String descricao) {
+        return servicoRepository.buscarPorDescricao(descricao);
+    }
 }

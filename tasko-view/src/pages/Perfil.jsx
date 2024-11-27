@@ -33,6 +33,7 @@ const Perfil = () => {
                         fetchPrestadorData(userData.id);
                     }
                 } else {
+                    navigate("/inicio")
                     console.error("Erro ao buscar usuário:", response.status);
                 }
             } catch (error) {

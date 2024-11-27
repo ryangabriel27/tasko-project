@@ -1,6 +1,7 @@
 package br.tasko.tasko.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -64,5 +65,23 @@ public class ServicoController {
     public ResponseEntity<List<Servico>> listarServicosPorPrestador(@PathVariable Long prestadorId) {
         List<Servico> servicos = servicoService.listarServicosPorPrestador(prestadorId);
         return ResponseEntity.ok(servicos);
+    }
+
+    @PostMapping("/buscar")
+    public ResponseEntity<List<Servico>> buscarServicos(@RequestBody Map<String, String> params) {
+        String titulo = params.get("titulo");
+        String descricao = params.get("descricao");
+
+        List<Servico> servicosEncontrados;
+
+        if (titulo != null && !titulo.trim().isEmpty()) {
+            servicosEncontrados = servicoService.buscarPorTitulo(titulo);
+        } else if (descricao != null && !descricao.trim().isEmpty()) {
+            servicosEncontrados = servicoService.buscarPorDescricao(descricao);
+        } else {
+            return ResponseEntity.badRequest().body(null);
+        }
+
+        return ResponseEntity.ok(servicosEncontrados);
     }
 }

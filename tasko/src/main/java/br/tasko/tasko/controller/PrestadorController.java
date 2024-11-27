@@ -84,12 +84,12 @@ public class PrestadorController {
         }
     }
 
-    @GetMapping("/buscar-por-nome")
-    public ResponseEntity<List<Prestador>> buscarPorNome(@RequestParam(required = false) String nome) {
-        List<Prestador> prestadores = prestadorService.buscarPrestadoresPorNome(nome);
-        if (prestadores.isEmpty()) {
-            return ResponseEntity.noContent().build();
-        }
-        return ResponseEntity.ok(prestadores);
-    }
+    // @GetMapping("/buscar-por-nome")
+    // public ResponseEntity<List<Prestador>> buscarPorNome(@RequestParam(required = false) String nome) {
+    //     List<Prestador> prestadores = prestadorService.buscarPrestadoresPorNome(nome);
+    //     if (prestadores.isEmpty()) {
+    //         return ResponseEntity.noContent().build();
+    //     }
+    //     return ResponseEntity.ok(prestadores);
+    // }
 }
