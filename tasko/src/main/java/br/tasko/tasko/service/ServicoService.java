@@ -33,6 +33,7 @@ public class ServicoService {
     // Atualizar serviço
     public Servico atualizarServico(Long id, Servico servicoAtualizado) {
         Servico servico = buscarServicoPorId(id);
+        servico.setTitulo(servicoAtualizado.getTitulo());
         servico.setDescricao(servicoAtualizado.getDescricao());
         servico.setHoras(servicoAtualizado.getHoras());
         servico.setValor(servicoAtualizado.getValor());

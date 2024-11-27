@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
+import { useNavigate } from "react-router-dom"; // Importando useNavigate
 import "../assets/css/configuracoesStyle.css";
 
 const Configuracoes = () => {
@@ -7,6 +8,7 @@ const Configuracoes = () => {
     const [prestador, setPrestador] = useState(null);
     const [isPrestador, setIsPrestador] = useState(false); // Indica se o usuário é um prestador
     const [loading, setLoading] = useState(true); // Indica se os dados estão carregando
+    const navigate = useNavigate(); // Hook para navegação
 
     useEffect(() => {
         // Chamar a API para obter o usuário atual
@@ -78,49 +80,41 @@ const Configuracoes = () => {
             <Navbar />
             <div className="config-container lightBack">
                 <h1>Configurações</h1>
-                {isPrestador ? (
+                <div className="config-section">
+                    <h2 className="lightBack w100">Informações Básicas</h2>
+                    <ul>
+                        <li><strong>Nome:</strong> {user.nome} {user.sobrenome}</li>
+                        <li><strong>Email:</strong> {user.email}</li>
+                        <li><strong>Telefone:</strong> {user.telefone}</li>
+                        <li><strong>Data de Nascimento:</strong> {user.data_nasc}</li>
+                        <li><strong>Endereço:</strong> {user.endereco}</li>
+                        <li><strong>CEP:</strong> {user.cep}</li>
+                        <li><strong>CPF:</strong> {user.cpf}</li>
+                        <li><strong>Foto:</strong> {user.foto ? <img src={user.foto} alt="Foto de Perfil" /> : "Nenhuma foto disponível"}</li>
+                    </ul>
+                </div>
+
+                {isPrestador && prestador && (
                     <div className="config-section">
-                        <h2 className="lightBack w100">Configurações para Prestadores</h2>
+                        <h2 className="lightBack w100">Informações do Prestador</h2>
                         <ul>
-                            <li>
-                                <button className="config-button">
-                                    Editar informações do serviço
-                                </button>
-                            </li>
-                            <li>
-                                <button className="config-button">
-                                    Alterar categoria de serviço
-                                </button>
-                            </li>
-                            <li>
-                                <button className="config-button">
-                                    Gerenciar portfólio de trabalhos
-                                </button>
-                            </li>
-                        </ul>
-                    </div>
-                ) : (
-                    <div className="config-section">
-                        <h2>Configurações para Clientes</h2>
-                        <ul>
-                            <li>
-                                <button className="config-button">
-                                    Editar informações pessoais
-                                </button>
-                            </li>
-                            <li>
-                                <button className="config-button">
-                                    Alterar preferências
-                                </button>
-                            </li>
-                            <li>
-                                <button className="config-button">
-                                    Histórico de pedidos
-                                </button>
-                            </li>
+                            <li><strong>Categoria de Serviço:</strong> {prestador.categoria.nome}</li>
+                            <li><strong>Descrição dos Serviços:</strong> {prestador.descricaoServicos}</li>
+                            <li><strong>Links:</strong> {prestador.links}</li>
+                            <li><strong>Valor por Hora:</strong> R$ {prestador.valorHora}</li>
+                            <li><strong>CNPJ:</strong> {prestador.cnpj}</li>
                         </ul>
                     </div>
                 )}
+
+                {/* Botão para redirecionar à página de edição */}
+                <div className="config-section">
+                    <button 
+                        className="btn-editar" 
+                        onClick={() => navigate("/editar-usuario")}>
+                        Editar Informações
+                    </button>
+                </div>
             </div>
         </>
     );
