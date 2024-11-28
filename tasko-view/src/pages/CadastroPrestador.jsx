@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "../assets/css/cadPresStyle.css";
 import FooterSimples from "../components/FooterSimples";
@@ -9,12 +9,27 @@ const CadastroPrestador = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     descricaoServicos: "",
-    categoriaServicos: "",
+    categoriaServicos: 0,
     links: "",
     valorHora: "",
     cnpj: "",
   });
+  const [categorias, setCategorias] = useState([]); // Armazena as categorias da API
   const userId = sessionStorage.getItem("userId");
+
+  // Fetch das categorias na API
+  useEffect(() => {
+    const fetchCategorias = async () => {
+      try {
+        const response = await fetch("http://localhost:8080/api/categorias");
+        const data = await response.json();
+        setCategorias(data); // Espera-se que a resposta seja um array de categorias
+      } catch (error) {
+        console.error("Erro ao buscar categorias:", error);
+      }
+    };
+    fetchCategorias();
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -31,7 +46,7 @@ const CadastroPrestador = () => {
       const response = await fetch("http://localhost:8080/api/prestadores", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...formData, usuario: { id: userId } }),
+        body: JSON.stringify({ ...formData, usuario: { id: userId }, categoria: {id: formData.categoriaServicos}}),
       });
 
       if (response.ok) {
@@ -47,37 +62,13 @@ const CadastroPrestador = () => {
     }
   };
 
-  const categorias = [
-    { value: "Tecnologia e Desenvolvimento", titulo: "Tecnologia e Desenvolvimento" },
-    { value: "Saude e Bem Estar", titulo: "Saúde e Bem-Estar" },
-    { value: "Arquitetura e Engenharia", titulo: "Arquitetura e Engenharia" },
-    { value: "Gestao e Projetos", titulo: "Gestão de Projetos" },
-    { value: "Comercio e Vendas", titulo: "Comércio e Vendas" },
-    { value: "Beleza e Estetica", titulo: "Beleza e Estética" },
-    { value: "Marketing e Vendas", titulo: "Marketing e Vendas" },
-    { value: "Consultoria e Estrategia", titulo: "Consultoria e Estratégia" },
-    { value: "Educacao", titulo: "Educação" },
-    { value: "Servicos Domesticos", titulo: "Serviços Domésticos" },
-    { value: "Psicologia e Coaching", titulo: "Psicologia e Coaching" },
-    { value: "Turismo e Lazer", titulo: "Turismo e Lazer" },
-    { value: "Consultoria Empresarial", titulo: "Consultoria Empresarial" },
-    { value: "Design e Criatividade", titulo: "Design e Criatividade" },
-    { value: "Administracao e Suporte", titulo: "Administração e Suporte" },
-    { value: "Arte e Teatro e Musica", titulo: "Arte, Teatro e Música" },
-    { value: "Eventos e Producao", titulo: "Eventos e Produção" },
-    { value: "Fotografia e Video", titulo: "Fotografia e Vídeo" },
-    { value: "Inovacao e Startups", titulo: "Inovação e Startups" },
-    { value: "Redacao e Copywriting", titulo: "Redação e Copywriting" },
-    { value: "Mnutencao Geral", titulo: "Manutenção Geral" },
-    { value: "Financas e Investimentos", titulo: "Finanças e Investimentos" },
-    { value: "Culinaria e Gastronomia", titulo: "Culinária e Gastronomia" },
-  ];
+
 
 
   return (
     <div>
       {/* Navbar menor */}
-      <NavbarMenor link={"/escolha-objetivo"}/>
+      <NavbarMenor link={"/escolha-objetivo"} />
 
       <div className="content">
         {/* Lado esquerdo: imagem com texto */}
@@ -111,13 +102,13 @@ const CadastroPrestador = () => {
               required
               onChange={handleInputChange}
               defaultValue=""
-            > 
+            >
               <option value="" disabled>
                 Categoria dos Serviços
               </option>
               {categorias.map((categoria) => (
-                <option key={categoria.value} value={categoria.value}>
-                  {categoria.titulo}
+                <option key={categoria.id} value={categoria.id}>
+                  {categoria.nome}
                 </option>
               ))}
             </select>

@@ -104,7 +104,7 @@ const PerfilPrestador = () => {
                         <span className="username">
                             {prestador.usuario.nome} {prestador.usuario.sobrenome}
                         </span>
-                        <p className="bio">{prestador.categoriaServicos}</p>
+                        <p className="bio">{prestador.categoria.nome}</p>
                     </div>
                 </div>
                 <div className="rating-perfil">
@@ -125,7 +125,7 @@ const PerfilPrestador = () => {
                 {servicos.length > 0 ? (
                     servicos.map((servico) => (
                         <div className="work-card" key={servico.id}>
-                            <div className="work-title">{servico.descricao}</div>
+                            <div className="work-title">{servico.titulo}</div>
                             <div className="work-value">
                                 R$ {servico.valor.toFixed(2)}
                             </div>

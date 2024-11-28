@@ -11,7 +11,6 @@
 body {
     font-family: 'Figtree', sans-serif;
     display: flex;
-    color: #fdffff;
     margin: 0;
     padding: 0;
   }
@@ -184,4 +183,132 @@ body {
 .config-button:active {
     background-color: #cc8400; /* Cor ainda mais escura ao clicar */
     transform: scale(0.95); /* Diminui ligeiramente o botão ao clicar */
+}
+
+/* Nome e botão de configuração (engrenagem) */
+.username {
+    display: flex; /* Para alinhar nome e botão lado a lado */
+    align-items: center; /* Centraliza verticalmente */
+    font-size: 40px;
+    font-weight: bold;
+    color: #333;
+    gap: 15px; /* Espaçamento entre nome e botão */
+}
+
+.config-button-large {
+    font-size: 30px; /* Aumenta o ícone */
+    color: #FFA500; /* Cor de destaque */
+    background: none; /* Remove o fundo */
+    border: none; /* Remove a borda */
+    cursor: pointer; /* Cursor de clique */
+    transition: transform 0.3s ease; /* Animação ao passar o mouse */
+}
+
+.config-button-large:hover {
+    transform: scale(1.2); /* Aumenta o tamanho no hover */
+}
+
+/* Seção para botão de lápis abaixo da linha */
+
+.add-service-button-wrapper {
+    margin-top: 20px; /* Espaçamento superior */
+}
+
+.icon-button {
+    padding: 10px 15px; /* Espaçamento interno */
+    font-size: 20px; /* Tamanho do ícone */
+    color: #fff; /* Cor branca */
+    background-color: #FFA500; /* Fundo laranja */
+    border: none; /* Remove a borda */
+    border-radius: 5px; /* Botão arredondado */
+    cursor: pointer; /* Indica clique */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Animações */
+}
+
+.icon-button:hover {
+    background-color: #e69500; /* Cor mais escura no hover */
+    transform: scale(1.1); /* Aumenta ligeiramente o botão */
+}
+
+.icon-button:active {
+    background-color: #cc8400; /* Cor mais escura ao clicar */
+    transform: scale(0.95); /* Diminui o botão ao clicar */
+}
+
+
+.add-service-button-wrapper {
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    margin-top: 20px; /* Espaçamento superior */
+}
+
+.services-header {
+    display: flex; /* Layout flexível para alinhar texto e botão */
+    justify-content: space-between; /* Espaça o texto e o botão */
+    align-items: center; /* Alinha verticalmente os itens */
+    margin-top: 20px; /* Espaçamento superior */
+    padding: 0 20px; /* Espaçamento interno nas laterais */
+}
+
+.services-title {
+    font-size: 40px; /* Tamanho do texto */
+    font-weight: bold; /* Texto em negrito */
+    color: #333; /* Cor do texto */
+    font-family: 'Figtree', sans-serif; /* Fonte coerente com o restante da página */
+    margin-left: 55px;
+}
+
+.add-service-button {
+    display: flex; /* Layout flexível para alinhar ícone e texto */
+    align-items: center; /* Alinha verticalmente ao centro */
+    justify-content: center; /* Centraliza o conteúdo */
+    gap: 8px; /* Espaçamento entre o ícone e o texto */
+    padding: 10px 20px; /* Espaçamento interno do botão */
+    background-color: #FFA500; /* Cor de fundo laranja */
+    color: #fff; /* Texto branco */
+    font-size: 18px; /* Tamanho do texto */
+    font-weight: bold; /* Texto em negrito */
+    border: none; /* Remove a borda padrão */
+    border-radius: 5px; /* Arredonda os cantos do botão */
+    cursor: pointer; /* Muda o cursor para indicar que o botão é clicável */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Animações suaves */
+    font-family: 'Figtree', sans-serif; /* Fonte coerente com o restante da página */
+    margin-right: 55px;
+}
+
+.add-service-button:hover {
+    background-color: #e69500; /* Cor mais escura no hover */
+    transform: scale(1.05); /* Aumenta ligeiramente o botão */
+}
+
+.add-service-button:active {
+    background-color: #cc8400; /* Cor ainda mais escura ao clicar */
+    transform: scale(0.95); /* Diminui ligeiramente o botão ao clicar */
+}
+
+.work-actions {
+    display: flex; /* Exibe os botões em linha */
+    gap: 10px; /* Espaçamento entre os ícones */
+}
+
+.icon-button {
+    background: none; /* Remove o fundo padrão */
+    border: none; /* Remove a borda padrão */
+    cursor: pointer; /* Indica que é clicável */
+    font-size: 18px; /* Tamanho do ícone */
+    padding: 5px; /* Espaçamento interno */
+    border-radius: 5px; /* Arredondamento */
+    transition: background-color 0.3s ease; /* Transição suave */
+}
+
+.icon-button:hover {
+    background-color: #f0f0f0; /* Fundo mais claro ao passar o mouse */
+}
+
+.edit-button {
+    color: #FFA500; /* Laranja para editar */
+}
+
+.delete-button {
+    color: #FF0000; /* Vermelho para excluir */
 }

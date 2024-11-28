@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import taskoWhite from "../assets/img/TaskoWhite.png";
 import fundo from "../assets/img/Background1.png";
 import FooterSimples from "../components/FooterSimples";
+import "../assets/css/addStyle.css";
 
 const AdicionarServico = () => {
     const navigate = useNavigate();
@@ -11,8 +12,35 @@ const AdicionarServico = () => {
         categoria: "",
         valor: "",
     });
-
+    const [prestador, setPrestador] = useState(null);
     const prestadorId = sessionStorage.getItem("prestadorId");
+
+    useEffect(() => {
+        const fetchPrestadorData = async () => {
+            try {
+                const response = await fetch(`http://localhost:8080/api/prestadores/${prestadorId}`, {
+                    method: "GET",
+                    credentials: "include",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                });
+
+                if (response.ok) {
+                    const prestadorData = await response.json();
+                    setPrestador(prestadorData);
+                    console.log(prestadorData);
+                } else {
+                    setPrestador(null);
+
+                }
+            } catch (error) {
+                console.error("Erro ao buscar prestador:", error);
+            }
+        };
+
+        fetchPrestadorData();
+    }, []);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -47,31 +75,45 @@ const AdicionarServico = () => {
     return (
         <div>
             {/* Navbar menor */}
-            <nav className="navbar">
-                <Link to="/perfil" className="voltar-link" onClick={() => sessionStorage.removeItem("prestadorId")}>
+            <nav className="add-navbar">
+                <Link
+                    to="/perfil"
+                    className="add-voltar-link"
+                    onClick={() => sessionStorage.removeItem("prestadorId")}
+                >
                     ←
                 </Link>
-                <img src={taskoWhite} alt="tasko" className="logo" />
+                <img src={taskoWhite} alt="tasko" className="add-logo" />
             </nav>
 
-            <div className="content">
+            <div className="add-content">
                 {/* Lado esquerdo: imagem com texto */}
-                <div className="left-side">
-                    <img src={fundo} alt="Background" className="background-image" />
-                    <div className="overlay-text">
+                <div className="add-left-side">
+                    <img src={fundo} alt="Background" className="add-background-image" />
+                    <div className="add-overlay-text">
                         <h1>Adicionar Novo Serviço</h1>
                     </div>
                 </div>
 
                 {/* Lado direito: formulário */}
-                <div className="right-side">
-                    <form onSubmit={handleSubmit} className="form">
-                        <h2>Adicionar Serviço</h2>
+                <div className="add-right-side">
+                    <form onSubmit={handleSubmit} className="add-form">
+                        <div>
+                            <input
+                                type="text"
+                                name="titulo"
+                                placeholder="Título"
+                                required
+                                className="add-input"
+                                onChange={handleInputChange}
+                            />
+                        </div>
                         <div>
                             <textarea
                                 name="descricao"
                                 placeholder="Descrição do Serviço"
                                 required
+                                className="add-textarea"
                                 onChange={handleInputChange}
                             />
                         </div>
@@ -81,8 +123,12 @@ const AdicionarServico = () => {
                                 name="categoria"
                                 placeholder="Categoria"
                                 required
+                                className="add-input"
                                 onChange={handleInputChange}
+                                disabled
+                                value={prestador && prestador.categoria ? prestador.categoria.nome : "Prestador não encontrado"}
                             />
+
                         </div>
                         <div>
                             <input
@@ -90,10 +136,11 @@ const AdicionarServico = () => {
                                 name="valor"
                                 placeholder="Valor (R$)"
                                 required
+                                className="add-input"
                                 onChange={handleInputChange}
                             />
                         </div>
-                        <button type="submit">Adicionar</button>
+                        <button type="submit" className="add-button">Adicionar</button>
                     </form>
                 </div>
             </div>

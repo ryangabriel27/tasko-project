@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "../assets/css/cadStyle.css";
-import fundo from "../assets/img/Background2.png"; // Certifique-se de ter a imagem 'fundo.jpg' no caminho correto
-import InputField from "react-input-mask"
+import fundo from "../assets/img/Background2.png";
+import InputField from "react-input-mask";
 import { validarCPF, validarEmail, validarTelefone, validarCEP, verificarMaioridade } from "../components/Auth";
-import taskoWhite from "../assets/img/TaskoWhite.png";
-import FooterSimples from "../components/FooterSimples";
 import NavbarMenor from "../components/NavbarMenor";
+import FooterSimples from "../components/FooterSimples";
 
 const Cadastro = () => {
   const [formData, setFormData] = useState({
@@ -22,19 +21,7 @@ const Cadastro = () => {
     foto: "",
   });
 
-  const [errors, setErrors] = useState({
-    nome: "",
-    sobrenome: "",
-    cpf: "",
-    telefone: "",
-    email: "",
-    senha: "",
-    data_nasc: "",
-    cep: "",
-    endereco: "",
-    foto: "",
-  });
-
+  const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
   const handleInputChange = async (e) => {
@@ -46,32 +33,29 @@ const Cadastro = () => {
       const cep = value.replace(/\D/g, "");
       setFormData((prevData) => ({ ...prevData, cep: cep }));
 
-      setTimeout(async () => {
-        if (cep.length === 8) {
-          try {
-            const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
-            const data = await response.json();
+      if (cep.length === 8) {
+        try {
+          const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+          const data = await response.json();
 
-            if (!data.erro) {
-              setFormData((prevData) => ({
-                ...prevData,
-                endereco: `${data.logradouro}, ${data.bairro}`,
-              }));
-            } else {
-              setErrors((prevErrors) => ({
-                ...prevErrors,
-                cep: "CEP não encontrado.",
-              }));
-            }
-          } catch (error) {
-            console.error("Erro ao consultar CEP:", error);
+          if (!data.erro) {
+            setFormData((prevData) => ({
+              ...prevData,
+              endereco: `${data.logradouro}, ${data.bairro}`,
+            }));
+          } else {
             setErrors((prevErrors) => ({
               ...prevErrors,
-              cep: "Erro ao consultar CEP.",
+              cep: "CEP não encontrado.",
             }));
           }
+        } catch (error) {
+          setErrors((prevErrors) => ({
+            ...prevErrors,
+            cep: "Erro ao consultar CEP.",
+          }));
         }
-      }, 500);
+      }
     } else {
       setFormData((prevData) => ({ ...prevData, [name]: value }));
     }
@@ -80,65 +64,39 @@ const Cadastro = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(e);
-
-    console.log(formData)
-
     const newErrors = {};
 
-    if (formData.nome.trim() === "") {
-      newErrors.nome = "Nome é obrigatório.";
-    }
-
-    if (formData.sobrenome.trim() === "") {
-      newErrors.sobrenome = "Sobrenome é obrigatório.";
-    }
+    if (!formData.nome.trim()) newErrors.nome = "Nome é obrigatório.";
+    if (!formData.sobrenome.trim()) newErrors.sobrenome = "Sobrenome é obrigatório.";
 
     const cpfError = validarCPF(formData.cpf);
-    if (cpfError) {
-      newErrors.cpf = cpfError;
-    }
+    if (cpfError) newErrors.cpf = cpfError;
 
     const telefoneError = validarTelefone(formData.telefone);
-    if (telefoneError) {
-      newErrors.telefone = telefoneError;
-    }
+    if (telefoneError) newErrors.telefone = telefoneError;
 
     const emailError = validarEmail(formData.email);
-    if (emailError) {
-      newErrors.email = emailError;
-    }
+    if (emailError) newErrors.email = emailError;
 
-    if (formData.senha.trim() === "") {
-      newErrors.senha = "Senha é obrigatória.";
-    }
+    if (!formData.senha.trim()) newErrors.senha = "Senha é obrigatória.";
 
-    if (formData.data_nasc === "") {
+    if (!formData.data_nasc) {
       newErrors.data_nasc = "Data de nascimento é obrigatória.";
     } else {
       const maioridadeError = verificarMaioridade(formData.data_nasc);
-      if (maioridadeError) {
-        newErrors.data_nasc = maioridadeError;
-      }
+      if (maioridadeError) newErrors.data_nasc = maioridadeError;
     }
 
     const cepError = validarCEP(formData.cep);
-    if (cepError) {
-      newErrors.cep = cepError;
-    }
+    if (cepError) newErrors.cep = cepError;
 
-    if (formData.endereco.trim() === "") {
-      newErrors.endereco = "Endereço é obrigatório.";
-    }
+    if (!formData.endereco.trim()) newErrors.endereco = "Endereço é obrigatório.";
 
     setErrors(newErrors);
 
-    if (Object.keys(newErrors).length > 0) {
-      return;
-    }
+    if (Object.keys(newErrors).length > 0) return;
 
     try {
-      console.log(formData);
       const response = await fetch("http://localhost:8080/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -147,8 +105,8 @@ const Cadastro = () => {
 
       if (response.ok) {
         const data = await response.json();
-        sessionStorage.setItem("userId", data.id);
         alert("Cadastro realizado com sucesso!");
+        sessionStorage.setItem("userId", data.id);
         navigate("/escolha-objetivo");
       } else {
         alert("Erro ao realizar o cadastro.");
@@ -159,45 +117,43 @@ const Cadastro = () => {
   };
 
   return (
-
     <div>
-      <NavbarMenor link={"/"}/>
-
+      <NavbarMenor link={"/"} />
       <div className="container">
         <div className="left-side">
           <img src={fundo} alt="Background" className="background-image" />
           <div className="overlay-text">
-            <h1>Cadastro de <span className="hi-text">Usuário</span></h1>
+            <h1>
+              Cadastro de <span className="hi-text">Usuário</span>
+            </h1>
           </div>
         </div>
 
         <div className="right-side">
           <form onSubmit={handleSubmit}>
             <div className="grid-container">
-              {/* Primeira Coluna */}
               <div className="grid-item">
-                <InputField type="text" name="nome" placeholder="Nome" isRequired={true} onChange={handleInputChange} />
-                <InputField type="text" name="cpf" placeholder="CPF" mask="999.999.999-99" isRequired={true} onChange={handleInputChange} />
-                <InputField
-                  type="text"
-                  name="telefone"
-                  placeholder="Telefone"
-                  mask="(99) 99999-9999"
-                  isRequired={true}
-                  onChange={handleInputChange}
-                />
-                <InputField type="text" name="endereco" placeholder="Endereço" isRequired={true} onChange={handleInputChange} />
-                <InputField type="text" name="foto" placeholder="Link para foto" isRequired={false} onChange={handleInputChange} />
-
+                <InputField type="text" name="nome" placeholder="Nome" onChange={handleInputChange} />
+                {errors.nome && <small className="error">{errors.nome}</small>}
+                <InputField type="text" name="cpf" placeholder="CPF" mask="999.999.999-99" onChange={handleInputChange} />
+                {errors.cpf && <small className="error">{errors.cpf}</small>}
+                <InputField type="text" name="telefone" placeholder="Telefone" mask="(99) 99999-9999" onChange={handleInputChange} />
+                {errors.telefone && <small className="error">{errors.telefone}</small>}
+                <InputField type="text" name="endereco" placeholder="Endereço" onChange={handleInputChange} />
+                {errors.endereco && <small className="error">{errors.endereco}</small>}
+                <InputField type="text" name="foto" placeholder="Link para foto" onChange={handleInputChange} />
               </div>
-
-              {/* Segunda Coluna */}
               <div className="grid-item">
-                <InputField type="text" name="sobrenome" placeholder="Sobrenome" isRequired={true} onChange={handleInputChange} />
-                <InputField type="email" name="email" placeholder="E-mail" isRequired={true} onChange={handleInputChange} />
-                <InputField type="text" name="cep" placeholder="CEP" mask="99999-999" isRequired={true} onChange={handleInputChange} />
-                <InputField type="date" name="data_nasc" placeholder="Data de Nascimento" isRequired={true} onChange={handleInputChange} />
-                <InputField type="password" name="senha" placeholder="Senha" isRequired={true} onChange={handleInputChange} />
+                <InputField type="text" name="sobrenome" placeholder="Sobrenome" onChange={handleInputChange} />
+                {errors.sobrenome && <small className="error">{errors.sobrenome}</small>}
+                <InputField type="email" name="email" placeholder="E-mail" onChange={handleInputChange} />
+                {errors.email && <small className="error">{errors.email}</small>}
+                <InputField type="text" name="cep" placeholder="CEP" mask="99999-999" onChange={handleInputChange} />
+                {errors.cep && <small className="error">{errors.cep}</small>}
+                <InputField type="date" name="data_nasc" placeholder="Data de Nascimento" onChange={handleInputChange} />
+                {errors.data_nasc && <small className="error">{errors.data_nasc}</small>}
+                <InputField type="password" name="senha" placeholder="Senha" onChange={handleInputChange} />
+                {errors.senha && <small className="error">{errors.senha}</small>}
               </div>
             </div>
             <button type="submit" className="button-cad">
@@ -206,9 +162,7 @@ const Cadastro = () => {
           </form>
         </div>
       </div>
-      <FooterSimples>
-
-      </FooterSimples>
+      <FooterSimples />
     </div>
   );
 };

@@ -183,9 +183,10 @@ input[type="password"] {
 /* Estilo para o erro de validação */
 .error {
   color: red;
-  font-size: 0.9rem;
+  font-size: 12px;
   margin-top: 5px;
 }
+
 
 .hi-text{
   color: #242A36;

@@ -86,7 +86,8 @@ const ContratarServico = () => {
         <>
             <NavbarMenor link={`/perfil-prestador/${servico.prestador.id}`} />
             <div className="contratar-servico">
-                <h1>{servico.descricao}</h1>
+                <h1>{servico.titulo}</h1>
+                <p>Descrição: {servico.descricao}</p>
                 <p>Valor: R$ {servico.valor.toFixed(2)}</p>
                 <p>Prestador: {servico.prestador.usuario.nome} {servico.prestador.usuario.sobrenome}</p>
                 <button onClick={handlePagamento}>Ir para Pagamento</button>

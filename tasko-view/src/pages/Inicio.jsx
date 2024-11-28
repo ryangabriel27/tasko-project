@@ -100,7 +100,7 @@ const Home = () => {
                                     key={index}
                                     image={provider.usuario.foto || image1} // Use a imagem padrão caso não tenha
                                     name={`${provider.usuario.nome} ${provider.usuario.sobrenome}`}
-                                    profession={provider.categoriaServicos}
+                                    profession={provider.categoria.nome}
                                     rating={""}
                                     id= {provider.id}
                                 />
@@ -122,7 +122,7 @@ const Home = () => {
                                 key={index}
                                 image={item.usuario.foto || image1} // Use a imagem padrão caso não tenha
                                 name={`${item.usuario.nome} ${item.usuario.sobrenome}`}
-                                profession={item.categoriaServicos}
+                                profession={item.categoria.nome}
                                 rating={""}
                                 id= {item.id}
                             />

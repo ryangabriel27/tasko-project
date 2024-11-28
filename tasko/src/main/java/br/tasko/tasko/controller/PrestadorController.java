@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.tasko.tasko.model.Prestador;
@@ -67,4 +68,28 @@ public class PrestadorController {
             return ResponseEntity.status(500).body("Erro ao buscar prestador: " + e.getMessage());
         }
     }
+
+    @GetMapping("/categoria/{categoriaId}")
+    public ResponseEntity<?> listarPorCategoria(@PathVariable Long categoriaId) {
+        try {
+            List<Prestador> prestadores = prestadorService.obterPrestadoresPorCategoria(categoriaId);
+
+            if (prestadores.isEmpty()) {
+                return ResponseEntity.noContent().build();
+            }
+
+            return ResponseEntity.ok(prestadores);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Erro ao buscar prestadores: " + e.getMessage());
+        }
+    }
+
+    // @GetMapping("/buscar-por-nome")
+    // public ResponseEntity<List<Prestador>> buscarPorNome(@RequestParam(required = false) String nome) {
+    //     List<Prestador> prestadores = prestadorService.buscarPrestadoresPorNome(nome);
+    //     if (prestadores.isEmpty()) {
+    //         return ResponseEntity.noContent().build();
+    //     }
+    //     return ResponseEntity.ok(prestadores);
+    // }
 }

@@ -33,6 +33,7 @@ public class ServicoService {
     // Atualizar serviço
     public Servico atualizarServico(Long id, Servico servicoAtualizado) {
         Servico servico = buscarServicoPorId(id);
+        servico.setTitulo(servicoAtualizado.getTitulo());
         servico.setDescricao(servicoAtualizado.getDescricao());
         servico.setHoras(servicoAtualizado.getHoras());
         servico.setValor(servicoAtualizado.getValor());
@@ -48,5 +49,13 @@ public class ServicoService {
     // Buscar serviços por ID do prestador
     public List<Servico> listarServicosPorPrestador(Long prestadorId) {
         return servicoRepository.findByPrestadorId(prestadorId);
+    }
+
+    public List<Servico> buscarPorTitulo(String titulo) {
+        return servicoRepository.buscarPorTitulo(titulo);
+    }
+
+    public List<Servico> buscarPorDescricao(String descricao) {
+        return servicoRepository.buscarPorDescricao(descricao);
     }
 }
