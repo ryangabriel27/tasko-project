@@ -258,6 +258,27 @@ body {
     margin-left: 55px;
 }
 
+.services-header {
+    display: flex; /* Layout flexível para alinhar texto e botões */
+    justify-content: space-between; /* Espaça o título e os botões */
+    align-items: center; /* Alinha verticalmente os itens */
+    margin-top: 20px; /* Espaçamento superior */
+    padding: 0 20px; /* Espaçamento interno nas laterais */
+}
+
+.services-title {
+    font-size: 40px; /* Tamanho do texto */
+    font-weight: bold; /* Texto em negrito */
+    color: #333; /* Cor do texto */
+    font-family: 'Figtree', sans-serif; /* Fonte coerente com o restante da página */
+}
+
+.buttons-container {
+    display: flex;
+    gap: 16px; /* Espaçamento entre os botões */
+    margin-left: auto; /* Empurra os botões para a direita */
+}
+
 .add-service-button {
     display: flex; /* Layout flexível para alinhar ícone e texto */
     align-items: center; /* Alinha verticalmente ao centro */
@@ -273,7 +294,6 @@ body {
     cursor: pointer; /* Muda o cursor para indicar que o botão é clicável */
     transition: background-color 0.3s ease, transform 0.2s ease; /* Animações suaves */
     font-family: 'Figtree', sans-serif; /* Fonte coerente com o restante da página */
-    margin-right: 55px;
 }
 
 .add-service-button:hover {
@@ -285,6 +305,7 @@ body {
     background-color: #cc8400; /* Cor ainda mais escura ao clicar */
     transform: scale(0.95); /* Diminui ligeiramente o botão ao clicar */
 }
+
 
 .work-actions {
     display: flex; /* Exibe os botões em linha */

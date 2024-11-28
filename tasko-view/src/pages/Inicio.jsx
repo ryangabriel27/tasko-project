@@ -8,6 +8,7 @@ import "../assets/css/inicioStyle.css";
 import image1 from "../assets/img/profile1.png";
 import image2 from "../assets/img/profile2.png";
 import { Helmet } from "react-helmet"; // Importe o Helmet
+import Carregando from "../components/Carregando";
 
 const Home = () => {
     const navigate = useNavigate();
@@ -73,7 +74,7 @@ const Home = () => {
     };
 
     if (!user) {
-        return <div>Carregando...</div>;
+        return <Carregando/>
     }
 
     return (

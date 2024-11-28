@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import Carregando from "../components/Carregando";
 
 const EditarUsuario = () => {
     const navigate = useNavigate();
@@ -105,7 +106,7 @@ const EditarUsuario = () => {
     };
 
     if (loading) {
-        return <p>Carregando...</p>;
+        return <Carregando/>
     }
 
     if (!user) {
