@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import "../assets/css/contratarStyle.css";
 import NavbarMenor from '../components/NavbarMenor';
+import Carregando from '../components/Carregando';
 
 const ContratarServico = () => {
     const { id } = useParams(); // Captura o ID do serviço da URL
@@ -75,7 +76,7 @@ const ContratarServico = () => {
     };
 
     if (loading) {
-        return <div>Carregando...</div>;
+        return <Carregando/>
     }
 
     if (!servico) {

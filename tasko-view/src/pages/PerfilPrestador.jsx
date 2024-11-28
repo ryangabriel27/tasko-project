@@ -5,6 +5,7 @@ import { faPen } from "@fortawesome/free-solid-svg-icons";
 import Navbar from "../components/Navbar";
 import "../assets/css/perfilStyle.css";
 import image from "../assets/img/perfil1.jfif";
+import Carregando from "../components/Carregando";
 
 const PerfilPrestador = () => {
     const { prestadorId } = useParams(); // Obtém o ID do prestador da rota
@@ -83,7 +84,7 @@ const PerfilPrestador = () => {
     }, [prestadorId]);
 
     if (loading) {
-        return <p>Carregando...</p>;
+        return <Carregando/>
     }
 
     if (!prestador) {

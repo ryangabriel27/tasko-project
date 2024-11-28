@@ -5,6 +5,7 @@ import "../assets/css/perfilStyle.css";
 import image from "../assets/img/perfil1.jfif";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCog, faPencilAlt, faTrashAlt, faPlus, faThLarge } from "@fortawesome/free-solid-svg-icons";
+import Carregando from "../components/Carregando";
 
 const Perfil = () => {
     const navigate = useNavigate();
@@ -115,7 +116,7 @@ const Perfil = () => {
     }, []);
 
     if (loading) {
-        return <p>Carregando...</p>;
+        return <Carregando/>
     }
 
     if (!user) {

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import "../assets/css/dashboardStyle.css";
 import { useNavigate } from 'react-router-dom';
+import Carregando from '../components/Carregando';
 
 const MeusServicosContratados = () => {
     const navigate = useNavigate();
@@ -53,7 +54,7 @@ const MeusServicosContratados = () => {
     }, [navigate]);
 
     if (loading) {
-        return <div>Carregando...</div>;
+        return <Carregando/>
     }
 
     return (
