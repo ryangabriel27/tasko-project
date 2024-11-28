@@ -307,6 +307,7 @@ body {
 .card p {
   font-size: 14px;
   margin: 10px 0;
+  color: #fdffff;
 }
 
 .card .button-index {
