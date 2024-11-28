@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHome, faSearch, faUser, faArrowRightToBracket } from "@fortawesome/free-solid-svg-icons";
+import { faHome, faSearch, faUser, faArrowRightToBracket, faList } from "@fortawesome/free-solid-svg-icons";
 import "../assets/css/navStyle.css";
 import logo from "../assets/img/TaskoWhite.png"; // Importe a imagem do logo corretamente
 
@@ -37,6 +37,10 @@ const Header = () => {
 
             {/* Navbar direita */}
             <div className="nav-right">
+                <a href="/meus-servicos">
+                    <FontAwesomeIcon icon={faList} />
+                    <span>Meus Serviços</span>
+                </a>
                 <a href="/busca">
                     <FontAwesomeIcon icon={faSearch} />
                     <span>Busca</span>

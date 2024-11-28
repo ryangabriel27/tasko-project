@@ -49,7 +49,6 @@ const MeusServicosContratados = () => {
         };
 
         verificarAuth();
-        fetchContratos();
     }, [navigate]);
 
     if (loading) {
