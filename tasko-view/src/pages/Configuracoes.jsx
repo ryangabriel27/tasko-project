@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import { useNavigate } from "react-router-dom"; // Importando useNavigate
 import "../assets/css/configuracoesStyle.css";
+import Carregando from "../components/Carregando";
 
 const Configuracoes = () => {
     const [user, setUser] = useState(null); // Armazena informações do usuário
@@ -68,7 +69,7 @@ const Configuracoes = () => {
     }, []);
 
     if (loading) {
-        return <p>Carregando configurações...</p>; // Indica carregamento
+        return <Carregando/>
     }
 
     if (!user) {
