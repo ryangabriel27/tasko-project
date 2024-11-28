@@ -65,7 +65,7 @@ public class UserService {
         // Atualiza os dados do usuário
         user.setNome(updatedUser.getNome());
         user.setSobrenome(updatedUser.getSobrenome());
-        user.setSenha(updatedUser.getSenha() != null ? passwordEncoder.encode(updatedUser.getSenha()) : user.getSenha()); // Se a senha foi fornecida, reencode ela
+        user.setSenha(updatedUser.getSenha()); // Se a senha foi fornecida, reencode ela
         user.setTipo(updatedUser.getTipo());
         user.setData_nasc(updatedUser.getData_nasc());
         user.setCep(updatedUser.getCep());

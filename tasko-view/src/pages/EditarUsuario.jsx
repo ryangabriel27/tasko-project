@@ -76,7 +76,7 @@ const EditarUsuario = () => {
                     "Content-Type": "application/json",
                 },
             });
-    
+
             if (userResponse.ok) {
                 // Se for prestador, atualiza o prestador também
                 if (isPrestador && prestador) {
@@ -88,7 +88,7 @@ const EditarUsuario = () => {
                             "Content-Type": "application/json",
                         },
                     });
-    
+
                     if (prestadorResponse.ok) {
                         alert("Informações do prestador e usuário atualizadas com sucesso!");
                         navigate("/configuracoes");
@@ -111,7 +111,7 @@ const EditarUsuario = () => {
             alert("Erro ao salvar dados. Tente novamente.");
         }
     };
-    
+
 
     if (loading) {
         return <Carregando />;
@@ -129,9 +129,10 @@ const EditarUsuario = () => {
 
                 <div className="button-container">
                     <button onClick={() => setEditType("usuario")}>Editar Informações Básicas</button>
-                    {isPrestador && (
+                    {isPrestador && prestador && (
                         <button onClick={() => setEditType("prestador")}>Editar Informações do Prestador</button>
                     )}
+
                 </div>
 
                 {editType === "usuario" && (
