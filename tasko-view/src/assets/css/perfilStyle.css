@@ -118,6 +118,7 @@ body {
     flex-direction: column; /* Organiza as caixas em coluna */
     gap: 20px; /* Espaçamento entre as caixas */
     margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .work-card {
