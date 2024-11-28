@@ -365,6 +365,10 @@ a {
   color: #fff;
 }
 
+.pLogin {
+  color: #fdffff;
+}
+
 .row {
   display: flex;
 }
@@ -417,6 +421,13 @@ a {
 
 .row input:first-child {
   margin-right: 10px;
+}
+
+.resultados-lista{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 25px;
 }
 
 

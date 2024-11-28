@@ -17,6 +17,7 @@ h2 {
     color: #555;
     margin-top: 30px;
     margin-bottom: 15px;
+    margin-left: 35px;
 }
 
 .servicos {
@@ -31,13 +32,23 @@ h2 {
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 15px;
-    width: 300px;
+    width: 600px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s, box-shadow 0.2s;
+    margin: 10px 10px;
+    background-image: url('../img/servicofundo.svg'); /* ajuste o caminho conforme necessário */
+    background-size: 00%; /* Ajuste o tamanho conforme necessário */
+    background-position: left top; /* Move o fundo para baixo */
+    background-repeat: no-repeat;
+    transition: background-position 0.3s ease; 
 }
 
 .servico-card:hover {
     transform: translateY(-5px);
+    background-position: left bottom; 
+    background-size: 140%;
+    transition: background-position 0.3s ease; 
+    transition: background-size 0.4s ease;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 

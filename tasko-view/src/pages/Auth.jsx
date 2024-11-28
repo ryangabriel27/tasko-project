@@ -53,7 +53,7 @@ const AuthPage = () => {
         <h1 className="h1Login">
           Login
         </h1>
-        <p>Insira o e-mail e a senha da sua conta:</p>
+        <p className="pLogin">Insira o e-mail e a senha da sua conta:</p>
         <form onSubmit={handleSubmit}>
           <div className="row">
             <input
