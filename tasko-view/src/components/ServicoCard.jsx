@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
@@ -8,15 +8,20 @@ import backgroundImage from "../assets/img/servicofundo.svg"; // ajuste o caminh
 
 const ServicoCard = ({ image, username, usersurname, name, categoria, descricao, rating, id }) => {
   const navigate = useNavigate();
+  const [hover, setHover] = useState(false);
 
   return (
-    <div className="servico-card">
+    <div
+      className="servico-card"
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+    >
       <div className="servico-card-header">
         <div className="servico-info">
           <img src={image} alt={`Foto de ${username}`} className="profile-pic" />
           <div className="infoServico">
-            <p>por <strong>{username} {usersurname}</strong></p>
-            <p id="categoriaServico">{categoria}</p>
+            <p className={hover ? "hover-color" : ""}>por <strong className={hover ? "hover-color" : ""}>{username} {usersurname}</strong></p>
+            <p id="categoriaServico" className={hover ? "hover-color" : ""}>{categoria}</p>
           </div>
         </div>
         <div className="rating-servico">
@@ -26,11 +31,11 @@ const ServicoCard = ({ image, username, usersurname, name, categoria, descricao,
         </div>
       </div>
       <div className="servico-card-content">
-        <h1 className="lightBack w900">{name}</h1>
-        <p className="lightBack">{descricao}</p>
+        <h1 className={`lightBack w900 ${hover ? "hover-color" : ""}`}>{name}</h1>
+        <p className={`lightBack ${hover ? "hover-color" : ""}`}>{descricao}</p>
       </div>
       <div className="servico-card-button">
-        <button className="noBack noBorder red pointer" onClick={() => navigate(`/perfil-prestador/${id}`)}>
+        <button className={`noBack noBorder red pointer ${hover ? "hover-color" : ""}`} onClick={() => navigate(`/perfil-prestador/${id}`)}>
           <FontAwesomeIcon icon={faArrowRight} />
         </button>
       </div>

@@ -4,17 +4,17 @@
     max-width: 1200px;
     margin: 0 auto;
     background-color: #f9f9f9;
-    color: #333;
+    color: #242A36;
 }
 
 .title-dashboard {
     text-align: center;
-    color: #333;
+    color: #242A36;
     margin-bottom: 20px;
 }
 
 h2 {
-    color: #555;
+    color: #242A36;
     margin-top: 30px;
     margin-bottom: 15px;
     margin-left: 35px;
@@ -38,9 +38,10 @@ h2 {
     margin: 10px 10px;
     background-image: url('../img/servicofundo.svg'); /* ajuste o caminho conforme necessário */
     background-size: 00%; /* Ajuste o tamanho conforme necessário */
-    background-position: left top; /* Move o fundo para baixo */
+    background-position: left bottom; /* Move o fundo para baixo */
     background-repeat: no-repeat;
     transition: background-position 0.3s ease; 
+    transition: background-size 0.4s ease;
 }
 
 .servico-card:hover {
@@ -54,12 +55,12 @@ h2 {
 
 .servico-card p {
     margin: 10px 0;
-    color: #555;
+    color: #242A36;
     line-height: 1.5;
 }
 
 .servico-card strong {
-    color: #333;
+    color: #242A36;
 }
 
 .button-dashboard {
@@ -93,6 +94,7 @@ p {
     margin: 0;
     font-size: 14px;
 }
+
 
 @media (max-width: 768px) {
     .servicos {

@@ -1,5 +1,7 @@
 /* Estilização exclusiva para AdicionarServico */
-
+body {
+    font-family: 'Figtree';
+}
 /* Navbar */
 .add-navbar {
     display: flex;
@@ -53,8 +55,13 @@
     text-align: center;
     color: #fff;
     font-size: 2.5rem;
-    /* Texto maior */
-    font-weight: bold;
+    font-weight: 900;
+    width: 100%;
+    line-height: 104%;
+}
+
+.add-overlay-text h1 {
+    font-weight: 900;
 }
 
 /* Lado direito */
@@ -76,6 +83,18 @@
     gap: 20px;
 }
 
+.add-form input {
+    font-family: 'Figtree';
+}
+
+.add-form textarea {
+    font-family: 'Figtree';
+}
+
+.add-form button {
+    font-family: 'Figtree';
+    font-weight: 900;
+}
 
 /* Inputs e textarea */
 .add-input,

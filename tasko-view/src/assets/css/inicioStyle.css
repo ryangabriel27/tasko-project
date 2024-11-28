@@ -313,19 +313,26 @@ body {
     margin: 0;
     font-weight: 100;
 }
-.servico-card-content:hover{
+
+.infoServico p.hover-color {
     color: #fdffff !important;
     transition: color 0.3s ease;
 }
-.servico-card-content:hover h1{
+.infoServico strong.hover-color {
+    color: #fdffff !important;
+    transition: color 0.3s ease;
+} 
+
+.servico-card-content h1.hover-color {
     color: #fdffff !important;
     transition: color 0.3s ease;
 }
-.servico-card-content:hover p{
+.servico-card-content p.hover-color {
     color: #fdffff !important;
     transition: color 0.3s ease;
 }
-.servico-card-content:hover && .infoServico p{
+
+.servico-card-button button.hover-color {
     color: #fdffff !important;
     transition: color 0.3s ease;
 }

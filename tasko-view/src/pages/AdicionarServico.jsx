@@ -91,7 +91,7 @@ const AdicionarServico = () => {
                 <div className="add-left-side">
                     <img src={fundo} alt="Background" className="add-background-image" />
                     <div className="add-overlay-text">
-                        <h1>Adicionar Novo Serviço</h1>
+                        <h1>Adicionar <div className="high-text">novo serviço</div></h1>
                     </div>
                 </div>
 
