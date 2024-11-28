@@ -78,6 +78,32 @@ body {
     align-items: center;
 }
 
+.servico-info{
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+}
+
+.servico-info p{
+    margin: 0px -30px !important;
+    font-size: 19px;
+    overflow: hidden;
+    width: 81%;
+}
+
+#categoriaServico {
+    font-size: 12px;
+    top: 60px;
+    text-align: left;
+    right: 77px;
+}
+
+.infoServico {
+    display: flex;
+    flex-direction: column;
+    width: 185px;
+}
+
 /* Foto de perfil */
 .profile-pic {
     width: 50px;
@@ -163,6 +189,7 @@ body {
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     transition: transform 0.3s ease;
     font-family: 'Figtree', sans-serif;
+    margin: 0px 10px;
 }
 
 .carousel-card:hover {
@@ -227,4 +254,78 @@ body {
 
 .carousel-card-button i{
     color: #F50035;
+}
+
+.servico-card {
+    flex: 0 0 auto;
+    width: 250px;
+    border: 1px solid #BCBCBC;
+    border-radius: 10px;
+    padding: 2em;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    font-family: 'Figtree', sans-serif;
+    margin: 0px 10px;
+}
+
+.servico-card:hover {
+    transform: scale(1.05);
+}
+
+.servico-card:hover {
+    transform: scale(1.05);
+}
+
+.servico-card img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.servico-card-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.rating-servico i{
+    color: #F7C216;
+    font-size: 22px;
+}
+
+.profile-info img{
+    width: 67px;
+    height: 67px;
+}
+
+.servico-card-content {
+    margin-top: 10px;
+    transition: color 0.3s ease;
+}
+.servico-card-content h3 {
+    font-size: 20px;
+    margin: 0;
+}
+.servico-card-content p {
+    font-size: 15px;
+    margin: 0;
+    font-weight: 100;
+}
+.servico-card-content:hover{
+    color: #fdffff !important;
+    transition: color 0.3s ease;
+}
+.servico-card-content:hover h1{
+    color: #fdffff !important;
+    transition: color 0.3s ease;
+}
+.servico-card-content:hover p{
+    color: #fdffff !important;
+    transition: color 0.3s ease;
+}
+.servico-card-content:hover && .infoServico p{
+    color: #fdffff !important;
+    transition: color 0.3s ease;
 }

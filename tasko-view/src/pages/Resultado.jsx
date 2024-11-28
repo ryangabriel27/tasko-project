@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import { useNavigate, useParams } from "react-router-dom";
-import CarouselCard from "../components/CarouselCard";
+import ServicoCard from "../components/ServicoCard";
 // import "../assets/css/resultStyle.css";
 
 const Resultados = () => {
@@ -45,10 +45,13 @@ const Resultados = () => {
                     ) : (
                         <div className="resultados-lista">
                             {resultados.map((servico) => (
-                                <CarouselCard key={servico.id}
+                                <ServicoCard key={servico.id}
                                     image={servico.prestador.usuario.foto}
                                     name={servico.titulo}
-                                    profession={servico.descricao}
+                                    descricao={servico.descricao}
+                                    categoria={servico.prestador.categoria.nome}
+                                    username={servico.prestador.usuario.nome}
+                                    usersurname={servico.prestador.usuario.sobrenome}
                                     id={servico.prestador.id}
                                 />
                             ))}
