@@ -55,7 +55,6 @@ const Header = () => {
                     <span>Sair</span>
                 </a>
 
-
             </div>
         </nav>
     );

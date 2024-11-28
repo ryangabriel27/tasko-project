@@ -18,9 +18,11 @@ nav {
 }
 
 .logoNav {
-    flex-grow: 1;
     /* Isso faz a logo ficar no centro */
     text-align: center;
+    position: relative;
+    left: 7em;
+    top: 0.3em;
 }
 
 .logoNav img {
@@ -49,6 +51,7 @@ nav {
     align-items: center;
     /* Centraliza os itens */
 }
+
 
 .nav-left a i,
 .nav-right a i {

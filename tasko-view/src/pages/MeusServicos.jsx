@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import "../assets/css/dashboardStyle.css";
 import { useNavigate } from 'react-router-dom';
 import Carregando from '../components/Carregando';
+import Header from '../components/Navbar';
 
 const MeusServicosContratados = () => {
     const navigate = useNavigate();
@@ -61,22 +62,24 @@ const MeusServicosContratados = () => {
     }
 
     return (
-        <div className="dashboard">
-            <h1>Meus pedidos</h1>
-            {contratos.length === 0 ? (
-                <p>Você ainda não contratou nenhum serviço.</p>
-            ) : (
-                <ul>
-                    {contratos.map((contrato) => (
-                        <li key={contrato.id} className="contrato-item">
-                            <p><strong>Serviço:</strong> {contrato.servico.descricao}</p>
-                            <p><strong>Prestador:</strong> {contrato.servico.prestador.usuario.nome}</p>
-                            <p><strong>Status:</strong> {contrato.status}</p>
-                        </li>
-                    ))}
-                </ul>
-            )}
-        </div>
+        <>
+            <Header />
+            <div className="dashboard">
+                <h1>Meus pedidos</h1>
+                {contratos.length === 0 ? (
+                    <p>Você ainda não contratou nenhum serviço.</p>
+                ) : (
+                    <ul>
+                        {contratos.map((contrato) => (
+                            <li key={contrato.id} className="contrato-item">
+                                <p><strong>Serviço:</strong> {contrato.servico.descricao}</p>
+                                <p><strong>Prestador:</strong> {contrato.servico.prestador.usuario.nome}</p>
+                                <p><strong>Status:</strong> {contrato.status}</p>
+                            </li>
+                        ))}
+                    </ul>
+                )}
+            </div></>
     );
 };
 
