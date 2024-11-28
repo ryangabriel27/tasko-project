@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import "../assets/css/pagamentoStyle.css";
 import NavbarMenor from '../components/NavbarMenor';
+import Carregando from '../components/Carregando';
 
 const Pagamento = () => {
     const location = useLocation();
@@ -51,7 +52,7 @@ const Pagamento = () => {
     };
 
     if (!servico || !usuario) {
-        return <div>Carregando...</div>;
+        return <Carregando/>
     }
 
     return (

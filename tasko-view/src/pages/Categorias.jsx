@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import CarouselCard from "../components/CarouselCard";
+import Carregando from "../components/Carregando";
 // import "../assets/css/categoriaPrestadoresStyle.css";
 
 const CategoriaPrestadores = () => {
@@ -32,7 +33,7 @@ const CategoriaPrestadores = () => {
     }, [id]);
 
     if (loading) {
-        return <div>Carregando...</div>;
+        return <Carregando/>
     }
 
     return (

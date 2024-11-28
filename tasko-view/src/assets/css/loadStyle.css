@@ -1,0 +1,84 @@
+/* Reset e definições gerais */
+* {
+    border: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  :root {
+    --hue: 223;
+    --bg: hsl(var(--hue), 10%, 90%);
+    --fg: hsl(var(--hue), 10%, 10%);
+    font-size: calc(16px + (24 - 16) * (100vw - 320px) / (1280 - 320px));
+  }
+  
+  /* Estilos para centralizar o spinner na tela */
+  .loading-container {
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+    height: 100vh; /* Preenche a tela inteira */
+    background-color: var(--bg); /* Cor de fundo */
+  }
+  
+  /* Estilos do spinner */
+  .pl {
+    display: block;
+    width: 12em; /* Aumenta o tamanho */
+    height: 12em; /* Aumenta o tamanho */
+  }
+  
+  .pl__ring,
+  .pl__ball {
+    animation: ring 2s ease-out infinite;
+  }
+  
+  .pl__ball {
+    animation-name: ball;
+  }
+  
+  
+  /* Animação do círculo */
+  @keyframes ring {
+    from {
+      stroke-dasharray: 0 257 0 0 1 0 0 258;
+    }
+    25% {
+      stroke-dasharray: 0 0 0 0 257 0 258 0;
+    }
+    50%,
+    to {
+      stroke-dasharray: 0 0 0 0 0 515 0 0;
+    }
+  }
+  
+  /* Animação da linha */
+  @keyframes ball {
+    from,
+    50% {
+      animation-timing-function: ease-in;
+      stroke-dashoffset: 1;
+    }
+    64% {
+      animation-timing-function: ease-in;
+      stroke-dashoffset: -109;
+    }
+    78% {
+      animation-timing-function: ease-in;
+      stroke-dashoffset: -145;
+    }
+    92% {
+      animation-timing-function: ease-in;
+      stroke-dashoffset: -157;
+    }
+    57%,
+    71%,
+    85%,
+    99%,
+    to {
+      animation-timing-function: ease-out;
+      stroke-dashoffset: -163;
+    }
+  }
+  

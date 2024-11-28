@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import { useNavigate, useParams } from "react-router-dom";
 import ServicoCard from "../components/ServicoCard";
+import Carregando from "../components/Carregando";
 // import "../assets/css/resultStyle.css";
 
 const Resultados = () => {
     const { titulo } = useParams();  // Obtém o state passado pela navegação
     const [resultados, setResultados] = useState([]);
+    const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -26,12 +28,20 @@ const Resultados = () => {
                 })
                 .catch((error) => {
                     console.error("Erro ao buscar serviços:", error);
+                }).finally(() => {
+                    setLoading(false)
                 });
         }
         if (titulo == "") {
             navigate('/busca');
         }
     }, [titulo]);
+
+    if (loading) {
+        return (
+            <Carregando />
+        );
+    }
 
     return (
         <>

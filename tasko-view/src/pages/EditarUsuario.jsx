@@ -1,24 +1,15 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
-import "../assets/css/configuracoesStyle.css";
+import Carregando from "../components/Carregando";
 
 const EditarUsuario = () => {
-    const [user, setUser] = useState({
-        nome: "",
-        sobrenome: "",
-        email: "",
-        telefone: "",
-        data_nasc: "",
-        endereco: "",
-        cep: "",
-        cpf: "",
-        foto: "",
-        prestador: null, // Para armazenar os dados do prestador
-    });
-    const [loading, setLoading] = useState(true); // Carregando estado
-    const [error, setError] = useState(""); // Para armazenar erros de API
+    const navigate = useNavigate();
+    const [user, setUser] = useState(null);
+    const [prestador, setPrestador] = useState(null);
+    const [isPrestador, setIsPrestador] = useState(false);
+    const [loading, setLoading] = useState(true);
 
-    // Função para carregar os dados do usuário
     useEffect(() => {
         const fetchUserData = async () => {
             try {
@@ -33,258 +24,212 @@ const EditarUsuario = () => {
                 if (response.ok) {
                     const userData = await response.json();
                     setUser(userData);
+
+                    if (userData.id) {
+                        fetchPrestadorData(userData.id);
+                    }
                 } else {
-                    setError("Erro ao buscar os dados do usuário");
+                    console.error("Erro ao buscar usuário:", response.status);
                 }
             } catch (error) {
-                setError("Erro na requisição");
+                console.error("Erro na requisição:", error);
             } finally {
                 setLoading(false);
+            }
+        };
+
+        const fetchPrestadorData = async (usuarioId) => {
+            try {
+                const response = await fetch(`http://localhost:8080/api/prestadores/usuario/${usuarioId}`, {
+                    method: "GET",
+                    credentials: "include",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                });
+
+                if (response.ok) {
+                    const prestadorData = await response.json();
+                    setPrestador(prestadorData);
+                    setIsPrestador(true);
+                } else {
+                    setPrestador(null);
+                    setIsPrestador(false);
+                }
+            } catch (error) {
+                console.error("Erro ao buscar prestador:", error);
             }
         };
 
         fetchUserData();
     }, []);
 
-    // Função para lidar com a submissão do formulário de edição
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        console.log('Formulário enviado:', user);
-        
+    const handleSave = async () => {
         try {
-            const userData = {
-                nome: user.nome,
-                sobrenome: user.sobrenome,
-                email: user.email,
-                telefone: user.telefone,
-                data_nasc: user.data_nasc,
-                endereco: user.endereco,
-                cep: user.cep,
-                cpf: user.cpf,
-                foto: user.foto,
-            };
-    
-            if (user.prestador) {
-                userData.prestador = {
-                    descricaoServicos: user.prestador.descricaoServicos,
-                    links: user.prestador.links,
-                    valorHora: user.prestador.valorHora,
-                    cnpj: user.prestador.cnpj,
-                };
-            }
-    
-            const response = await fetch("http://localhost:8080/auth/update", {
+            // Atualizar o usuário
+            const userResponse = await fetch(`http://localhost:8080/api/usuarios/${user.id}`, {
                 method: "PUT",
                 credentials: "include",
+                body: JSON.stringify(user),
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(userData),
             });
-    
-            const data = await response.json();  // Verifique a resposta JSON
-            console.log('Resposta da API:', data);
-    
-            if (response.ok) {
-                alert("Informações atualizadas com sucesso!");
+
+            if (userResponse.ok && isPrestador) {
+                // Atualizar o prestador
+                const prestadorResponse = await fetch(`http://localhost:8080/api/prestadores/${prestador.id}`, {
+                    method: "PUT",
+                    credentials: "include",
+                    body: JSON.stringify(prestador),
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                });
+
+                if (prestadorResponse.ok) {
+                    alert("Informações do prestador e usuário atualizadas com sucesso!");
+                    navigate("/configuracoes");
+                } else {
+                    alert("Erro ao atualizar prestador.");
+                }
+            } else if (userResponse.ok) {
+                alert("Informações do usuário atualizadas com sucesso!");
+                navigate("/configuracoes");
             } else {
-                setError("Erro ao atualizar os dados");
-                console.error("Erro da API:", data);  // Exibe detalhes do erro na API
+                alert("Erro ao atualizar informações.");
             }
         } catch (error) {
-            setError("Erro na requisição");
-            console.error("Erro na requisição:", error);  // Exibe o erro no console
+            console.error("Erro ao salvar dados:", error);
+            alert("Erro ao salvar dados. Tente novamente.");
         }
     };
-    
-    
-    
 
     if (loading) {
-        return <p>Carregando...</p>;
+        return <Carregando/>
     }
 
-    if (error) {
-        return <p>{error}</p>;
+    if (!user) {
+        return <p>Erro ao carregar os dados do usuário.</p>;
     }
 
     return (
         <>
             <Navbar />
-            <div className="config-container lightBack">
+            <div className="editar-container">
                 <h1>Editar Informações</h1>
-                <form onSubmit={handleSubmit} className="form-editar">
-                    <div className="form-group">
-                        <label htmlFor="nome">Nome:</label>
-                        <input
-                            type="text"
-                            id="nome"
-                            value={user.nome}
-                            onChange={(e) => setUser({ ...user, nome: e.target.value })}
-                            required
-                        />
-                    </div>
+                <div className="editar-section">
+                    <h2>Informações Básicas</h2>
+                    <form>
+                        <label>
+                            Nome:
+                            <input
+                                type="text"
+                                value={user.nome}
+                                onChange={(e) => setUser({ ...user, nome: e.target.value })}
+                            />
+                        </label>
+                        <label>
+                            Email:
+                            <input
+                                type="email"
+                                value={user.email}
+                                onChange={(e) => setUser({ ...user, email: e.target.value })}
+                            />
+                        </label>
+                        <label>
+                            Telefone:
+                            <input
+                                type="text"
+                                value={user.telefone}
+                                onChange={(e) => setUser({ ...user, telefone: e.target.value })}
+                            />
+                        </label>
+                        <label>
+                            Data de Nascimento:
+                            <input
+                                type="date"
+                                value={user.data_nasc}
+                                onChange={(e) => setUser({ ...user, data_nasc: e.target.value })}
+                            />
+                        </label>
+                        <label>
+                            Endereço:
+                            <input
+                                type="text"
+                                value={user.endereco}
+                                onChange={(e) => setUser({ ...user, endereco: e.target.value })}
+                            />
+                        </label>
+                        <label>
+                            CEP:
+                            <input
+                                type="text"
+                                value={user.cep}
+                                onChange={(e) => setUser({ ...user, cep: e.target.value })}
+                            />
+                        </label>
+                        <label>
+                            CPF:
+                            <input
+                                type="text"
+                                value={user.cpf}
+                                onChange={(e) => setUser({ ...user, cpf: e.target.value })}
+                            />
+                        </label>
+                        <label>
+                            Foto:
+                            <input
+                                type="url"
+                                value={user.foto}
+                                onChange={(e) => setUser({ ...user, foto: e.target.value })}
+                            />
+                        </label>
+                    </form>
+                </div>
 
-                    <div className="form-group">
-                        <label htmlFor="sobrenome">Sobrenome:</label>
-                        <input
-                            type="text"
-                            id="sobrenome"
-                            value={user.sobrenome}
-                            onChange={(e) => setUser({ ...user, sobrenome: e.target.value })}
-                            required
-                        />
-                    </div>
-
-                    <div className="form-group">
-                        <label htmlFor="email">Email:</label>
-                        <input
-                            type="email"
-                            id="email"
-                            value={user.email}
-                            onChange={(e) => setUser({ ...user, email: e.target.value })}
-                            required
-                        />
-                    </div>
-
-                    <div className="form-group">
-                        <label htmlFor="telefone">Telefone:</label>
-                        <input
-                            type="text"
-                            id="telefone"
-                            value={user.telefone}
-                            onChange={(e) => setUser({ ...user, telefone: e.target.value })}
-                            required
-                        />
-                    </div>
-
-                    <div className="form-group">
-                        <label htmlFor="data_nasc">Data de Nascimento:</label>
-                        <input
-                            type="date"
-                            id="data_nasc"
-                            value={user.data_nasc}
-                            onChange={(e) => setUser({ ...user, data_nasc: e.target.value })}
-                            required
-                        />
-                    </div>
-
-                    <div className="form-group">
-                        <label htmlFor="endereco">Endereço:</label>
-                        <input
-                            type="text"
-                            id="endereco"
-                            value={user.endereco}
-                            onChange={(e) => setUser({ ...user, endereco: e.target.value })}
-                            required
-                        />
-                    </div>
-
-                    <div className="form-group">
-                        <label htmlFor="cep">CEP:</label>
-                        <input
-                            type="text"
-                            id="cep"
-                            value={user.cep}
-                            onChange={(e) => setUser({ ...user, cep: e.target.value })}
-                            required
-                        />
-                    </div>
-
-                    <div className="form-group">
-                        <label htmlFor="cpf">CPF:</label>
-                        <input
-                            type="text"
-                            id="cpf"
-                            value={user.cpf}
-                            onChange={(e) => setUser({ ...user, cpf: e.target.value })}
-                            required
-                        />
-                    </div>
-
-                    <div className="form-group">
-                        <label htmlFor="foto">Foto:</label>
-                        <input
-                            type="text"
-                            id="foto"
-                            value={user.foto}
-                            onChange={(e) => setUser({ ...user, foto: e.target.value })}
-                        />
-                    </div>
-
-                    {/* Mostrar campos do Prestador, se houver */}
-                    {user.prestador && (
-                        <>
-                            <div className="form-group">
-                                <label htmlFor="descricaoServicos">Descrição dos Serviços:</label>
+                {isPrestador && prestador && (
+                    <div className="editar-section">
+                        <h2>Informações do Prestador</h2>
+                        <form>
+                            <label>
+                                Categoria de Serviço:
                                 <input
                                     type="text"
-                                    id="descricaoServicos"
-                                    value={user.prestador.descricaoServicos}
-                                    onChange={(e) => setUser({
-                                        ...user,
-                                        prestador: { 
-                                            ...user.prestador, 
-                                            descricaoServicos: e.target.value 
-                                        }
-                                    })}
+                                    value={prestador.categoria.nome}
+                                    onChange={(e) => setPrestador({ ...prestador, categoria: { nome: e.target.value } })}
                                 />
-                            </div>
-
-                            <div className="form-group">
-                                <label htmlFor="links">Links (ex: site, portfólio):</label>
-                                <input
-                                    type="text"
-                                    id="links"
-                                    value={user.prestador.links}
-                                    onChange={(e) => setUser({
-                                        ...user,
-                                        prestador: { 
-                                            ...user.prestador, 
-                                            links: e.target.value 
-                                        }
-                                    })}
+                            </label>
+                            <label>
+                                Descrição dos Serviços:
+                                <textarea
+                                    value={prestador.descricaoServicos}
+                                    onChange={(e) => setPrestador({ ...prestador, descricaoServicos: e.target.value })}
                                 />
-                            </div>
-
-                            <div className="form-group">
-                                <label htmlFor="valorHora">Valor por Hora:</label>
+                            </label>
+                            <label>
+                                Valor por Hora:
                                 <input
                                     type="number"
-                                    id="valorHora"
-                                    value={user.prestador.valorHora}
-                                    onChange={(e) => setUser({
-                                        ...user,
-                                        prestador: { 
-                                            ...user.prestador, 
-                                            valorHora: e.target.value 
-                                        }
-                                    })}
+                                    value={prestador.valorHora}
+                                    onChange={(e) => setPrestador({ ...prestador, valorHora: e.target.value })}
                                 />
-                            </div>
-
-                            <div className="form-group">
-                                <label htmlFor="cnpj">CNPJ:</label>
+                            </label>
+                            <label>
+                                CNPJ:
                                 <input
                                     type="text"
-                                    id="cnpj"
-                                    value={user.prestador.cnpj}
-                                    onChange={(e) => setUser({
-                                        ...user,
-                                        prestador: { 
-                                            ...user.prestador, 
-                                            cnpj: e.target.value 
-                                        }
-                                    })}
+                                    value={prestador.cnpj}
+                                    onChange={(e) => setPrestador({ ...prestador, cnpj: e.target.value })}
                                 />
-                            </div>
-                        </>
-                    )}
-
-                    <div className="form-group">
-                        <button type="submit" className="btn-editar">Salvar alterações</button>
+                            </label>
+                        </form>
                     </div>
-                </form>
+                )}
+
+                <div>
+                    <button onClick={handleSave}>Salvar</button>
+                </div>
             </div>
         </>
     );

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import "../assets/css/dashboardStyle.css";
 import { useNavigate } from 'react-router-dom';
+import Carregando from '../components/Carregando';
 
 const MeusServicosContratados = () => {
     const navigate = useNavigate();
@@ -22,43 +23,46 @@ const MeusServicosContratados = () => {
 
                 const userData = await response.json();
                 setUser(userData);
-                fetchContratos();
             } catch (error) {
                 console.error('Erro ao verificar autenticação:', error);
                 navigate('/');
             }
         };
 
-        const fetchContratos = async () => {
-            try {
-                const response = await fetch(`http://localhost:8080/api/contratos/usuario/${user.id}`, {
-                    method: 'GET',
-                    credentials: 'include',
-                });
-                if (response.ok) {
-                    const data = await response.json();
-                    setContratos(data);
-                } else {
-                    console.error('Erro ao carregar contratos');
+        if (user) {
+            // Só faz a requisição de contratos se o user estiver definido
+            const fetchContratos = async () => {
+                try {
+                    const response = await fetch(`http://localhost:8080/api/contratos/usuario/${user.id}`, {
+                        method: 'GET',
+                        credentials: 'include',
+                    });
+                    if (response.ok) {
+                        const data = await response.json();
+                        setContratos(data);
+                    } else {
+                        console.error('Erro ao carregar contratos');
+                    }
+                } catch (error) {
+                    console.error('Erro na requisição:', error);
+                } finally {
+                    setLoading(false);
                 }
-            } catch (error) {
-                console.error('Erro na requisição:', error);
-            } finally {
-                setLoading(false);
-            }
-        };
+            };
+
+            fetchContratos();
+        }
 
         verificarAuth();
-        fetchContratos();
-    }, [navigate]);
+    }, [navigate, user]); // Adiciona o 'user' como dependência
 
     if (loading) {
-        return <div>Carregando...</div>;
+        return <Carregando />;
     }
 
     return (
         <div className="dashboard">
-            <h1>Meus Serviços Contratados</h1>
+            <h1>Meus pedidos</h1>
             {contratos.length === 0 ? (
                 <p>Você ainda não contratou nenhum serviço.</p>
             ) : (
