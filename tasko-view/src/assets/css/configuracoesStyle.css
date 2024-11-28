@@ -1,9 +1,71 @@
 .config-container {
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #fff;
     padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.h1 {
+    color: #242A36;
 }
 
 .config-section {
+    margin-top: 20px;
+}
+
+h2 {
+    color: #ffffff;
+    margin-bottom: 15px;
+}
+
+.lightBack {
+    color: #242A36;
+}
+
+.darkBack {
+    color: #fdffff;
+}
+
+.noBack {
+    background-color: #fdffff00;
+}
+
+.noBorder {
+    border: 1px solid #fdffff00;
     margin-bottom: 20px;
+}
+
+.forceCenter {
+    display: flex;
+    margin: 0px auto;
+    align-items: center;
+}
+
+.buttonGradient5 {
+    background: linear-gradient(to right, #242A36, #510EF3);
+    font-family: 'Figtree';
+    border: none;
+    color: #fff;
+    padding: 4px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.5s ease-in-out;
+}
+
+.buttonGradient5:hover {
+    transform: translateY(-2px);
+    background-position: to left;
+    transition: 0.5s ease-in-out;
+}
+
+.red {
+    color: #F50035;
+}
+
+.orange {
+    color: #FF7F0F;
 }
 
 .h1 {
@@ -11,8 +73,17 @@
     color: #333;
 }
 
+.pointer {
+    cursor: pointer;
+}
+
 .ul {
     list-style-type: none;
+    padding: 0;
+}
+
+ul {
+    list-style: none;
     padding: 0;
 }
 
@@ -21,8 +92,21 @@
     margin: 5px 0;
 }
 
+li {
+    margin-bottom: 10px;
+
+}
+
 .strong {
     color: #333;
+}
+
+.config-button {
+    padding: 10px 15px;
+    background-color: #510EF3;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
 }
 
 .btn-editar {
@@ -32,7 +116,18 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    text-align: center;
+}
+
+.config-button:hover {
+    background-color: #510EF3;
     font-size: 1rem;
+}
+
+.config-button:active {
+    background-color: #400bbb;
 }
 
 .btn-editar:hover {
