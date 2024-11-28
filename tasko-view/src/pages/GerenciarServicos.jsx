@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import "../assets/css/dashboardStyle.css";
 import { useNavigate } from 'react-router-dom';
 import Carregando from '../components/Carregando';
+import Header from '../components/Navbar';
 
 const GerenciarMeusServicos = () => {
     const navigate = useNavigate();
@@ -96,32 +97,34 @@ const GerenciarMeusServicos = () => {
     };
 
     if (loading) {
-        return <Carregando/>
+        return <Carregando />
     }
 
     return (
-        <div className="dashboard">
-            <h1 className='title-dashboard'>Gerenciar Meus Serviços</h1>
-            {contratos.length === 0 ? (
-                <p>Nenhum serviço foi contratado ainda.</p>
-            ) : (
-                <ul>
-                    {contratos.map((contrato) => (
-                        <li key={contrato.id} className="contrato-item">
-                            <p><strong>Serviço:</strong> {contrato.servico.descricao}</p>
-                            <p><strong>Contratado por:</strong> {contrato.usuario.nome}</p>
-                            <p><strong>Status:</strong> {contrato.status}</p>
-                            <button className='button-dashboard' onClick={() => handleAction(contrato.id, 'finalizar')}>
-                                Finalizar
-                            </button>
-                            <button className='button-dashboard' onClick={() => handleAction(contrato.id, 'cancelar')}>
-                                Cancelar
-                            </button>
-                        </li>
-                    ))}
-                </ul>
-            )}
-        </div>
+        <>
+            <Header />
+            <div className="dashboard">
+                <h1 className='title-dashboard'>Gerenciar Meus Serviços</h1>
+                {contratos.length === 0 ? (
+                    <p>Nenhum serviço foi contratado ainda.</p>
+                ) : (
+                    <ul>
+                        {contratos.map((contrato) => (
+                            <li key={contrato.id} className="contrato-item">
+                                <p><strong>Serviço:</strong> {contrato.servico.descricao}</p>
+                                <p><strong>Contratado por:</strong> {contrato.usuario.nome}</p>
+                                <p><strong>Status:</strong> {contrato.status}</p>
+                                <button className='button-dashboard' onClick={() => handleAction(contrato.id, 'finalizar')}>
+                                    Finalizar
+                                </button>
+                                <button className='button-dashboard' onClick={() => handleAction(contrato.id, 'cancelar')}>
+                                    Cancelar
+                                </button>
+                            </li>
+                        ))}
+                    </ul>
+                )}
+            </div></>
     );
 };
 
