@@ -5,7 +5,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import br.tasko.tasko.Repository.UserRepository;
-import br.tasko.tasko.dto.RegisterDTO;
 import br.tasko.tasko.model.User;
 
 @Service
@@ -35,7 +34,7 @@ public class UserService {
         user.setEmail(registerDTO.getEmail());
         user.setCpf(registerDTO.getCpf());
         user.setTelefone(registerDTO.getTelefone());
-        user.setSenha(passwordEncoder.encode(registerDTO.getSenha()));
+        user.setSenha(passwordEncoder.encode(registerDTO.getSenha())); // Codifica a senha
 
         return userRepository.save(user);
     }
@@ -58,5 +57,25 @@ public class UserService {
         return user;
     }
 
-    
+    // Lógica para atualizar o usuário
+    public User atualizarUser(Long id, User updatedUser) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado com ID: " + id));
+
+        // Atualiza os dados do usuário
+        user.setNome(updatedUser.getNome());
+        user.setSobrenome(updatedUser.getSobrenome());
+        user.setSenha(updatedUser.getSenha() != null ? passwordEncoder.encode(updatedUser.getSenha()) : user.getSenha()); // Se a senha foi fornecida, reencode ela
+        user.setTipo(updatedUser.getTipo());
+        user.setData_nasc(updatedUser.getData_nasc());
+        user.setCep(updatedUser.getCep());
+        user.setEndereco(updatedUser.getEndereco());
+        user.setFoto(updatedUser.getFoto());
+        user.setCpf(updatedUser.getCpf());
+        user.setTelefone(updatedUser.getTelefone());
+        user.setEmail(updatedUser.getEmail());
+        user.setPrestador(updatedUser.getPrestador());
+
+        return userRepository.save(user);
+    }
 }
