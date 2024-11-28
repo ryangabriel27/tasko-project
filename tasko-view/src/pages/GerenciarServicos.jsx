@@ -50,6 +50,7 @@ const GerenciarMeusServicos = () => {
                     fetchContratos(prestadorData.id); // Chama fetchContratos com prestadorId
                 } else {
                     setPrestador(null);
+                    navigate("/inicio");
                 }
             } catch (error) {
                 console.error("Erro ao buscar prestador:", error);

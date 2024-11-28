@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAtlas } from "@fortawesome/free-solid-svg-icons";
 import Navbar from "../components/Navbar";
 import CategoryCard from "../components/CategoryCard";
 import CarouselCard from "../components/CarouselCard";
@@ -61,20 +62,14 @@ const Home = () => {
         fetchRandomProviders();
     }, []);
 
-    const handleLogout = async () => {
-        try {
-            await fetch('http://localhost:8080/auth/logout', {
-                method: 'POST',
-                credentials: 'include'
-            });
-            navigate('/');
-        } catch (error) {
-            console.error('Erro ao fazer logout:', error);
-        }
+    const handleClick = () => {
+        // Redireciona para a página de publicações
+        navigate('/publicacoes');
     };
 
+
     if (!user) {
-        return <Carregando/>
+        return <Carregando />
     }
 
     return (
@@ -85,6 +80,13 @@ const Home = () => {
             </Helmet>
             <Navbar />
             <h1 class="lightBack dashboardMargin">Bem-vindo, {user.nome} {user.sobrenome}!</h1>
+            {/* Botão Flutuante */}
+            <button
+                className="btn-flutuante"
+                onClick={handleClick}
+            >
+                <FontAwesomeIcon icon={faAtlas}/> Criar publicação
+            </button>
             <section className="container-section">
                 <div className="inicio-container">
                     <div className="container-header">
@@ -96,14 +98,14 @@ const Home = () => {
                     </div>
                     <div className="card-grid">
                         {randomProviders.length > 0 ? (
-                            randomProviders.slice(0,6).map((provider, index) => (
+                            randomProviders.slice(0, 6).map((provider, index) => (
                                 <CategoryCard
                                     key={index}
                                     image={provider.usuario.foto || image1} // Use a imagem padrão caso não tenha
                                     name={`${provider.usuario.nome} ${provider.usuario.sobrenome}`}
                                     profession={provider.categoria.nome}
                                     rating={""}
-                                    id= {provider.id}
+                                    id={provider.id}
                                 />
                             ))
                         ) : (
@@ -125,7 +127,7 @@ const Home = () => {
                                 name={`${item.usuario.nome} ${item.usuario.sobrenome}`}
                                 profession={item.categoria.nome}
                                 rating={""}
-                                id= {item.id}
+                                id={item.id}
                             />
                         ))}
                     </div>

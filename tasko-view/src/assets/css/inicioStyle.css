@@ -4,7 +4,7 @@ body {
     font-family: 'Figtree', sans-serif;
     margin: 0;
     padding: 0;
-    font-weight: 300; 
+    font-weight: 300;
 }
 
 /* Seção de Categorias */
@@ -57,7 +57,7 @@ body {
 
 /* Estilo do card */
 
-.card-inicio{
+.card-inicio {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -72,19 +72,19 @@ body {
     transform: scale(1.05);
 }
 
-.profile-info{
+.profile-info {
     display: flex;
     flex-direction: row;
     align-items: center;
 }
 
-.servico-info{
+.servico-info {
     display: flex;
     flex-direction: row;
     align-items: start;
 }
 
-.servico-info p{
+.servico-info p {
     margin: 0px -30px !important;
     font-size: 19px;
     overflow: hidden;
@@ -114,9 +114,10 @@ body {
 
 /* Informações do perfil */
 
-.info{
+.info {
     margin-left: 0.7em;
 }
+
 .info h3 {
     font-size: 1.3rem;
     color: white;
@@ -136,7 +137,7 @@ body {
     gap: 10px;
 }
 
-.rating i{
+.rating i {
     color: #F7C216;
     font-size: 20px;
 }
@@ -147,7 +148,7 @@ body {
     font-weight: 100;
 }
 
-.arrow i{
+.arrow i {
     font-size: 1rem;
     color: #FF7F0F;
     text-decoration: none;
@@ -159,7 +160,7 @@ body {
     padding: 0 20px;
 }
 
-.carousel-title{
+.carousel-title {
     font-family: 'Figtree', sans-serif;
     color: #F50035;
     font-size: 30px;
@@ -173,11 +174,12 @@ body {
     padding: 10px 0;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
-    -ms-overflow-style: none;  
+    -ms-overflow-style: none;
 }
 
 .carousel-content::-webkit-scrollbar {
-    display: none; /* WebKit */
+    display: none;
+    /* WebKit */
 }
 
 .carousel-card {
@@ -186,7 +188,7 @@ body {
     border: 1px solid #BCBCBC;
     border-radius: 10px;
     padding: 2em;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
     font-family: 'Figtree', sans-serif;
     margin: 0px 10px;
@@ -203,19 +205,19 @@ body {
     border-radius: 8px;
 }
 
-.carousel-card-header{
+.carousel-card-header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
 }
 
-.rating-carousel i{
+.rating-carousel i {
     color: #F7C216;
     font-size: 22px;
 }
 
-.profile-info img{
+.profile-info img {
     width: 67px;
     height: 67px;
 }
@@ -223,10 +225,12 @@ body {
 .carousel-card-content {
     margin-top: 10px;
 }
+
 .carousel-card-content h3 {
     font-size: 20px;
     margin: 0;
 }
+
 .carousel-card-content p {
     font-size: 15px;
     margin: 0;
@@ -247,12 +251,12 @@ body {
     cursor: pointer;
 }
 
-.carousel-card-button{
+.carousel-card-button {
     display: flex;
     justify-content: flex-end;
 }
 
-.carousel-card-button i{
+.carousel-card-button i {
     color: #F50035;
 }
 
@@ -262,7 +266,7 @@ body {
     border: 1px solid #BCBCBC;
     border-radius: 10px;
     padding: 2em;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
     font-family: 'Figtree', sans-serif;
     margin: 0px 10px;
@@ -283,19 +287,19 @@ body {
     border-radius: 8px;
 }
 
-.servico-card-header{
+.servico-card-header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
 }
 
-.rating-servico i{
+.rating-servico i {
     color: #F7C216;
     font-size: 22px;
 }
 
-.profile-info img{
+.profile-info img {
     width: 67px;
     height: 67px;
 }
@@ -304,28 +308,62 @@ body {
     margin-top: 10px;
     transition: color 0.3s ease;
 }
+
 .servico-card-content h3 {
     font-size: 20px;
     margin: 0;
 }
+
 .servico-card-content p {
     font-size: 15px;
     margin: 0;
     font-weight: 100;
 }
-.servico-card-content:hover{
+
+.servico-card-content:hover {
     color: #fdffff !important;
     transition: color 0.3s ease;
 }
-.servico-card-content:hover h1{
+
+.servico-card-content:hover h1 {
     color: #fdffff !important;
     transition: color 0.3s ease;
 }
-.servico-card-content:hover p{
+
+.servico-card-content:hover p {
     color: #fdffff !important;
     transition: color 0.3s ease;
 }
-.servico-card-content:hover && .infoServico p{
+
+.servico-card-content:hover && .infoServico p {
     color: #fdffff !important;
     transition: color 0.3s ease;
+}
+
+.btn-flutuante {
+    position: fixed;
+    bottom: 30px;
+    /* Distância da parte inferior */
+    right: 30px;
+    /* Distância da parte direita */
+    background-color: #4F00A3;
+    padding: 2em;
+    color: white;
+    border: none;
+    border-radius: 3em;
+    width: 11em;
+    height: 4em;
+    font-size: 12px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-flutuante:hover {
+    transition: 0.3s;
+    transform: scale(1.05);
+    background-color: #440983;
 }
