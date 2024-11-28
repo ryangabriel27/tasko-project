@@ -125,7 +125,7 @@ const CadastroPrestador = () => {
               required
               onChange={handleInputChange}
             ></textarea>
-            <button className="cad-pres" type="submit">Cadastrar</button>
+            <button className="button-cad" type="submit">Cadastrar</button>
           </form>
         </div>
 

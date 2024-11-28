@@ -81,6 +81,7 @@ body {
 
 /* Estilização do formulário com grid */
 .form {
+  font-family: 'Figtree';
   display: grid;
   grid-template-columns: 1fr 1fr;
   /* Duas colunas */
@@ -91,6 +92,20 @@ body {
   width: 80%;
   max-width: 600px;
   margin: 0 auto;
+}
+
+.form input {
+  font-family: 'Figtree';
+}
+.form input:focus{
+  outline: 1px solid #530ef385;
+}
+
+.form select {
+  font-family: 'Figtree';
+}
+.form textarea {
+  font-family: 'Figtree';
 }
 
 /* Campos de entrada padrão */
