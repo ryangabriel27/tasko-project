@@ -4,7 +4,7 @@ import Navbar from "../components/Navbar";
 import "../assets/css/perfilStyle.css";
 import image from "../assets/img/perfil1.jfif";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCog, faPencilAlt, faTrashAlt, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faCog, faPencilAlt, faTrashAlt, faPlus, faThLarge } from "@fortawesome/free-solid-svg-icons";
 
 const Perfil = () => {
     const navigate = useNavigate();
@@ -204,14 +204,24 @@ const Perfil = () => {
                     </div>
                     <div className="services-header">
                         <span className="services-title">Seus serviços</span>
-                        <button
-                            className="add-service-button"
-                            onClick={() => navigate("/adicionar-servico")}
-                        >
-                            <FontAwesomeIcon icon={faPlus} />
-                            <span>Adicionar Serviço</span>
-                        </button>
+                        <div className="buttons-container">
+                            <button
+                                className="add-service-button"
+                                onClick={() => navigate("/dashboard")}
+                            >
+                                <FontAwesomeIcon icon={faThLarge} />
+                                <span>Painel de Serviços</span>
+                            </button>
+                            <button
+                                className="add-service-button"
+                                onClick={() => navigate("/adicionar-servico")}
+                            >
+                                <FontAwesomeIcon icon={faPlus} />
+                                <span>Adicionar Serviço</span>
+                            </button>
+                        </div>
                     </div>
+
 
                     <div className="separator-line"></div>
                     <div className="work-section">
