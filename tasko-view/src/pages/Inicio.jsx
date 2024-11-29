@@ -72,6 +72,10 @@ const Home = () => {
         return <Carregando />
     }
 
+    if (randomProviders.length === 0) {
+        return <Carregando />
+    }
+
     return (
         <>
             <Helmet>
@@ -85,7 +89,7 @@ const Home = () => {
                 className="btn-flutuante"
                 onClick={handleClick}
             >
-                <FontAwesomeIcon icon={faAtlas}/> Criar publicação
+                <FontAwesomeIcon icon={faAtlas} /> Criar publicação
             </button>
             <section className="container-section">
                 <div className="inicio-container">
@@ -120,7 +124,7 @@ const Home = () => {
                         <h3>Você também pode gostar de:</h3>
                     </div>
                     <div className="carousel-content" id="carouselContent">
-                        {randomProviders.map((item, index) => (
+                        {randomProviders.slice(6, 12).map((item, index) => (
                             <CarouselCard
                                 key={index}
                                 image={item.usuario.foto || image1} // Use a imagem padrão caso não tenha

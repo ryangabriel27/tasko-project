@@ -26,19 +26,19 @@ const Cadastro = () => {
 
   const handleInputChange = async (e) => {
     const { name, value } = e.target;
-  
+
     // Resetando o erro do campo alterado
     setErrors((prevErrors) => ({ ...prevErrors, [name]: "" }));
-  
+
     if (name === "cep") {
       const cep = value.replace(/\D/g, ""); // Remove caracteres não numéricos
       setFormData((prevData) => ({ ...prevData, cep }));
-  
+
       if (cep.length === 8) { // Realiza a busca apenas se o CEP tiver 8 números
         try {
           const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
           const data = await response.json();
-  
+
           if (!data.erro) {
             setFormData((prevData) => ({
               ...prevData,
@@ -66,11 +66,13 @@ const Cadastro = () => {
       setFormData((prevData) => ({ ...prevData, [name]: value }));
     }
   };
-  
-  
+
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    console.log(formData);
 
     // Validação dos campos
     const newErrors = {};
@@ -109,7 +111,18 @@ const Cadastro = () => {
       const response = await fetch("http://localhost:8080/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          nome: formData.nome,
+          sobrenome: formData.sobrenome,
+          cep: formData.cep,
+          endereco: formData.endereco, // Campo "endereco" adicionado
+          senha: formData.senha,
+          data_nasc: formData.data_nasc,
+          foto: formData.foto,
+          cpf: formData.cpf,
+          telefone: formData.telefone,
+          email: formData.email
+        }),
       });
 
       if (response.ok) {
@@ -209,7 +222,7 @@ const Cadastro = () => {
                   placeholder="CEP"
                   mask="99999-999"
                   onChange={handleInputChange}
-                  
+
                 />
                 {errors.cep && <small className="error">{errors.cep}</small>}
 
