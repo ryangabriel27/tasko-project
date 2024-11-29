@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap');
+
 .dashboard {
     font-family: 'Figtree', sans-serif;
     padding: 20px;
@@ -38,19 +39,22 @@ h2 {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s, box-shadow 0.2s;
     margin: 10px 10px;
-    background-image: url('../img/servicofundo.svg'); /* ajuste o caminho conforme necessário */
-    background-size: 00%; /* Ajuste o tamanho conforme necessário */
-    background-position: left bottom; /* Move o fundo para baixo */
+    background-image: url('../img/servicofundo.svg');
+    /* ajuste o caminho conforme necessário */
+    background-size: 00%;
+    /* Ajuste o tamanho conforme necessário */
+    background-position: left bottom;
+    /* Move o fundo para baixo */
     background-repeat: no-repeat;
-    transition: background-position 0.3s ease; 
+    transition: background-position 0.3s ease;
     transition: background-size 0.4s ease;
 }
 
 .servico-card:hover {
     transform: translateY(-5px);
-    background-position: left bottom; 
+    background-position: left bottom;
     background-size: 140%;
-    transition: background-position 0.3s ease; 
+    transition: background-position 0.3s ease;
     transition: background-size 0.4s ease;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
@@ -95,34 +99,49 @@ h2 {
 
 .tabs {
     display: flex;
-    gap: 10px; /* Espaço entre as abas */
-    margin-bottom: 20px; /* Distância entre as abas e o conteúdo */
-    justify-content: center; /* Centraliza as abas */
+    gap: 10px;
+    /* Espaço entre as abas */
+    margin-bottom: 20px;
+    /* Distância entre as abas e o conteúdo */
+    justify-content: center;
+    /* Centraliza as abas */
 }
 
 .tab-button {
-    padding: 10px 20px; /* Espaçamento interno */
-    border: 1px solid #ccc; /* Borda leve */
-    border-radius: 5px; /* Cantos arredondados */
-    background-color: #f9f9f9; /* Fundo claro */
+    padding: 10px 20px;
+    /* Espaçamento interno */
+    border: 1px solid #ccc;
+    /* Borda leve */
+    border-radius: 5px;
+    /* Cantos arredondados */
+    background-color: #f9f9f9;
+    /* Fundo claro */
     font-family: 'Figtree', sans-serif;
-    color: #333; /* Cor do texto */
-    font-size: 16px; /* Tamanho da fonte */
-    cursor: pointer; /* Mostra o cursor de clique */
-    transition: background-color 0.3s, color 0.3s; /* Suaviza o efeito ao passar o mouse */
+    color: #333;
+    /* Cor do texto */
+    font-size: 16px;
+    /* Tamanho da fonte */
+    cursor: pointer;
+    /* Mostra o cursor de clique */
+    transition: background-color 0.3s, color 0.3s;
+    /* Suaviza o efeito ao passar o mouse */
 }
 
 .tab-button:hover {
-    background-color: #e0e0e0; /* Fundo mais escuro ao passar o mouse */
+    background-color: #e0e0e0;
+    /* Fundo mais escuro ao passar o mouse */
 }
 
 .tab-button.active {
-    background-color: #4F00A3; /* Fundo azul para aba ativa */
-    color: white; /* Texto branco */
-    border-color: #4F00A3; /* Borda da aba ativa */
+    background-color: #4F00A3;
+    /* Fundo azul para aba ativa */
+    color: white;
+    /* Texto branco */
+    border-color: #4F00A3;
+    /* Borda da aba ativa */
 }
 
-.contrato-item{
+.contrato-item {
     border: 2px solid #FF7F0F;
     padding: 2em;
     border-radius: 3em;
@@ -130,7 +149,7 @@ h2 {
 
 
 
-@media (max-width: 768px) {
+@media (max-width: 769px) {
     .servicos {
         flex-direction: column;
         align-items: center;
@@ -138,5 +157,72 @@ h2 {
 
     .servico-card {
         width: 90%;
+    }
+
+    #root {
+        width: 768px !important;
+    }
+
+    body {
+        font-size: 50%;
+    }
+
+    .servico-card:hover {
+        transform: translateY(-5px);
+        background-position: left bottom;
+        background-size: 214%;
+        transition: background-position 0.3s ease;
+        transition: background-size 0.4s ease;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .inicio-container {
+        width: 77%;
+        transition: all 0.5s ease;
+    }
+
+    .info h3 {
+        font-size: 0.8rem;
+    }
+
+    .info p {
+        font-size: 0.4rem;
+    }
+
+    .profile-info img {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+    }
+
+    .container-header h2 {
+        font-size: 8px;
+    }
+
+    .carousel-title {
+        font-size: 17px;
+    }
+
+    .carousel-card {
+        flex: 0 0 auto;
+        width: 125px;
+        height: 75px;
+        margin: 0px;
+    }
+
+    .carousel-card-content h3 {
+        margin-top: -10px;
+        font-size: 10px;
+    }
+
+    .carousel-card-header img {
+        width: 15px;
+        height: 15px;
+    }
+
+    .carousel-card-content p {
+        font-size: 6px;
+        margin: 0;
+        font-weight: 100;
     }
 }
