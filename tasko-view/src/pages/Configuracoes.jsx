@@ -80,6 +80,7 @@ const Configuracoes = () => {
         return <Carregando />;
     }
 
+
     if (!user) {
         return <p>Erro ao carregar os dados do usuário</p>;
     }

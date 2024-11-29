@@ -62,26 +62,28 @@ public class PrestadorService {
 
     public Prestador atualizarPrestador(Long id, Prestador prestadorAtualizado) {
         Optional<Prestador> prestadorOptional = prestadorRepository.findById(id);
-    
+
         if (prestadorOptional.isEmpty()) {
             throw new RuntimeException("Prestador não encontrado.");
         }
-    
+
         Prestador prestador = prestadorOptional.get();
-    
+
         // Verifica se o JSON contém a categoria
         if (prestadorAtualizado.getCategoria() != null && prestadorAtualizado.getCategoria().getId() != null) {
-            Optional<Categoria> categoriaOptional = categoriaRepository.findById(prestadorAtualizado.getCategoria().getId());
+            Optional<Categoria> categoriaOptional = categoriaRepository
+                    .findById(prestadorAtualizado.getCategoria().getId());
             if (categoriaOptional.isEmpty()) {
                 throw new RuntimeException("Categoria não encontrada.");
             }
             prestador.setCategoria(categoriaOptional.get());
         }
-    
+
         prestador.setDescricaoServicos(prestadorAtualizado.getDescricaoServicos());
         prestador.setValorHora(prestadorAtualizado.getValorHora());
         prestador.setCnpj(prestadorAtualizado.getCnpj());
-    
+        prestador.setLinks(prestadorAtualizado.getLinks());
+
         return prestadorRepository.save(prestador);
     }
 
