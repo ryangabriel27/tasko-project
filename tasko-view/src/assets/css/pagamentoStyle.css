@@ -66,3 +66,8 @@
     background-position: 100% 0;
     transition: all .4s ease-in-out;
 }
+
+.imgQrcode {
+    margin-top: 30px;
+    transition: 0.5s ease;
+}

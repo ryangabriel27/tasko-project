@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import "../assets/css/pagamentoStyle.css";
 import NavbarMenor from '../components/NavbarMenor';
 import Carregando from '../components/Carregando';
+import QRCodePix from '../assets/img/qrcode-pix.png';
 
 const Pagamento = () => {
     const location = useLocation();
@@ -10,6 +11,7 @@ const Pagamento = () => {
     const [servico, setServico] = useState(null);
     const [usuario, setUsuario] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [formaPagamento, setFormaPagamento] = useState(''); // Estado para controlar a forma de pagamento selecionada
 
     useEffect(() => {
         if (!location.state || !location.state.servico || !location.state.usuario) {
@@ -51,8 +53,12 @@ const Pagamento = () => {
         }
     };
 
+    const handleFormaPagamentoChange = (event) => {
+        setFormaPagamento(event.target.value);
+    };
+
     if (!servico || !usuario) {
-        return <Carregando />
+        return <Carregando />;
     }
 
     return (
@@ -64,12 +70,38 @@ const Pagamento = () => {
                 <p>Valor: R$ {servico.valor.toFixed(2)}</p>
                 <p>Prestador: {servico.prestador.usuario.nome} {servico.prestador.usuario.sobrenome}</p>
                 <h3>Forma de pagamento</h3>
-                <input type="radio" id="pix" name="formaPagamento" value="Pix" />
-                <label for="pix">Pix</label><br />
-                <input type="radio" id="cartaoDebito" name="formaPagamento" value="Cartão de débito" />
-                <label for="cartaoDebito">Cartão de débito</label><br />
-                <input type="radio" id="cartaoCredito" name="formaPagamento" value="Cartão de crédito" />
-                <label for="cartaoCredito">Cartão de crédito</label>
+                <input
+                    type="radio"
+                    id="pix"
+                    name="formaPagamento"
+                    value="Pix"
+                    onChange={handleFormaPagamentoChange}
+                />
+                <label htmlFor="pix">Pix</label><br />
+                <input
+                    type="radio"
+                    id="cartaoDebito"
+                    name="formaPagamento"
+                    value="Cartão de débito"
+                    onChange={handleFormaPagamentoChange}
+                />
+                <label htmlFor="cartaoDebito">Cartão de débito</label><br />
+                <input
+                    type="radio"
+                    id="cartaoCredito"
+                    name="formaPagamento"
+                    value="Cartão de crédito"
+                    onChange={handleFormaPagamentoChange}
+                />
+                <label htmlFor="cartaoCredito">Cartão de crédito</label><br />
+                
+                {formaPagamento === 'Pix' && (
+                    <div className='imgQrcode'>
+                        <p>QRCode para pagamento:</p>
+                        <img src={QRCodePix} alt="Imagem Pix" />
+                    </div>
+                )}
+
                 <button
                     onClick={handleConfirmarPagamento}
                     disabled={loading}
