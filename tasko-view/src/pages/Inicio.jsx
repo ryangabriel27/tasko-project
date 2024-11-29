@@ -10,6 +10,8 @@ import image1 from "../assets/img/profile1.png";
 import image2 from "../assets/img/profile2.png";
 import { Helmet } from "react-helmet"; // Importe o Helmet
 import Carregando from "../components/Carregando";
+import backgroundImage from "../assets/img/servicofundo.svg";
+
 
 const Home = () => {
     const navigate = useNavigate();
@@ -43,7 +45,7 @@ const Home = () => {
     useEffect(() => {
         const fetchRandomProviders = async () => {
             try {
-                const response = await fetch('http://localhost:8080/api/prestadores/random?limite=12', {
+                const response = await fetch('http://localhost:8080/api/prestadores/random?limite=14', {
                     method: 'GET',
                     credentials: 'include',
                 });
@@ -124,7 +126,7 @@ const Home = () => {
                         <h3>Você também pode gostar de:</h3>
                     </div>
                     <div className="carousel-content" id="carouselContent">
-                        {randomProviders.slice(6, 12).map((item, index) => (
+                        {randomProviders.slice(7, 21).map((item, index) => (
                             <CarouselCard
                                 key={index}
                                 image={item.usuario.foto || image1} // Use a imagem padrão caso não tenha
