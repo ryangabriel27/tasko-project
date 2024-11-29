@@ -52,7 +52,7 @@ const Pagamento = () => {
     };
 
     if (!servico || !usuario) {
-        return <Carregando/>
+        return <Carregando />
     }
 
     return (
@@ -63,8 +63,15 @@ const Pagamento = () => {
                 <p>Descrição do Serviço: {servico.descricao}</p>
                 <p>Valor: R$ {servico.valor.toFixed(2)}</p>
                 <p>Prestador: {servico.prestador.usuario.nome} {servico.prestador.usuario.sobrenome}</p>
-                <button 
-                    onClick={handleConfirmarPagamento} 
+                <h3>Forma de pagamento</h3>
+                <input type="radio" id="pix" name="formaPagamento" value="Pix" />
+                <label for="pix">Pix</label><br />
+                <input type="radio" id="cartaoDebito" name="formaPagamento" value="Cartão de débito" />
+                <label for="cartaoDebito">Cartão de débito</label><br />
+                <input type="radio" id="cartaoCredito" name="formaPagamento" value="Cartão de crédito" />
+                <label for="cartaoCredito">Cartão de crédito</label>
+                <button
+                    onClick={handleConfirmarPagamento}
                     disabled={loading}
                     className="pagamento-botao">
                     {loading ? "Processando..." : "Confirmar Pagamento"}
