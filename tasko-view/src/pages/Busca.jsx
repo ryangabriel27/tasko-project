@@ -58,10 +58,15 @@ const Busca = () => {
     return (
         <>
             <Navbar />
+            
+            {/* Se tirar isso fode tudo, tmj */}
+            <main style={{ marginTop: "60px" }}>
+
+            </main>
             <div>
                 <section className="categoria-section">
                     <div className="categoria-header">
-                        <h2>Categoria</h2>
+                        <h2>Categorias</h2>
 
                         <form onSubmit={handleBuscar} className="busca-box">
                             <button type="submit">

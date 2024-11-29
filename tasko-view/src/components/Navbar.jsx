@@ -45,7 +45,7 @@ const Header = () => {
                     <div className="row">
                         <a href="/inicio">
                             <FontAwesomeIcon icon={faHome} />
-                            <span>Home</span>
+                            <span> Home</span>
                         </a>
                     </div>
                     <div className="row">
