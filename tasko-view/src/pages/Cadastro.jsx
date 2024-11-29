@@ -27,13 +27,14 @@ const Cadastro = () => {
   const handleInputChange = async (e) => {
     const { name, value } = e.target;
 
+    // Resetando o erro do campo alterado
     setErrors((prevErrors) => ({ ...prevErrors, [name]: "" }));
 
     if (name === "cep") {
-      const cep = value.replace(/\D/g, "");
-      setFormData((prevData) => ({ ...prevData, cep: cep }));
+      const cep = value.replace(/\D/g, ""); // Remove caracteres não numéricos
+      setFormData((prevData) => ({ ...prevData, cep }));
 
-      if (cep.length === 8) {
+      if (cep.length === 8) { // Realiza a busca apenas se o CEP tiver 8 números
         try {
           const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
           const data = await response.json();
@@ -41,31 +42,40 @@ const Cadastro = () => {
           if (!data.erro) {
             setFormData((prevData) => ({
               ...prevData,
-              endereco: `${data.logradouro}, ${data.bairro}`,
+              endereco: `${data.logradouro}, ${data.bairro}, ${data.localidade} - ${data.uf}`,
             }));
           } else {
+            setFormData((prevData) => ({ ...prevData, endereco: "" })); // Limpa o endereço
             setErrors((prevErrors) => ({
               ...prevErrors,
               cep: "CEP não encontrado.",
             }));
           }
         } catch (error) {
+          setFormData((prevData) => ({ ...prevData, endereco: "" })); // Limpa o endereço
           setErrors((prevErrors) => ({
             ...prevErrors,
-            cep: "Erro ao consultar CEP.",
+            cep: "Erro ao consultar o CEP.",
           }));
         }
+      } else if (cep.length === 0) {
+        // Limpa o campo de endereço quando o CEP for apagado
+        setFormData((prevData) => ({ ...prevData, endereco: "" }));
       }
     } else {
       setFormData((prevData) => ({ ...prevData, [name]: value }));
     }
   };
 
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const newErrors = {};
+    console.log(formData);
 
+    // Validação dos campos
+    const newErrors = {};
     if (!formData.nome.trim()) newErrors.nome = "Nome é obrigatório.";
     if (!formData.sobrenome.trim()) newErrors.sobrenome = "Sobrenome é obrigatório.";
 
@@ -94,13 +104,25 @@ const Cadastro = () => {
 
     setErrors(newErrors);
 
+    // Se houver erros, não prosseguir com o envio
     if (Object.keys(newErrors).length > 0) return;
 
     try {
       const response = await fetch("http://localhost:8080/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          nome: formData.nome,
+          sobrenome: formData.sobrenome,
+          cep: formData.cep,
+          endereco: formData.endereco, // Campo "endereco" adicionado
+          senha: formData.senha,
+          data_nasc: formData.data_nasc,
+          foto: formData.foto,
+          cpf: formData.cpf,
+          telefone: formData.telefone,
+          email: formData.email
+        }),
       });
 
       if (response.ok) {
@@ -133,26 +155,91 @@ const Cadastro = () => {
           <form onSubmit={handleSubmit}>
             <div className="grid-container">
               <div className="grid-item">
-                <InputField type="text" name="nome" placeholder="Nome" onChange={handleInputChange} />
+                <InputField
+                  type="text"
+                  name="nome"
+                  placeholder="Nome"
+                  onChange={handleInputChange}
+                />
                 {errors.nome && <small className="error">{errors.nome}</small>}
-                <InputField type="text" name="cpf" placeholder="CPF" mask="999.999.999-99" onChange={handleInputChange} />
+
+                <InputField
+                  type="text"
+                  name="cpf"
+                  placeholder="CPF"
+                  mask="999.999.999-99"
+                  onChange={handleInputChange}
+                />
                 {errors.cpf && <small className="error">{errors.cpf}</small>}
-                <InputField type="text" name="telefone" placeholder="Telefone" mask="(99) 99999-9999" onChange={handleInputChange} />
+
+                <InputField
+                  type="text"
+                  name="telefone"
+                  placeholder="Telefone"
+                  mask="(99) 99999-9999"
+                  onChange={handleInputChange}
+                />
                 {errors.telefone && <small className="error">{errors.telefone}</small>}
-                <InputField type="text" name="endereco" placeholder="Endereço" onChange={handleInputChange} />
+
+                <InputField
+                  type="text"
+                  name="endereco"
+                  placeholder="Endereço"
+                  onChange={handleInputChange}
+                  value={formData.endereco}
+                  disabled
+                />
                 {errors.endereco && <small className="error">{errors.endereco}</small>}
-                <InputField type="text" name="foto" placeholder="Link para foto" onChange={handleInputChange} />
+
+                <InputField
+                  type="text"
+                  name="foto"
+                  placeholder="Link para foto"
+                  onChange={handleInputChange}
+                />
               </div>
+
               <div className="grid-item">
-                <InputField type="text" name="sobrenome" placeholder="Sobrenome" onChange={handleInputChange} />
+                <InputField
+                  type="text"
+                  name="sobrenome"
+                  placeholder="Sobrenome"
+                  onChange={handleInputChange}
+                />
                 {errors.sobrenome && <small className="error">{errors.sobrenome}</small>}
-                <InputField type="email" name="email" placeholder="E-mail" onChange={handleInputChange} />
+
+                <InputField
+                  type="email"
+                  name="email"
+                  placeholder="E-mail"
+                  onChange={handleInputChange}
+                />
                 {errors.email && <small className="error">{errors.email}</small>}
-                <InputField type="text" name="cep" placeholder="CEP" mask="99999-999" onChange={handleInputChange} />
+
+                <InputField
+                  type="text"
+                  name="cep"
+                  placeholder="CEP"
+                  mask="99999-999"
+                  onChange={handleInputChange}
+
+                />
                 {errors.cep && <small className="error">{errors.cep}</small>}
-                <InputField type="date" name="data_nasc" placeholder="Data de Nascimento" onChange={handleInputChange} />
+
+                <InputField
+                  type="date"
+                  name="data_nasc"
+                  placeholder="Data de Nascimento"
+                  onChange={handleInputChange}
+                />
                 {errors.data_nasc && <small className="error">{errors.data_nasc}</small>}
-                <InputField type="password" name="senha" placeholder="Senha" onChange={handleInputChange} />
+
+                <InputField
+                  type="password"
+                  name="senha"
+                  placeholder="Senha"
+                  onChange={handleInputChange}
+                />
                 {errors.senha && <small className="error">{errors.senha}</small>}
               </div>
             </div>

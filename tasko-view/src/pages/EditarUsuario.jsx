@@ -148,6 +148,14 @@ const EditarUsuario = () => {
                                 />
                             </label>
                             <label>
+                                Sobrenome:
+                                <input
+                                    type="text"
+                                    value={user.sobrenome}
+                                    onChange={(e) => setUser({ ...user, sobrenome: e.target.value })}
+                                />
+                            </label>
+                            <label>
                                 Email:
                                 <input
                                     type="email"
