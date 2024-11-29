@@ -13,14 +13,16 @@
 }
 
 .contratar-servico button {
+    font-family: 'Figtree';
     padding: 10px 20px;
-    background-color: #3f128d;
+    background-color: #4F00A3;
     color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    margin-top: 10px;
 }
 
 .contratar-servico button:hover {
-    background-color: #371c65;
+    background-color: #310066;
 }
