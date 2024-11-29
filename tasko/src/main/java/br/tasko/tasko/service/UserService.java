@@ -35,6 +35,8 @@ public class UserService {
         user.setCpf(registerDTO.getCpf());
         user.setTelefone(registerDTO.getTelefone());
         user.setSenha(passwordEncoder.encode(registerDTO.getSenha())); // Codifica a senha
+        user.setCep(registerDTO.getCep());
+        user.setEndereco(registerDTO.getEndereco());
 
         return userRepository.save(user);
     }
