@@ -19,6 +19,7 @@ import CategoriaPrestadores from "./pages/Categorias";
 import EditarServico from "./pages/EditarServico";
 import EditarUsuario from "./pages/EditarUsuario"; 
 import Resultados from "./pages/Resultado";
+import CadPrestadorInterno from "./pages/CadPrestadorInterno";
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
         <Route path="/editar-servico/:id" element={<EditarServico />} />
         <Route path="/editar-usuario" element={<EditarUsuario />} />
         <Route path="/resultados/:titulo" element={<Resultados />} />
+        <Route path="/cad-prest-interno/:userId" element={<CadPrestadorInterno />} />
       </Routes>
     </Router>
   );

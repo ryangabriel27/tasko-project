@@ -10,6 +10,7 @@ const EditarUsuario = () => {
     const [isPrestador, setIsPrestador] = useState(false);
     const [loading, setLoading] = useState(true);
     const [editType, setEditType] = useState("usuario");
+    const [categorias, setCategorias] = useState([]);
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -41,7 +42,7 @@ const EditarUsuario = () => {
 
         const fetchPrestadorData = async (usuarioId) => {
             try {
-                const response = await fetch(`http://localhost:8080/api/prestadores/usuarios/${usuarioId}`, {
+                const response = await fetch(`http://localhost:8080/api/prestadores/usuario/${usuarioId}`, {
                     method: "GET",
                     credentials: "include",
                     headers: {
@@ -53,12 +54,23 @@ const EditarUsuario = () => {
                     const prestadorData = await response.json();
                     setPrestador(prestadorData);
                     setIsPrestador(true);
+                    fetchCategorias();
                 } else {
                     setPrestador(null);
                     setIsPrestador(false);
                 }
             } catch (error) {
                 console.error("Erro ao buscar prestador:", error);
+            }
+        };
+
+        const fetchCategorias = async () => {
+            try {
+                const response = await fetch("http://localhost:8080/api/categorias");
+                const data = await response.json();
+                setCategorias(data); // Espera-se que a resposta seja um array de categorias
+            } catch (error) {
+                console.error("Erro ao buscar categorias:", error);
             }
         };
 
@@ -80,10 +92,19 @@ const EditarUsuario = () => {
             if (userResponse.ok) {
                 // Se for prestador, atualiza o prestador também
                 if (isPrestador && prestador) {
+                    console.log(prestador);
                     const prestadorResponse = await fetch(`http://localhost:8080/api/prestadores/${prestador.id}`, {
                         method: "PUT",
                         credentials: "include",
-                        body: JSON.stringify(prestador),
+                        body: JSON.stringify({
+                            categoria: {id:prestador.categoriaServicos},
+                            usuario: {
+                                id: user.id
+                            },
+                            valorHora: prestador.valorHora,
+                            cnpj: prestador.cnpj,
+                            descricaoServicos: prestador.descricaoServicos,
+                        }),
                         headers: {
                             "Content-Type": "application/json",
                         },
@@ -219,14 +240,22 @@ const EditarUsuario = () => {
                     <div className="editar-section">
                         <h2>Informações do Prestador</h2>
                         <form>
-                            <label>
-                                Categoria de Serviço:
-                                <input
-                                    type="text"
-                                    value={prestador.categoria.nome}
-                                    onChange={(e) => setPrestador({ ...prestador, categoria: { nome: e.target.value } })}
-                                />
-                            </label>
+                            <select
+                                className="se-class"
+                                name="categoriaServicos"
+                                required
+                                onChange={(e) => setPrestador({...prestador, categoriaServicos: e.target.value})}
+                                defaultValue={prestador.categoria.id}
+                            >
+                                <option value="" disabled>
+                                    Categoria dos Serviços
+                                </option>
+                                {categorias.map((categoria) => (
+                                    <option key={categoria.id} value={categoria.id}>
+                                        {categoria.nome}
+                                    </option>
+                                ))}
+                            </select>
                             <label>
                                 Descrição dos Serviços:
                                 <textarea

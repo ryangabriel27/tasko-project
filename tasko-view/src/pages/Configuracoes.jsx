@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
-import { useNavigate } from "react-router-dom"; // Importando useNavigate
+import { useNavigate } from "react-router-dom";
 import "../assets/css/configuracoesStyle.css";
 import Carregando from "../components/Carregando";
+import Modal from "../components/Modal"; // Importe o modal
 
 const Configuracoes = () => {
-    const [user, setUser] = useState(null); // Armazena informações do usuário
+    const [user, setUser] = useState(null);
     const [prestador, setPrestador] = useState(null);
-    const [isPrestador, setIsPrestador] = useState(false); // Indica se o usuário é um prestador
-    const [loading, setLoading] = useState(true); // Indica se os dados estão carregando
-    const navigate = useNavigate(); // Hook para navegação
+    const [isPrestador, setIsPrestador] = useState(false);
+    const [loading, setLoading] = useState(true);
+    const [isModalOpen, setIsModalOpen] = useState(false); // Controle do modal
+    const navigate = useNavigate();
 
     useEffect(() => {
-        // Chamar a API para obter o usuário atual
         const fetchUserData = async () => {
             try {
                 const response = await fetch("http://localhost:8080/auth/current", {
@@ -27,7 +28,6 @@ const Configuracoes = () => {
                     const userData = await response.json();
                     setUser(userData);
 
-                    // Verificar se existe um prestador associado ao usuário
                     if (userData.id) {
                         fetchPrestadorData(userData.id);
                     }
@@ -37,11 +37,10 @@ const Configuracoes = () => {
             } catch (error) {
                 console.error("Erro na requisição:", error);
             } finally {
-                setLoading(false); // Finaliza o carregamento
+                setLoading(false);
             }
         };
 
-        // Função para buscar dados do prestador com base no ID do usuário
         const fetchPrestadorData = async (usuarioId) => {
             try {
                 const response = await fetch(`http://localhost:8080/api/prestadores/usuario/${usuarioId}`, {
@@ -55,10 +54,10 @@ const Configuracoes = () => {
                 if (response.ok) {
                     const prestadorData = await response.json();
                     setPrestador(prestadorData);
-                    setIsPrestador(true); // Se for prestador, define como true
+                    setIsPrestador(true);
                 } else {
                     setPrestador(null);
-                    setIsPrestador(false); // Caso contrário, define como cliente
+                    setIsPrestador(false);
                 }
             } catch (error) {
                 console.error("Erro ao buscar prestador:", error);
@@ -68,12 +67,21 @@ const Configuracoes = () => {
         fetchUserData();
     }, []);
 
+    const handleBecomePrestador = () => {
+        setIsModalOpen(true); // Abre o modal
+    };
+
+    const handleModalConfirm = () => {
+        setIsModalOpen(false); // Fecha o modal
+        navigate(`/cad-prest-interno/${user.id}`); // Redireciona para a página de cadastro
+    };
+
     if (loading) {
-        return <Carregando/>
+        return <Carregando />;
     }
 
     if (!user) {
-        return <p>Erro ao carregar os dados do usuário</p>; // Exibe erro se os dados não forem carregados
+        return <p>Erro ao carregar os dados do usuário</p>;
     }
 
     return (
@@ -108,15 +116,35 @@ const Configuracoes = () => {
                     </div>
                 )}
 
-                {/* Botão para redirecionar à página de edição */}
                 <div className="config-section">
-                    <button 
-                        className="btn-editar" 
-                        onClick={() => navigate("/editar-usuario")}>
+                    <button
+                        className="btn-editar"
+                        onClick={() => navigate("/editar-usuario")}
+                    >
                         Editar Informações
                     </button>
                 </div>
+
+                {!isPrestador && !prestador && (
+                    <div className="config-section">
+                        <button
+                            className="btn-prestador"
+                            onClick={handleBecomePrestador}
+                        >
+                            Quero me tornar um prestador
+                        </button>
+                    </div>
+                )}
             </div>
+
+            {/* Modal de confirmação */}
+            <Modal
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                onConfirm={handleModalConfirm}
+                title="Confirmação"
+                message="Tem certeza de que deseja se tornar um prestador? Você será redirecionado para o cadastro."
+            />
         </>
     );
 };

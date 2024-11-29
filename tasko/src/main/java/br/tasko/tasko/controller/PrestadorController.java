@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -81,6 +82,16 @@ public class PrestadorController {
             return ResponseEntity.ok(prestadores);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Erro ao buscar prestadores: " + e.getMessage());
+        }
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> atualizarPrestador(@PathVariable Long id, @RequestBody Prestador prestadorAtualizado) {
+        try {
+            Prestador prestadorAtualizadoObj = prestadorService.atualizarPrestador(id, prestadorAtualizado);
+            return ResponseEntity.ok(prestadorAtualizadoObj);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(404).body(e.getMessage());
         }
     }
 
