@@ -104,6 +104,7 @@ const EditarUsuario = () => {
                             valorHora: prestador.valorHora,
                             cnpj: prestador.cnpj,
                             descricaoServicos: prestador.descricaoServicos,
+                            links: prestador.links
                         }),
                         headers: {
                             "Content-Type": "application/json",
@@ -222,6 +223,7 @@ const EditarUsuario = () => {
                                     type="text"
                                     value={user.cpf}
                                     onChange={(e) => setUser({ ...user, cpf: e.target.value })}
+                                    disabled
                                 />
                             </label>
                             <label>
@@ -269,6 +271,14 @@ const EditarUsuario = () => {
                                     type="number"
                                     value={prestador.valorHora}
                                     onChange={(e) => setPrestador({ ...prestador, valorHora: e.target.value })}
+                                />
+                            </label>
+                            <label>
+                                Link Portfólio:
+                                <input
+                                    type="text"
+                                    value={prestador.links}
+                                    onChange={(e) => setPrestador({ ...prestador, links: e.target.value })}
                                 />
                             </label>
                             <label>
