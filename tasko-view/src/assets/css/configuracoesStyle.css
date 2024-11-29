@@ -1,3 +1,5 @@
+
+
 .config-container {
     max-width: 800px;
     margin: 20px auto;
@@ -5,6 +7,7 @@
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
 }
 
 .h1 {
@@ -132,4 +135,13 @@ li {
 
 .btn-editar:hover {
     background-color: #0056b3;
+}
+
+.user-img {
+    display: flex;
+}
+.user-img img{
+    max-width: 20em;
+    max-height: 20em;
+    border-radius: 2em;
 }

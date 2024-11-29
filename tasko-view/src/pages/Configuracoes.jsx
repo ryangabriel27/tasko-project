@@ -91,7 +91,7 @@ const Configuracoes = () => {
                         <li><strong>Endereço:</strong> {user.endereco}</li>
                         <li><strong>CEP:</strong> {user.cep}</li>
                         <li><strong>CPF:</strong> {user.cpf}</li>
-                        <li><strong>Foto:</strong> {user.foto ? <img src={user.foto} alt="Foto de Perfil" /> : "Nenhuma foto disponível"}</li>
+                        <li className="user-img"><strong>Foto:</strong> {user.foto ? <img src={user.foto} alt="Foto de Perfil" /> : "Nenhuma foto disponível"}</li>
                     </ul>
                 </div>
 

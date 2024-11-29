@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.tasko.tasko.model.Contrato;
@@ -63,5 +64,17 @@ public class ContratoController {
             return ResponseEntity.status(500).body(null);
         }
 
+    }
+
+    @PostMapping("/{contratoId}/status")
+    public ResponseEntity<Contrato> alterarStatusContrato(
+            @PathVariable Long contratoId,
+            @RequestParam String acao) {
+        try {
+            Contrato contratoAtualizado = contratoService.alterarStatusContrato(contratoId, acao);
+            return ResponseEntity.ok(contratoAtualizado);
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(null);
+        }
     }
 }

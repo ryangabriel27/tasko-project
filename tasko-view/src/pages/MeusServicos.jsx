@@ -3,18 +3,22 @@ import "../assets/css/dashboardStyle.css";
 import { useNavigate } from 'react-router-dom';
 import Carregando from '../components/Carregando';
 import Header from '../components/Navbar';
+import ContratoUserCard from '../components/ContratoUserCard';
+import ModalAvaliacao from '../components/ModalAvaliacao';
 
 const MeusServicosContratados = () => {
     const navigate = useNavigate();
     const [contratos, setContratos] = useState([]);
     const [loading, setLoading] = useState(true);
     const [user, setUser] = useState(null);
+    const [abaAtiva, setAbaAtiva] = useState('PENDENTE');
+    const [modalAvaliacao, setModalAvaliacao] = useState(null); // Estado para controlar o modal
 
     useEffect(() => {
         const verificarAuth = async () => {
             try {
                 const response = await fetch('http://localhost:8080/auth/current', {
-                    credentials: 'include'
+                    credentials: 'include',
                 });
 
                 if (!response.ok) {
@@ -31,7 +35,6 @@ const MeusServicosContratados = () => {
         };
 
         if (user) {
-            // Só faz a requisição de contratos se o user estiver definido
             const fetchContratos = async () => {
                 try {
                     const response = await fetch(`http://localhost:8080/api/contratos/usuario/${user.id}`, {
@@ -55,31 +58,128 @@ const MeusServicosContratados = () => {
         }
 
         verificarAuth();
-    }, [navigate, user]); // Adiciona o 'user' como dependência
+    }, [navigate, user]);
+
+    const handleAction = async (contrato, action) => {
+        if (action === "avaliar") {
+            console.log(contrato);
+            setModalAvaliacao({ contrato }); // Abre o modal para avaliação
+        } else {
+            try {
+                const response = await fetch(`http://localhost:8080/api/contratos/${contrato.id}/status?acao=${action}`, {
+                    method: 'POST',
+                    credentials: 'include',
+                });
+
+                if (response.ok) {
+                    alert(`Contrato ${action === 'finalizar' ? 'finalizado' : action === 'cancelar' ? 'cancelado' : action === 'aceitar' ? 'aceito' : 'recusado'} com sucesso!`);
+                    setContratos(contratos.filter((c) => c.id !== contrato.id));
+                } else {
+                    alert('Erro ao atualizar contrato.');
+                }
+            } catch (error) {
+                console.error('Erro ao atualizar contrato:', error);
+            }
+        }
+
+    };
+
+    const handleSubmitAvaliacao = async (avaliacao) => {
+        if (!avaliacao.nota || !avaliacao.comentario || !avaliacao.userId || !avaliacao.prestadorId) {
+            console.log(avaliacao);
+            alert('Todos os campos são obrigatórios');
+            return;
+        }
+    
+        try {
+            const response = await fetch(`http://localhost:8080/api/avaliacoes`, {
+                method: 'POST',
+                credentials: 'include',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    nota: avaliacao.nota,
+                    comentario: avaliacao.comentario,
+                    usuario: { id: avaliacao.userId },
+                    prestador: { id: avaliacao.prestadorId },
+                }),
+            });
+    
+            if (response.ok) {
+                alert('Avaliação enviada com sucesso!');
+                setModalAvaliacao(null); // Fecha o modal
+            } else {
+                alert('Erro ao enviar avaliação.');
+            }
+        } catch (error) {
+            console.error('Erro ao enviar avaliação:', error);
+        }
+    };
 
     if (loading) {
         return <Carregando />;
     }
 
+    // Filtros para os contratos
+    const filteredContratos = contratos.filter(
+        (contrato) => contrato.status === abaAtiva
+    );
+
     return (
         <>
             <Header />
             <div className="dashboard">
-                <h1>Meus pedidos</h1>
-                {contratos.length === 0 ? (
-                    <p>Você ainda não contratou nenhum serviço.</p>
+                <h1>Meus Serviços Contratados</h1>
+
+                <div className="tabs">
+                    <button
+                        className={`tab ${abaAtiva === 'PENDENTE' ? 'tab-active' : ''}`}
+                        onClick={() => setAbaAtiva('PENDENTE')}
+                    >
+                        Pendente
+                    </button>
+                    <button
+                        className={`tab ${abaAtiva === 'EM ANDAMENTO' ? 'tab-active' : ''}`}
+                        onClick={() => setAbaAtiva('EM ANDAMENTO')}
+                    >
+                        Em Andamento
+                    </button>
+                    <button
+                        className={`tab ${abaAtiva === 'CONCLUIDO' ? 'tab-active' : ''}`}
+                        onClick={() => setAbaAtiva('CONCLUIDO')}
+                    >
+                        Concluído
+                    </button>
+                    <button
+                        className={`tab ${abaAtiva === 'FINALIZADO' ? 'tab-active' : ''}`}
+                        onClick={() => setAbaAtiva('FINALIZADO')}
+                    >
+                        Finalizado
+                    </button>
+                </div>
+
+                {filteredContratos.length === 0 ? (
+                    <p>Não há serviços com o status "{abaAtiva}".</p>
                 ) : (
-                    <ul>
-                        {contratos.map((contrato) => (
-                            <li key={contrato.id} className="contrato-item">
-                                <p><strong>Serviço:</strong> {contrato.servico.descricao}</p>
-                                <p><strong>Prestador:</strong> {contrato.servico.prestador.usuario.nome}</p>
-                                <p><strong>Status:</strong> {contrato.status}</p>
-                            </li>
+                    <ul className="contratos-lista">
+                        {filteredContratos.map((contrato) => (
+                            <ContratoUserCard
+                                key={contrato.id}
+                                contrato={contrato}
+                                onAction={handleAction}
+                            />
                         ))}
                     </ul>
                 )}
-            </div></>
+
+                {modalAvaliacao && (
+                    <ModalAvaliacao
+                        contrato={modalAvaliacao.contrato}
+                        onSubmit={handleSubmitAvaliacao}
+                        onClose={() => setModalAvaliacao(null)}
+                    />
+                )}
+            </div>
+        </>
     );
 };
 

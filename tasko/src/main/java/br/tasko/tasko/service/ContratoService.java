@@ -50,4 +50,33 @@ public class ContratoService {
     public List<Contrato> listarContratosPorPrestador(Long prestadorId) {
         return contratoRepository.findByPrestadorId(prestadorId);
     }
+
+    public Contrato alterarStatusContrato(Long contratoId, String acao) {
+        Optional<Contrato> contratoOpt = contratoRepository.findById(contratoId);
+
+        if (!contratoOpt.isPresent()) {
+            throw new RuntimeException("Contrato não encontrado.");
+        }
+
+        Contrato contrato = contratoOpt.get();
+
+        switch (acao.toUpperCase()) {
+            case "ACEITAR":
+                contrato.setStatus("EM ANDAMENTO");
+                break;
+            case "RECUSAR":
+                contrato.setStatus("CANCELADO");
+                break;
+            case "FINALIZAR":
+                contrato.setStatus("CONCLUIDO");
+                break;
+            case "ENCERRAR":
+                contrato.setStatus("FINALIZADO");
+                break;
+            default:
+                throw new IllegalArgumentException("Ação inválida.");
+        }
+
+        return contratoRepository.save(contrato);
+    }
 }
