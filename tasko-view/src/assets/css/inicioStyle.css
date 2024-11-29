@@ -190,10 +190,22 @@ body {
     transition: transform 0.3s ease;
     font-family: 'Figtree', sans-serif;
     margin: 0px 10px;
+    background-image: url('../img/servicofundo.svg'); /* ajuste o caminho conforme necessário */
+    background-size: 00%; /* Ajuste o tamanho conforme necessário */
+    background-position: left bottom; /* Move o fundo para baixo */
+    background-repeat: no-repeat;
+    transition: background-position 0.3s ease; 
+    transition: background-size 0.4s ease;
 }
 
 .carousel-card:hover {
     transform: scale(1.05);
+    transform: translateY(-5px);
+    background-position: left bottom; 
+    background-size: 250%;
+    transition: background-position 0.3s ease; 
+    transition: background-size 0.4s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .carousel-card img {
@@ -231,6 +243,21 @@ body {
     font-size: 15px;
     margin: 0;
     font-weight: 100;
+}
+
+
+.carousel-card-content h3.hover-color {
+    color: #fdffff !important;
+    transition: color 0.3s ease;
+}
+.carousel-card-content p.hover-color {
+    color: #fdffff !important;
+    transition: color 0.3s ease;
+}
+
+.carousel-card-button button.hover-color {
+    color: #fdffff !important;
+    transition: color 0.3s ease;
 }
 
 .carousel-nav-buttons {
