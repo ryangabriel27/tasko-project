@@ -1,13 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap');
-
-body {
-    font-family: 'Figtree', sans-serif;
-    display: flex;
-    margin: 0;
-    padding: 0;
-  }
-
-
+/* Estilo padrão (desktop) */
 nav {
     display: flex;
     justify-content: space-between;
@@ -15,58 +6,114 @@ nav {
     background-color: #4F00A3;
     padding: 10px 20px;
     font-family: 'Figtree', sans-serif;
-}
-
-.logoNav {
-    /* Isso faz a logo ficar no centro */
-    text-align: center;
     position: relative;
-    left: 7em;
-    top: 0.3em;
+    margin: 0;
+    height: 60px;
 }
 
 .logoNav img {
     height: 45px;
-    /* Tamanho da logo */
+    margin-top: 7px;
 }
 
-.nav-left,
-.nav-right {
+.nav-links {
     display: flex;
+    justify-content: flex-end;
     align-items: center;
+    transition: transform 0.3s ease-in-out;
+    flex-grow: 1;
 }
 
-/* Alteração para centralizar o texto abaixo do ícone */
-.nav-left a,
-.nav-right a {
+/* Estilo para os links do menu (desktop) */
+.nav-links a {
     color: white;
-    text-align: center;
     text-decoration: none;
     margin: 0 15px;
     font-size: 14px;
     display: flex;
-    /* Isso permite que o ícone e o texto fiquem em coluna */
-    flex-direction: column;
-    /* Coloca o ícone em cima do texto */
+    flex-direction: column; /* Ícones em cima do texto */
     align-items: center;
-    /* Centraliza os itens */
 }
 
-
-.nav-left a i,
-.nav-right a i {
+.nav-links a i {
     font-size: 24px;
-    /* Tamanho do ícone */
-    margin-bottom: 5px;
-    /* Espaço entre o ícone e o texto */
+    margin-bottom: 5px; /* Espaçamento entre o ícone e o texto */
 }
 
-/*Ajustar a navbar no meio*/
-.nav-left {
-    padding-right: 25px;
+.nav-right {
+    display: flex;
+    flex-direction: row;
 }
 
-.nav-left a:hover,
-.nav-right a:hover {
-    opacity: 0.7;
+/* Botão hambúrguer */
+.hamburger-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Estilo para dispositivos móveis (telas menores que 768px) */
+@media (max-width: 768px) {
+    .hamburger-btn {
+        display: block;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 250px; /* Tamanho fixo para a navegação */
+        height: 2800px; /* O menu ocupa toda a altura da tela */
+        background-color: #4F00A3;
+        flex-direction: column; /* Organiza os links em coluna */
+        align-items: flex-start; /* Alinha os itens à esquerda */
+        justify-content: flex-start;
+        transform: translateX(-100%); /* Escondido fora da tela */
+        z-index: 1000;
+        padding: 20px;
+    }
+
+    .nav-links.open {
+        transform: translateX(0); /* Mostra o menu */
+    }
+
+    .nav-links .nav-right {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .nav-links a {
+        display: flex;
+        flex-direction: row;
+    }
+
+    /* No mobile, os ícones devem ficar à esquerda do texto */
+    .nav-links .row {
+        display: flex;
+        align-items: center;
+        margin: 14px 0; /* Espaçamento entre as linhas */
+        width: 100%;
+        flex-direction: row; /* Ícones à esquerda do texto */
+    }
+
+    .nav-links .row i {
+        font-size: 40px; /* Aumenta o tamanho do ícone no mobile */
+        margin-right: 15px; /* Espaço entre o ícone e o texto */
+    }
+
+    .nav-links .row span {
+        font-size: 20px; /* Aumenta o tamanho do texto no mobile */
+
+    }
+
+    .logoNav {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-top: 10px;
+    }
 }
