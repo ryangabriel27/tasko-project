@@ -45,7 +45,7 @@ const Home = () => {
     useEffect(() => {
         const fetchRandomProviders = async () => {
             try {
-                const response = await fetch('http://localhost:8080/api/prestadores/random?limite=14', {
+                const response = await fetch('http://localhost:8080/api/prestadores/random?limite=15', {
                     method: 'GET',
                     credentials: 'include',
                 });

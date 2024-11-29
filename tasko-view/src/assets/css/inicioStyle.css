@@ -363,3 +363,12 @@ body {
     color: #fdffff !important;
     transition: color 0.3s ease;
 }
+
+.prestadores-lista {
+    display: flex;
+}
+
+::selection {
+    color: #242A36;
+    background: #510EF3;
+  }
