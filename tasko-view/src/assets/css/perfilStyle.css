@@ -70,7 +70,9 @@ body {
 }
 
 .rating-perfil span {
-    color: #FFD700; /* Cor dourada para a estrela */
+    background: -webkit-linear-gradient(right, #F50035, #F7C216);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     font-size: 80px; /* Aumentando o tamanho da estrela */
     margin-right: 10px;
 }
