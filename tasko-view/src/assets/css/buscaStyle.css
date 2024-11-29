@@ -27,6 +27,7 @@ body {
     font-family: 'Figtree', sans-serif; /* Usando a fonte Figtree */
     font-weight: 700; /* Bold */
     color: #F50035; /* Laranja */
+    margin-left: 0;
 }
 /* Barra de Pesquisa */
 /* Barra de Pesquisa */
@@ -131,4 +132,40 @@ body {
     color: #fff; /* Mantém o texto branco */
     text-align: left;
     margin: 0;
+}
+
+@media (max-width: 768px) {
+    .categorias {
+        grid-template-columns: repeat(2, 1fr); /* 2 colunas para telas menores */
+    }
+    
+    
+}
+@media (max-width: 380px) {
+    .categorias {
+        grid-template-columns: repeat(1, 1fr); /* 2 colunas para telas menores */
+    }
+    .busca-box{
+        max-width: 200px;
+    }
+
+    .busca-box input{
+        font-size: 15px;
+    }
+}
+
+
+@media (max-width: 320px) {
+    .categorias {
+        grid-template-columns: repeat(1, 1fr); /* 2 colunas para telas menores */
+    }
+    .busca-box{
+        max-width: 150px;
+        font-size: small;
+        padding: 1px 10px;
+    }
+    
+    .busca-box input{
+        font-size: 10.5px;
+    }
 }

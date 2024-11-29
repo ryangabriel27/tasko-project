@@ -6,9 +6,13 @@ nav {
     background-color: #4F00A3;
     padding: 10px 20px;
     font-family: 'Figtree', sans-serif;
-    position: relative;
+    position: fixed; /* Navbar fixada no topo */
+    top: 0; /* Fixada no topo da página */
+    left: 0;
+    width: 100%; /* Ocupa toda a largura */
     margin: 0;
-    height: 60px;
+    height: 60px; /* Altura da navbar */
+    z-index: 1000; /* Mantém a navbar acima de outros elementos */
 }
 
 .logoNav img {
@@ -24,7 +28,7 @@ nav {
     flex-grow: 1;
 }
 
-/* Estilo para os links do menu (desktop) */
+/* Links da navegação */
 .nav-links a {
     color: white;
     text-decoration: none;
@@ -37,7 +41,7 @@ nav {
 
 .nav-links a i {
     font-size: 24px;
-    margin-bottom: 5px; /* Espaçamento entre o ícone e o texto */
+    margin-bottom: 5px; /* Espaçamento entre ícone e texto */
 }
 
 .nav-right {
@@ -55,7 +59,7 @@ nav {
     cursor: pointer;
 }
 
-/* Estilo para dispositivos móveis (telas menores que 768px) */
+/* Estilo mobile */
 @media (max-width: 768px) {
     .hamburger-btn {
         display: block;
@@ -65,13 +69,13 @@ nav {
         position: absolute;
         top: 60px;
         left: 0;
-        width: 250px; /* Tamanho fixo para a navegação */
-        height: 2800px; /* O menu ocupa toda a altura da tela */
+        width: 250px; /* Largura fixa */
+        height: 100vh; /* Ocupa a altura inteira */
         background-color: #4F00A3;
-        flex-direction: column; /* Organiza os links em coluna */
-        align-items: flex-start; /* Alinha os itens à esquerda */
+        flex-direction: column;
+        align-items: flex-start;
         justify-content: flex-start;
-        transform: translateX(-100%); /* Escondido fora da tela */
+        transform: translateX(-100%); /* Esconde fora da tela */
         z-index: 1000;
         padding: 20px;
     }
@@ -91,23 +95,22 @@ nav {
         flex-direction: row;
     }
 
-    /* No mobile, os ícones devem ficar à esquerda do texto */
+    /* Ícones à esquerda no mobile */
     .nav-links .row {
         display: flex;
         align-items: center;
-        margin: 14px 0; /* Espaçamento entre as linhas */
+        margin: 14px 0;
         width: 100%;
-        flex-direction: row; /* Ícones à esquerda do texto */
+        flex-direction: row;
     }
 
     .nav-links .row i {
-        font-size: 40px; /* Aumenta o tamanho do ícone no mobile */
-        margin-right: 15px; /* Espaço entre o ícone e o texto */
+        font-size: 40px; /* Ícone maior */
+        margin-right: 15px;
     }
 
     .nav-links .row span {
-        font-size: 20px; /* Aumenta o tamanho do texto no mobile */
-
+        font-size: 20px; /* Texto maior */
     }
 
     .logoNav {
@@ -116,4 +119,10 @@ nav {
         transform: translateX(-50%);
         margin-top: 10px;
     }
+}
+
+/* Conteúdo principal */
+main {
+    margin-top: 60px; /* Espaço igual à altura da navbar */
+    padding: 20px;
 }
