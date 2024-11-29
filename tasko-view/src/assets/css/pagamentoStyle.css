@@ -11,33 +11,58 @@
     font-size: 24px;
     margin-bottom: 16px;
     text-align: center;
+    color: #242A36;
+    font-weight: 900;
+}
+
+.pagamento-container h3 {
+    font-size: 16px;
+    color: #242A36;
 }
 
 .pagamento-container p {
     font-size: 16px;
     margin: 8px 0;
     line-height: 1.5;
+    color: #242A36;
 }
 
+.pagamento-container input {
+    width: 5%;
+    margin: 10px 0px 0px 0px;
+    accent-color: #F50035;
+    transition: transform 0.5s;
+}
+
+.pagamento-container input:checked {
+    transform: scale(1.4);
+    transition: transform 0.5s;
+}
+
+
 .pagamento-botao {
+    margin-top: 20px;
+    font-family: 'Figtree';
     display: block;
     width: 100%;
     padding: 12px;
     font-size: 18px;
     font-weight: bold;
     color: #fff;
-    background-color: #007bff;
+    background-image: linear-gradient(to right, #F50035, #FF7F0F, #F50035);
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    background-size: 300% 100%;
+    transition: all .4s ease-in-out;
 }
 
 .pagamento-botao:disabled {
-    background-color: #6c757d;
+    background-color: #242A36;
     cursor: not-allowed;
 }
 
 .pagamento-botao:hover:not(:disabled) {
-    background-color: #0056b3;
+    background-position: 100% 0;
+    transition: all .4s ease-in-out;
 }
