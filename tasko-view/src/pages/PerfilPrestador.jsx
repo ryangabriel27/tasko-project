@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPen } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRight, faPen } from "@fortawesome/free-solid-svg-icons";
 import Navbar from "../components/Navbar";
 import "../assets/css/perfilStyle.css";
 import image from "../assets/img/perfil1.jfif";
@@ -132,7 +132,7 @@ const PerfilPrestador = () => {
                             </div>
                             <div className="work-arrow">
                                 <a onClick={() => navigate(`/contratar-servico/${servico.id}`)}>
-                                    <FontAwesomeIcon icon={faPen} />
+                                    <FontAwesomeIcon icon={faArrowRight} />
                                 </a>
                             </div>
                         </div>
