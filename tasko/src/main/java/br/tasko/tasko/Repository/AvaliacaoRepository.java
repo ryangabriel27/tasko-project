@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import br.tasko.tasko.model.Avaliacao;
 import br.tasko.tasko.model.Prestador;
+import jakarta.transaction.Transactional;
 
 @Repository
 public interface AvaliacaoRepository extends JpaRepository<Avaliacao, Long> {
@@ -15,4 +16,7 @@ public interface AvaliacaoRepository extends JpaRepository<Avaliacao, Long> {
     List<Avaliacao> findByPrestadorId(Long prestadorId);
 
     List<Avaliacao> findByPrestador(Prestador prestador);
+
+    @Transactional
+    void deleteAllByPrestador(Prestador prestador);
 }

@@ -7,7 +7,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import br.tasko.tasko.model.Prestador;
 import br.tasko.tasko.model.Servico;
+import jakarta.transaction.Transactional;
 
 @Repository
 public interface ServicoRepository extends JpaRepository<Servico, Long> {
@@ -20,4 +22,8 @@ public interface ServicoRepository extends JpaRepository<Servico, Long> {
     @Query("SELECT s FROM Servico s WHERE LOWER(s.descricao) LIKE LOWER(CONCAT('%', :descricao, '%'))")
     List<Servico> buscarPorDescricao(@Param("descricao") String descricao);
 
+    List<Servico> findAllByPrestador(Prestador prestador);
+
+    @Transactional
+    void deleteAllByPrestador(Prestador prestador);
 }

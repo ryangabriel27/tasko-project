@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAtlas } from "@fortawesome/free-solid-svg-icons";
@@ -12,11 +12,11 @@ import { Helmet } from "react-helmet"; // Importe o Helmet
 import Carregando from "../components/Carregando";
 import backgroundImage from "../assets/img/servicofundo.svg";
 
-
 const Home = () => {
     const navigate = useNavigate();
     const [user, setUser] = useState(null);
     const [randomProviders, setRandomProviders] = useState([]); // Estado para armazenar os prestadores
+    const carouselContentRef = useRef(null); // Ref para acessar o conteúdo do carrossel
 
     useEffect(() => {
         const verificarAuth = async () => {
@@ -69,6 +69,15 @@ const Home = () => {
         navigate('/publicacoes');
     };
 
+    const handleScroll = (direction) => {
+        if (carouselContentRef.current) {
+            const scrollAmount = direction === 'left' ? -300 : 300;
+            carouselContentRef.current.scrollBy({
+                left: scrollAmount,
+                behavior: 'smooth',
+            });
+        }
+    };
 
     if (!user) {
         return <Carregando />
@@ -85,18 +94,8 @@ const Home = () => {
                 <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet"></link>
             </Helmet>
             <Navbar />
-            {/* Se tirar isso fode tudo, tmj */}
-            <main style={{ marginTop: "60px" }}>
-
-            </main>
-            <h1 class="lightBack dashboardMargin">Bem-vindo, {user.nome} {user.sobrenome}!</h1>
-            {/* Botão Flutuante */}
-            <button
-                className="btn-flutuante"
-                onClick={handleClick}
-            >
-                <FontAwesomeIcon icon={faAtlas} /> Criar publicação
-            </button>
+            <main style={{ marginTop: "20px" }}></main>
+            <h1 className="lightBack dashboardMargin">Bem-vindo, {user.nome} {user.sobrenome}!</h1>
             <section className="container-section">
                 <div className="inicio-container">
                     <div className="container-header">
@@ -129,8 +128,8 @@ const Home = () => {
                     <div className="carousel-title">
                         <h3>Você também pode gostar de:</h3>
                     </div>
-                    <div className="carousel-content" id="carouselContent">
-                        {randomProviders.slice(0, 21).map((item, index) => (
+                    <div className="carousel-content" ref={carouselContentRef}>
+                        {randomProviders.slice(7, 21).map((item, index) => (
                             <CarouselCard
                                 key={index}
                                 image={item.usuario.foto || image1} // Use a imagem padrão caso não tenha
@@ -142,10 +141,16 @@ const Home = () => {
                         ))}
                     </div>
                     <div className="carousel-nav-buttons">
-                        <button className="carousel-nav-btn" id="scrollLeft">
+                        <button
+                            className="carousel-nav-btn"
+                            onClick={() => handleScroll('left')}
+                        >
                             &#10094;
                         </button>
-                        <button className="carousel-nav-btn" id="scrollRight">
+                        <button
+                            className="carousel-nav-btn"
+                            onClick={() => handleScroll('right')}
+                        >
                             &#10095;
                         </button>
                     </div>
