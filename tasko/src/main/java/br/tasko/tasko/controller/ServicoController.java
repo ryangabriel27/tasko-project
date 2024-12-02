@@ -56,7 +56,7 @@ public class ServicoController {
     // Endpoint para deletar serviço
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletarServico(@PathVariable Long id) {
-        servicoService.deletarServico(id);
+        servicoService.excluirServico(id);
         return ResponseEntity.noContent().build();
     }
 

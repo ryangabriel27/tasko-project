@@ -5,14 +5,33 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.tasko.tasko.Repository.ContratoRepository;
 import br.tasko.tasko.Repository.ServicoRepository;
 import br.tasko.tasko.model.Servico;
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 
 @Service
 public class ServicoService {
 
     @Autowired
     private ServicoRepository servicoRepository;
+
+    @Autowired
+    private ContratoRepository contratoRepository;
+
+    @Transactional
+    public void excluirServico(Long id) {
+        // Verifica se o serviço existe
+        Servico servico = servicoRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Serviço não encontrado"));
+
+        // Exclui os contratos associados ao serviço
+        contratoRepository.deleteAllByServico(servico);
+
+        // Exclui o serviço
+        servicoRepository.delete(servico);
+    }
 
     // Cadastrar um novo serviço
     public Servico cadastrarServico(Servico servico) {
@@ -39,11 +58,6 @@ public class ServicoService {
         servico.setValor(servicoAtualizado.getValor());
         servico.setStatus(servicoAtualizado.getStatus());
         return servicoRepository.save(servico);
-    }
-
-    // Deletar serviço
-    public void deletarServico(Long id) {
-        servicoRepository.deleteById(id);
     }
 
     // Buscar serviços por ID do prestador
