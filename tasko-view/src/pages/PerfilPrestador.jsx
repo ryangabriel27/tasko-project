@@ -94,6 +94,10 @@ const PerfilPrestador = () => {
     return (
         <>
             <Navbar />
+            {/* Se tirar isso fode tudo, tmj */}
+            <main style={{ marginTop: "60px" }}></main>
+
+            <div></div>
             <div className="profile-section">
                 <div className="profile-info">
                     <img

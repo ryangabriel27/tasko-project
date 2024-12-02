@@ -168,4 +168,8 @@ body {
     .busca-box input{
         font-size: 10.5px;
     }
+
+    .categoria-header h2{
+        font-size: 18px;
+    }
 }

@@ -130,7 +130,7 @@ const Home = () => {
                         <h3>Você também pode gostar de:</h3>
                     </div>
                     <div className="carousel-content" id="carouselContent">
-                        {randomProviders.slice(7, 21).map((item, index) => (
+                        {randomProviders.slice(0, 21).map((item, index) => (
                             <CarouselCard
                                 key={index}
                                 image={item.usuario.foto || image1} // Use a imagem padrão caso não tenha
