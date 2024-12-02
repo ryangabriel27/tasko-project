@@ -8,12 +8,18 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.tasko.tasko.Repository.AvaliacaoRepository;
 import br.tasko.tasko.Repository.CategoriaRepository;
+import br.tasko.tasko.Repository.ContratoRepository;
 import br.tasko.tasko.Repository.PrestadorRepository;
+import br.tasko.tasko.Repository.ServicoRepository;
 import br.tasko.tasko.Repository.UserRepository;
 import br.tasko.tasko.model.Categoria;
 import br.tasko.tasko.model.Prestador;
+import br.tasko.tasko.model.Servico;
 import br.tasko.tasko.model.User;
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 
 @Service
 public class PrestadorService {
@@ -26,6 +32,15 @@ public class PrestadorService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private AvaliacaoRepository avaliacaoRepository;
+
+    @Autowired
+    private ServicoRepository servicoRepository;
+
+    @Autowired
+    private ContratoRepository contratoRepository;
 
     public List<Prestador> listarTodosPrestadores() {
         return prestadorRepository.findAll();
@@ -85,6 +100,31 @@ public class PrestadorService {
         prestador.setLinks(prestadorAtualizado.getLinks());
 
         return prestadorRepository.save(prestador);
+    }
+
+    @Transactional
+    public void excluirPrestador(Long prestadorId) {
+        // Verifica se o prestador existe
+        Prestador prestador = prestadorRepository.findById(prestadorId)
+                .orElseThrow(() -> new EntityNotFoundException("Prestador não encontrado"));
+
+        // 1. Excluir avaliações associadas
+        avaliacaoRepository.deleteAllByPrestador(prestador);
+
+        // 2. Excluir contratos associados aos serviços do prestador
+        List<Servico> servicos = servicoRepository.findAllByPrestador(prestador);
+        for (Servico servico : servicos) {
+            contratoRepository.deleteAllByServico(servico);
+        }
+
+        // 3. Excluir serviços associados ao prestador
+        servicoRepository.deleteAllByPrestador(prestador);
+
+        // 4. Excluir o usuário associado ao prestador
+        // userRepository.delete(prestador.getUsuario());
+
+        // 5. Excluir o próprio prestador
+        prestadorRepository.delete(prestador);
     }
 
 }

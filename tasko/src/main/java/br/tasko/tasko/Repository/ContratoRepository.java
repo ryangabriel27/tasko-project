@@ -21,4 +21,5 @@ public interface ContratoRepository extends JpaRepository<Contrato, Long> {
 
     @Query("SELECT c FROM Contrato c WHERE c.servico.prestador.id = :prestadorId")
     List<Contrato> findByPrestadorId(@Param("prestadorId") Long prestadorId);
+
 }

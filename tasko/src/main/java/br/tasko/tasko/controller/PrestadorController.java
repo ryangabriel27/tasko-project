@@ -3,7 +3,9 @@ package br.tasko.tasko.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.tasko.tasko.model.Prestador;
 import br.tasko.tasko.service.PrestadorService;
+import jakarta.persistence.EntityNotFoundException;
 
 @RestController
 @RequestMapping("/api/prestadores")
@@ -95,12 +98,27 @@ public class PrestadorController {
         }
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> excluirPrestador(@PathVariable Long id) {
+        try {
+            prestadorService.excluirPrestador(id); // Chama o serviço para excluir
+            return ResponseEntity.ok("Prestador e dados associados excluídos com sucesso.");
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Prestador não encontrado.");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Erro ao excluir prestador: " + e.getMessage());
+        }
+    }
+
     // @GetMapping("/buscar-por-nome")
-    // public ResponseEntity<List<Prestador>> buscarPorNome(@RequestParam(required = false) String nome) {
-    //     List<Prestador> prestadores = prestadorService.buscarPrestadoresPorNome(nome);
-    //     if (prestadores.isEmpty()) {
-    //         return ResponseEntity.noContent().build();
-    //     }
-    //     return ResponseEntity.ok(prestadores);
+    // public ResponseEntity<List<Prestador>> buscarPorNome(@RequestParam(required =
+    // false) String nome) {
+    // List<Prestador> prestadores =
+    // prestadorService.buscarPrestadoresPorNome(nome);
+    // if (prestadores.isEmpty()) {
+    // return ResponseEntity.noContent().build();
+    // }
+    // return ResponseEntity.ok(prestadores);
     // }
 }
