@@ -137,25 +137,25 @@ const MeusServicosContratados = () => {
 
                 <div className="tabs">
                     <button
-                        className={`tab ${abaAtiva === 'PENDENTE' ? 'tab-active' : ''}`}
+                        className={`tab-button ${abaAtiva === 'PENDENTE' ? 'active' : ''}`}
                         onClick={() => setAbaAtiva('PENDENTE')}
                     >
                         Pendente
                     </button>
                     <button
-                        className={`tab ${abaAtiva === 'EM ANDAMENTO' ? 'tab-active' : ''}`}
+                        className={`tab-button ${abaAtiva === 'EM ANDAMENTO' ? 'active' : ''}`}
                         onClick={() => setAbaAtiva('EM ANDAMENTO')}
                     >
                         Em Andamento
                     </button>
                     <button
-                        className={`tab ${abaAtiva === 'CONCLUIDO' ? 'tab-active' : ''}`}
+                        className={`tab-button ${abaAtiva === 'CONCLUIDO' ? 'active' : ''}`}
                         onClick={() => setAbaAtiva('CONCLUIDO')}
                     >
                         Concluído
                     </button>
                     <button
-                        className={`tab ${abaAtiva === 'FINALIZADO' ? 'tab-active' : ''}`}
+                        className={`tab-button ${abaAtiva === 'FINALIZADO' ? 'active' : ''}`}
                         onClick={() => setAbaAtiva('FINALIZADO')}
                     >
                         Finalizado
