@@ -182,7 +182,7 @@ body {
     display: none; /* WebKit */
 }
 
-.carousel-card {
+.carousel-card2 {
     flex: 0 0 auto;
     width: 250px;
     border: 1px solid #BCBCBC;
@@ -200,7 +200,7 @@ body {
     transition: background-size 0.4s ease;
 }
 
-.carousel-card:hover {
+.carousel-card2:hover {
     transform: scale(1.05);
     transform: translateY(-5px);
     background-position: left bottom; 
@@ -210,7 +210,7 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.carousel-card img {
+.carousel-card2 img {
     width: 100%;
     height: 200px;
     object-fit: cover;
@@ -374,3 +374,112 @@ body {
     color: #242A36;
     background: #510EF3;
   }
+
+
+/* Responsividade para telas menores que 768px */
+@media (max-width: 768px) {
+    /* Centralizar o texto de "Bem-vindo" e a seção principal */
+    h1.lightBack.dashboardMargin {
+        font-size: 22px; /* Aumentar o tamanho da fonte */
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .container-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Centraliza o conteúdo */
+        padding: 10px;
+    }
+
+    .inicio-container {
+        width: 100%; /* Para ajustar ao tamanho da tela */
+        max-width: 900px; /* Limita o tamanho para centralização */
+        text-align: center;
+    }
+
+    .inicio-container .container-header .title h2 {
+        font-size: 18px;
+    }
+
+    /* Ajustar layout e tamanho dos cartões */
+    .card-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* Uma coluna em telas menores */
+        gap: 20px; /* Espaçamento maior entre os cartões */
+        justify-items: center; /* Centraliza os cartões horizontalmente */
+        width: 100%; /* Garante que a grade ocupe a largura total */
+        max-width: 1200px; /* Aumenta a largura máxima */
+    }
+
+    .category-card2 {
+        width: 100%; /* Cartões ocupam a largura total */
+        max-width: 450px; /* Aumentar o tamanho dos cartões */
+        padding: 20px; /* Espaçamento interno */
+        border-radius: 10px; /* Cantos arredondados */
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Sombra para destaque */
+        transition: transform 0.3s ease-in-out; /* Animação ao passar o mouse */
+        white-space: nowrap; /* Garante que o texto fique em uma linha */
+        overflow: hidden; /* Oculta texto que exceder o limite */
+        text-overflow: ellipsis; /* Adiciona reticências ao texto que exceder */
+    }
+
+    .carousel-card2:hover {
+        transform: scale(1.05);
+        transform: translateY(-5px);
+        background-position: left bottom; 
+        background-size: 250%;
+        transition: background-position 0.3s ease; 
+        transition: background-size 0.4s ease;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+
+    .category-card img {
+        width: 100%; /* Imagem ocupa toda a largura do cartão */
+        height: auto;
+        border-radius: 8px;
+    }
+
+    .category-card .card-text {
+        font-size: 16px; /* Texto maior */
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    /* Ajustar o carrossel */
+    .carousel-container {
+        width: 100%;
+        max-width: 650px; /* Mantém o carrossel centralizado */
+        margin: 30px auto; /* Espaçamento vertical */
+        text-align: center;
+    }
+
+    .carousel-title h3 {
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+
+    .carousel-content {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto; /* Rolagem horizontal */
+        gap: 15px; /* Espaçamento entre os cartões */
+        padding: 10px;
+    }
+
+    .carousel-content::-webkit-scrollbar {
+        display: none; /* Ocultar barra de rolagem */
+    }
+
+    .carousel-card2 {
+        width: 100%; /* Aumentar o tamanho dos cartões no carrossel */
+        max-width: 150px;
+    }
+
+    /* Ajustar botões */
+    button {
+        font-size: 18px;
+        padding: 12px 20px;
+    }
+}

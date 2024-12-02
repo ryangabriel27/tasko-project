@@ -11,7 +11,7 @@ const CarouselCard = ({ image, name, profession, rating, id }) => {
 
   return (
     <div 
-      className="carousel-card"
+      className="carousel-card2"
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >

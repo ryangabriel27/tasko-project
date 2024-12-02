@@ -128,7 +128,7 @@ const Home = () => {
                     <div className="carousel-title">
                         <h3>Você também pode gostar de:</h3>
                     </div>
-                    <div className="carousel-content" ref={carouselContentRef}>
+                    <div className="carousel-content" id="carouselContent">
                         {randomProviders.slice(7, 21).map((item, index) => (
                             <CarouselCard
                                 key={index}

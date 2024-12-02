@@ -99,7 +99,7 @@ const PerfilPrestador = () => {
 
             <div></div>
             <div className="profile-section">
-                <div className="profile-info">
+                <div className="profile-info3">
                     <img
                         src={prestador.usuario.foto || image}
                         alt="Foto de Perfil"
