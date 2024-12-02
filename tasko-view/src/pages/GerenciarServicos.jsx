@@ -119,6 +119,11 @@ const GerenciarMeusServicos = () => {
     return (
         <>
             <Header />
+            
+            {/* Se tirar isso fode tudo, tmj */}
+            <main style={{ marginTop: "60px" }}>
+
+            </main>
             <div className="dashboard">
                 <h1 className='title-dashboard'>Gerenciar Meus Serviços</h1>
 

@@ -29,7 +29,7 @@ body {
 }
 
 /* Informações do perfil (foto + descrição) */
-.profile-info {
+.profile-info2 {
     display: flex;
     align-items: center;
     flex: 1; /* Permite que essa seção ocupe a maior parte do espaço */
@@ -335,4 +335,124 @@ body {
 
 .delete-button {
     color: #FF0000; /* Vermelho para excluir */
+}
+
+
+/* Estilos para telas pequenas (320x614) */
+@media (max-width: 320px) {
+    .profile-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+    }
+
+    .profile-info2{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .profile-pic2 {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        margin-bottom: 10px;
+        margin-right: 0px;
+        padding: 0px;
+    }
+
+    .absolute-position {
+        position: absolute;
+        top: 140px; /* Distância do topo da tela */
+        right: 80px; /* Distância do lado direito da tela */
+        /* Você pode usar left ou bottom conforme necessário */
+        z-index: 1000; /* Certifique-se de que o botão fique sobre outros elementos */
+    }
+    
+
+    .description {
+        text-align: center;
+        margin-top: 10px;
+        margin-right: 0px;
+    }
+
+    .username {
+        font-size: 18px;
+        font-weight: bold;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .bio {
+        font-size: 14px;
+        color: #666;
+    }
+
+    .rating-perfil {
+        margin-top: 10px;
+        font-size: 14px;
+        text-align: center;
+    }
+
+    .about-me {
+        margin-top: 20px;
+        padding: 0 15px;
+        font-size: 14px;
+    }
+
+    .services-header {
+        margin-top: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .buttons-container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 90%;
+    }
+
+    .add-service-button {
+        padding: 12px;
+        font-size: 14px;
+        text-align: center;
+    }
+
+    .work-section {
+        margin-top: 30px;
+        padding: 0 15px;
+    }
+
+    .work-cards {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .work-card {
+        border: 1px solid #ccc;
+        padding: 15px;
+        border-radius: 8px;
+        text-align: center;
+    }
+
+    .work-title {
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .work-value {
+        font-size: 14px;
+        color: #333;
+    }
+
+    .work-actions {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 10px;
+    }
 }

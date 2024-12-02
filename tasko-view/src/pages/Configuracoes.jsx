@@ -87,6 +87,10 @@ const Configuracoes = () => {
     return (
         <>
             <Navbar />
+            {/* Se tirar isso fode tudo, tmj */}
+            <main style={{ marginTop: "60px" }}>
+
+            </main>
             <div className="config-container lightBack">
                 <h1>Configurações</h1>
                 <div className="config-section">

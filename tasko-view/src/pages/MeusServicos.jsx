@@ -127,6 +127,11 @@ const MeusServicosContratados = () => {
     return (
         <>
             <Header />
+
+            {/* Se tirar isso fode tudo, tmj */}
+            <main style={{ marginTop: "60px" }}>
+
+            </main>
             <div className="dashboard">
                 <h1>Meus Serviços Contratados</h1>
 

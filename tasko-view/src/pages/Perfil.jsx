@@ -116,7 +116,7 @@ const Perfil = () => {
     }, []);
 
     if (loading) {
-        return <Carregando/>
+        return <Carregando />
     }
 
     if (!user) {
@@ -159,28 +159,30 @@ const Perfil = () => {
     return (
         <>
             <Navbar />
-            
-            {/* Se tirar isso fode tudo, tmj */}
-            <main style={{ marginTop: "60px" }}>
 
-            </main>
+            {/* Se tirar isso fode tudo, tmj */}
+            <main style={{ marginTop: "60px" }}></main>
+
             <div>
                 <div className="profile-section">
-                    <div className="profile-info">
+                    {/* Foto do perfil */}
+                    <div className="profile-info2">
                         <img
                             src={user.foto || image}
                             alt="Foto de Perfil"
-                            className="profile-pic"
+                            className="profile-pic2"
                         />
+                        {/* Nome e descrição */}
                         <div className="description">
                             <span className="username">
                                 {user.nome} {user.sobrenome}
                                 <button
-                                    className="config-button-large"
+                                    className="config-button-large absolute-position"
                                     onClick={() => navigate("/configuracoes")}
                                 >
                                     <FontAwesomeIcon icon={faCog} />
                                 </button>
+
                             </span>
                             {isPrestador && (
                                 <p className="bio">
@@ -189,6 +191,8 @@ const Perfil = () => {
                             )}
                         </div>
                     </div>
+
+                    {/* Avaliação */}
                     {isPrestador && (
                         <div className="rating-perfil">
                             <span className="star">&#9733;</span>
@@ -200,6 +204,7 @@ const Perfil = () => {
                 </div>
             </div>
 
+            {/* Sobre mim */}
             {isPrestador && (
                 <>
                     <div className="about-me">
@@ -208,6 +213,8 @@ const Perfil = () => {
                             {prestador.descricaoServicos || "Nenhuma descrição fornecida"}
                         </p>
                     </div>
+
+                    {/* Botões de serviços */}
                     <div className="services-header">
                         <span className="services-title">Seus serviços</span>
                         <div className="buttons-container">
@@ -228,8 +235,9 @@ const Perfil = () => {
                         </div>
                     </div>
 
-
                     <div className="separator-line"></div>
+
+                    {/* Cards de serviços */}
                     <div className="work-section">
                         <div className="work-cards">
                             {servicos.map((servico) => (
@@ -260,6 +268,6 @@ const Perfil = () => {
             )}
         </>
     );
-};
+}
 
 export default Perfil;
