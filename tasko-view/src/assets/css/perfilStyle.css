@@ -110,8 +110,18 @@ body {
     height: 1px; /* Espessura mais fina */
     background-color: #FFA500; /* Cor laranja */
     margin: 20px auto; /* Centraliza horizontalmente e adiciona espaçamento vertical */
+}   
+
+.profile-info3 img{
+    width: 150px;
+    height: 150px;
 }
 
+.profile-info3{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
 
 /* Estilo das caixas em coluna */
 .work-cards {
