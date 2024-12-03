@@ -46,6 +46,11 @@ const Resultados = () => {
     return (
         <>
             <Navbar />
+
+            {/* Se tirar isso fode tudo, tmj */}
+            <main style={{ marginTop: "60px" }}></main>
+
+            <div></div>
             <div>
                 <section className="resultados-section">
                     <h2>Resultados da Busca</h2>

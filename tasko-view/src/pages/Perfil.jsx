@@ -212,6 +212,11 @@ const Perfil = () => {
                         <p className="about-text">
                             {prestador.descricaoServicos || "Nenhuma descrição fornecida"}
                         </p>
+                        <br />
+                        <h3 className="about-title">Portifólio:</h3>
+                        <a className="about-text" href={prestador.links}>
+                            {prestador.links || "Nenhuma descrição fornecida"}
+                        </a>
                     </div>
 
                     {/* Botões de serviços */}
