@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.tasko.tasko.model.Prestador;
 import br.tasko.tasko.model.Servico;
 import br.tasko.tasko.service.ServicoService;
 
@@ -83,5 +84,15 @@ public class ServicoController {
         }
 
         return ResponseEntity.ok(servicosEncontrados);
+    }
+
+    @GetMapping("/random")
+    public ResponseEntity<?> obterServicosAleatorios(int limite) {
+        try {
+            List<Servico> servicos = servicoService.obterServicosAleatorios(limite);
+            return ResponseEntity.ok(servicos);
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("Erro ao buscar servicos aleatórios: " + e.getMessage());
+        }
     }
 }

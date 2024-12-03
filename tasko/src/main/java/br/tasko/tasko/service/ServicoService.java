@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import br.tasko.tasko.Repository.ContratoRepository;
 import br.tasko.tasko.Repository.ServicoRepository;
+import br.tasko.tasko.model.Prestador;
 import br.tasko.tasko.model.Servico;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
@@ -71,5 +72,10 @@ public class ServicoService {
 
     public List<Servico> buscarPorDescricao(String descricao) {
         return servicoRepository.buscarPorDescricao(descricao);
+    }
+
+    // Método para buscar serviços aleatórios
+    public List<Servico> obterServicosAleatorios(int limite) {
+        return servicoRepository.obterServicosAleatorios(limite);
     }
 }
