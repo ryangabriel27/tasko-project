@@ -186,7 +186,7 @@ const Home = () => {
                         username={item.prestador.usuario.nome}
                         usersurname={item.prestador.usuario.sobrenome}
                         id={item.prestador.id} />
-                })}
+                })};
             </section>
         </>
     );
