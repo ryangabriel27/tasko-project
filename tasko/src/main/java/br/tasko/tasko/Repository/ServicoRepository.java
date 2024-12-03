@@ -22,6 +22,9 @@ public interface ServicoRepository extends JpaRepository<Servico, Long> {
     @Query("SELECT s FROM Servico s WHERE LOWER(s.descricao) LIKE LOWER(CONCAT('%', :descricao, '%'))")
     List<Servico> buscarPorDescricao(@Param("descricao") String descricao);
 
+    @Query(value = "SELECT * FROM servicos ORDER BY RANDOM() LIMIT :limite", nativeQuery = true)
+    List<Servico> obterServicosAleatorios(int limite);
+
     List<Servico> findAllByPrestador(Prestador prestador);
 
     @Transactional

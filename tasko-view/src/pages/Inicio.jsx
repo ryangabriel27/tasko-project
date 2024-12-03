@@ -11,11 +11,13 @@ import image2 from "../assets/img/profile2.png";
 import { Helmet } from "react-helmet"; // Importe o Helmet
 import Carregando from "../components/Carregando";
 import backgroundImage from "../assets/img/servicofundo.svg";
+import ServicoCard from "../components/ServicoCard";
 
 const Home = () => {
     const navigate = useNavigate();
     const [user, setUser] = useState(null);
     const [randomProviders, setRandomProviders] = useState([]); // Estado para armazenar os prestadores
+    const [randomServices, setRandomServices] = useState([]); // Estado para armazenar os serviços
     const carouselContentRef = useRef(null); // Ref para acessar o conteúdo do carrossel
 
     useEffect(() => {
@@ -53,6 +55,24 @@ const Home = () => {
                 if (response.ok) {
                     const data = await response.json();
                     setRandomProviders(data); // Salva os dados no estado
+                } else {
+                    console.error('Erro ao buscar prestadores:', response.status);
+                }
+            } catch (error) {
+                console.error('Erro na requisição dos prestadores:', error);
+            }
+        };
+
+        const fetchRandomServices = async () => {
+            try {
+                const response = await fetch('http://localhost:8080/api/servicos/random?limite=6', {
+                    method: 'GET',
+                    credentials: 'include',
+                });
+
+                if (response.ok) {
+                    const dataServices = await response.json();
+                    setRandomServices(dataServices); // Salva os dados no estado
                 } else {
                     console.error('Erro ao buscar prestadores:', response.status);
                 }
@@ -155,6 +175,18 @@ const Home = () => {
                         </button>
                     </div>
                 </div>
+            </section>
+            <section className="grid-services-section">
+                {randomServices.slice(0, 6).map((item, index) => {
+                    <ServicoCard key={index}
+                        image={item.prestador.usuario.foto}
+                        name={item.titulo}
+                        descricao={item.descricao}
+                        categoria={item.prestador.categoria.nome}
+                        username={item.prestador.usuario.nome}
+                        usersurname={item.prestador.usuario.sobrenome}
+                        id={item.prestador.id} />
+                })}
             </section>
         </>
     );
