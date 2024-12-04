@@ -27,7 +27,9 @@ const EditarUsuario = () => {
                     const userData = await response.json();
                     setUser(userData);
 
-                    if (userData.id) {
+                    console.log(userData);
+
+                    if (userData) {
                         fetchPrestadorData(userData.id);
                     }
                 } else {
@@ -146,6 +148,11 @@ const EditarUsuario = () => {
     return (
         <>
             <Navbar />
+
+            {/* Se tirar isso fode tudo, tmj */}
+            <main style={{ marginTop: "60px" }}></main>
+
+            <div></div>
             <div className="editar-container">
                 <h1>Editar Informações</h1>
 

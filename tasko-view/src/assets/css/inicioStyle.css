@@ -104,6 +104,7 @@ body {
     display: flex;
     flex-direction: column;
     width: 185px;
+    margin-left: 40px;
 }
 
 /* Foto de perfil */

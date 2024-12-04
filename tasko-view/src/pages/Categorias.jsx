@@ -39,6 +39,7 @@ const CategoriaPrestadores = () => {
     return (
         <>
             <Navbar />
+            <main style={{ marginTop: "40px" }}></main>
             <div className="categoria-prestadores">
                 <h2>{categoria?.nome || "Prestadores"}</h2>
                 <div className="prestadores-lista">
