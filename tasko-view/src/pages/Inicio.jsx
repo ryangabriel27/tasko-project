@@ -12,6 +12,7 @@ import { Helmet } from "react-helmet"; // Importe o Helmet
 import Carregando from "../components/Carregando";
 import backgroundImage from "../assets/img/servicofundo.svg";
 import ServicoCard from "../components/ServicoCard";
+import Footer from "../components/Footer";
 
 const Home = () => {
     const navigate = useNavigate();
@@ -65,14 +66,16 @@ const Home = () => {
 
         const fetchRandomServices = async () => {
             try {
-                const response = await fetch('http://localhost:8080/api/servicos/random?limite=10', {
+                const response = await fetch('http://localhost:8080/api/servicos/random?limite=6', {
                     method: 'GET',
                     credentials: 'include',
                 });
 
                 if (response.ok) {
                     const dataServices = await response.json();
+                    console.log(dataServices);
                     setRandomServices(dataServices); // Salva os dados no estado
+                    console.log(randomProviders);
                 } else {
                     console.error('Erro ao buscar prestadores:', response.status);
                 }
@@ -81,13 +84,10 @@ const Home = () => {
             }
         };
 
+        fetchRandomServices();
         fetchRandomProviders();
     }, []);
 
-    const handleClick = () => {
-        // Redireciona para a página de publicações
-        navigate('/publicacoes');
-    };
 
     const handleScroll = (direction) => {
         if (carouselContentRef.current) {
@@ -176,18 +176,30 @@ const Home = () => {
                     </div>
                 </div>
             </section>
-            <section className="grid-services-section">
-                {randomServices.slice(0, 6).map((item, index) => {
-                    <ServicoCard key={index}
-                        image={item.prestador.usuario.foto}
-                        name={item.titulo}
-                        descricao={item.descricao}
-                        categoria={item.prestador.categoria.nome}
-                        username={item.prestador.usuario.nome}
-                        usersurname={item.prestador.usuario.sobrenome}
-                        id={item.prestador.id} />
-                })};
+            <section className="grid-services-container">
+                <div className="grid-services-title">
+                    <h3>O que você precisa?</h3>
+                </div>
+                <div className="grid-services-section">
+                    {randomServices.length > 0 ? (
+                        randomServices.map((item, index) => (
+                            <ServicoCard
+                                key={index}
+                                image={item.prestador.usuario.foto}
+                                name={item.titulo}
+                                descricao={item.descricao}
+                                categoria={item.prestador.categoria.nome}
+                                username={item.prestador.usuario.nome}
+                                usersurname={item.prestador.usuario.sobrenome}
+                                id={item.prestador.id}
+                            />
+                        ))
+                    ) : (
+                        <p>Não há serviços</p>
+                    )}
+                </div>
             </section>
+            <Footer/>
         </>
     );
 };

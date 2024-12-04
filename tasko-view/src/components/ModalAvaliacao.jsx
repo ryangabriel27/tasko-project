@@ -33,10 +33,13 @@ const ModalAvaliacao = ({ userId, contrato, onSubmit, onClose }) => {
                     <textarea
                         value={comentario}
                         onChange={(e) => setComentario(e.target.value)}
+                        
                     />
                 </label>
-                <button onClick={handleSubmit}>Enviar Avaliação</button>
-                <button onClick={onClose}>Cancelar</button>
+                <div className="modal-buttons">
+                    <button onClick={handleSubmit}>Enviar Avaliação</button>
+                    <button onClick={onClose}>Cancelar</button>
+                </div>
             </div>
         </div>
     );

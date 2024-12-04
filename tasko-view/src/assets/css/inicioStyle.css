@@ -6,7 +6,7 @@ body {
     font-family: 'Figtree', sans-serif;
     margin: 0;
     padding: 0;
-    font-weight: 300; 
+    font-weight: 300;
 }
 
 /* Seção de Categorias */
@@ -59,7 +59,7 @@ body {
 
 /* Estilo do card */
 
-.card-inicio{
+.card-inicio {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -74,19 +74,19 @@ body {
     transform: scale(1.05);
 }
 
-.profile-info{
+.profile-info {
     display: flex;
     flex-direction: row;
     align-items: center;
 }
 
-.servico-info{
+.servico-info {
     display: flex;
     flex-direction: row;
     align-items: start;
 }
 
-.servico-info p{
+.servico-info p {
     margin: 0px -30px !important;
     font-size: 19px;
     overflow: hidden;
@@ -117,9 +117,10 @@ body {
 
 /* Informações do perfil */
 
-.info{
+.info {
     margin-left: 0.7em;
 }
+
 .info h3 {
     font-size: 1.3rem;
     color: white;
@@ -139,7 +140,7 @@ body {
     gap: 10px;
 }
 
-.rating i{
+.rating i {
     color: #F7C216;
     font-size: 20px;
 }
@@ -150,7 +151,7 @@ body {
     font-weight: 100;
 }
 
-.arrow i{
+.arrow i {
     font-size: 1rem;
     color: #FF7F0F;
     text-decoration: none;
@@ -162,7 +163,7 @@ body {
     padding: 0 20px;
 }
 
-.carousel-title{
+.carousel-title {
     font-family: 'Figtree', sans-serif;
     color: #F50035;
     font-size: 30px;
@@ -176,11 +177,12 @@ body {
     padding: 10px 0;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
-    -ms-overflow-style: none;  
+    -ms-overflow-style: none;
 }
 
 .carousel-content::-webkit-scrollbar {
-    display: none; /* WebKit */
+    display: none;
+    /* WebKit */
 }
 
 .carousel-card2 {
@@ -189,24 +191,27 @@ body {
     border: 1px solid #BCBCBC;
     border-radius: 10px;
     padding: 2em;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
     font-family: 'Figtree', sans-serif;
     margin: 0px 10px;
-    background-image: url('../img/servicofundo.svg'); /* ajuste o caminho conforme necessário */
-    background-size: 00%; /* Ajuste o tamanho conforme necessário */
-    background-position: left bottom; /* Move o fundo para baixo */
+    background-image: url('../img/servicofundo.svg');
+    /* ajuste o caminho conforme necessário */
+    background-size: 00%;
+    /* Ajuste o tamanho conforme necessário */
+    background-position: left bottom;
+    /* Move o fundo para baixo */
     background-repeat: no-repeat;
-    transition: background-position 0.3s ease; 
+    transition: background-position 0.3s ease;
     transition: background-size 0.4s ease;
 }
 
 .carousel-card2:hover {
     transform: scale(1.05);
     transform: translateY(-5px);
-    background-position: left bottom; 
+    background-position: left bottom;
     background-size: 250%;
-    transition: background-position 0.3s ease; 
+    transition: background-position 0.3s ease;
     transition: background-size 0.4s ease;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
@@ -218,19 +223,19 @@ body {
     border-radius: 8px;
 }
 
-.carousel-card-header{
+.carousel-card-header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
 }
 
-.rating-carousel i{
+.rating-carousel i {
     color: #F7C216;
     font-size: 22px;
 }
 
-.profile-info img{
+.profile-info img {
     width: 67px;
     height: 67px;
 }
@@ -238,10 +243,12 @@ body {
 .carousel-card-content {
     margin-top: 10px;
 }
+
 .carousel-card-content h3 {
     font-size: 20px;
     margin: 0;
 }
+
 .carousel-card-content p {
     font-size: 15px;
     margin: 0;
@@ -253,6 +260,7 @@ body {
     color: #fdffff !important;
     transition: color 0.3s ease;
 }
+
 .carousel-card-content p.hover-color {
     color: #fdffff !important;
     transition: color 0.3s ease;
@@ -277,12 +285,12 @@ body {
     cursor: pointer;
 }
 
-.carousel-card-button{
+.carousel-card-button {
     display: flex;
     justify-content: flex-end;
 }
 
-.carousel-card-button i{
+.carousel-card-button i {
     color: #F50035;
 }
 
@@ -292,7 +300,7 @@ body {
     border: 1px solid #BCBCBC;
     border-radius: 10px;
     padding: 2em;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
     font-family: 'Figtree', sans-serif;
     margin: 0px 10px;
@@ -313,19 +321,19 @@ body {
     border-radius: 8px;
 }
 
-.servico-card-header{
+.servico-card-header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
 }
 
-.rating-servico i{
+.rating-servico i {
     color: #F7C216;
     font-size: 22px;
 }
 
-.profile-info img{
+.profile-info img {
     width: 67px;
     height: 67px;
 }
@@ -334,10 +342,12 @@ body {
     margin-top: 10px;
     transition: color 0.3s ease;
 }
+
 .servico-card-content h3 {
     font-size: 20px;
     margin: 0;
 }
+
 .servico-card-content p {
     font-size: 15px;
     margin: 0;
@@ -348,15 +358,17 @@ body {
     color: #fdffff !important;
     transition: color 0.3s ease;
 }
+
 .infoServico strong.hover-color {
     color: #fdffff !important;
     transition: color 0.3s ease;
-} 
+}
 
 .servico-card-content h1.hover-color {
     color: #fdffff !important;
     transition: color 0.3s ease;
 }
+
 .servico-card-content p.hover-color {
     color: #fdffff !important;
     transition: color 0.3s ease;
@@ -374,14 +386,37 @@ body {
 ::selection {
     color: #242A36;
     background: #510EF3;
-  }
+}
+
+.grid-services-section {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.grid-services-title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FF7F0F;
+    font-size: 30px;
+}
+
+.grid-services-container{
+    display: flex;
+    padding: 0 8.4em;
+    margin: 20px auto;
+    flex-direction: column;
+}
 
 
 /* Responsividade para telas menores que 768px */
 @media (max-width: 768px) {
+
     /* Centralizar o texto de "Bem-vindo" e a seção principal */
     h1.lightBack.dashboardMargin {
-        font-size: 22px; /* Aumentar o tamanho da fonte */
+        font-size: 22px;
+        /* Aumentar o tamanho da fonte */
         text-align: center;
         margin-bottom: 20px;
     }
@@ -389,13 +424,16 @@ body {
     .container-section {
         display: flex;
         flex-direction: column;
-        align-items: center; /* Centraliza o conteúdo */
+        align-items: center;
+        /* Centraliza o conteúdo */
         padding: 10px;
     }
 
     .inicio-container {
-        width: 100%; /* Para ajustar ao tamanho da tela */
-        max-width: 900px; /* Limita o tamanho para centralização */
+        width: 100%;
+        /* Para ajustar ao tamanho da tela */
+        max-width: 900px;
+        /* Limita o tamanho para centralização */
         text-align: center;
     }
 
@@ -406,44 +444,60 @@ body {
     /* Ajustar layout e tamanho dos cartões */
     .card-grid {
         display: grid;
-        grid-template-columns: 1fr 1fr; /* Uma coluna em telas menores */
-        gap: 20px; /* Espaçamento maior entre os cartões */
-        justify-items: center; /* Centraliza os cartões horizontalmente */
-        width: 100%; /* Garante que a grade ocupe a largura total */
-        max-width: 1200px; /* Aumenta a largura máxima */
+        grid-template-columns: 1fr 1fr;
+        /* Uma coluna em telas menores */
+        gap: 20px;
+        /* Espaçamento maior entre os cartões */
+        justify-items: center;
+        /* Centraliza os cartões horizontalmente */
+        width: 100%;
+        /* Garante que a grade ocupe a largura total */
+        max-width: 1200px;
+        /* Aumenta a largura máxima */
     }
 
     .category-card2 {
-        width: 100%; /* Cartões ocupam a largura total */
-        max-width: 450px; /* Aumentar o tamanho dos cartões */
-        padding: 20px; /* Espaçamento interno */
-        border-radius: 10px; /* Cantos arredondados */
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Sombra para destaque */
-        transition: transform 0.3s ease-in-out; /* Animação ao passar o mouse */
-        white-space: nowrap; /* Garante que o texto fique em uma linha */
-        overflow: hidden; /* Oculta texto que exceder o limite */
-        text-overflow: ellipsis; /* Adiciona reticências ao texto que exceder */
+        width: 100%;
+        /* Cartões ocupam a largura total */
+        max-width: 450px;
+        /* Aumentar o tamanho dos cartões */
+        padding: 20px;
+        /* Espaçamento interno */
+        border-radius: 10px;
+        /* Cantos arredondados */
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        /* Sombra para destaque */
+        transition: transform 0.3s ease-in-out;
+        /* Animação ao passar o mouse */
+        white-space: nowrap;
+        /* Garante que o texto fique em uma linha */
+        overflow: hidden;
+        /* Oculta texto que exceder o limite */
+        text-overflow: ellipsis;
+        /* Adiciona reticências ao texto que exceder */
     }
 
     .carousel-card2:hover {
         transform: scale(1.05);
         transform: translateY(-5px);
-        background-position: left bottom; 
+        background-position: left bottom;
         background-size: 250%;
-        transition: background-position 0.3s ease; 
+        transition: background-position 0.3s ease;
         transition: background-size 0.4s ease;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
 
 
     .category-card img {
-        width: 100%; /* Imagem ocupa toda a largura do cartão */
+        width: 100%;
+        /* Imagem ocupa toda a largura do cartão */
         height: auto;
         border-radius: 8px;
     }
 
     .category-card .card-text {
-        font-size: 16px; /* Texto maior */
+        font-size: 16px;
+        /* Texto maior */
         text-align: center;
         margin-top: 10px;
     }
@@ -451,8 +505,10 @@ body {
     /* Ajustar o carrossel */
     .carousel-container {
         width: 100%;
-        max-width: 650px; /* Mantém o carrossel centralizado */
-        margin: 30px auto; /* Espaçamento vertical */
+        max-width: 650px;
+        /* Mantém o carrossel centralizado */
+        margin: 30px auto;
+        /* Espaçamento vertical */
         text-align: center;
     }
 
@@ -464,17 +520,21 @@ body {
     .carousel-content {
         display: flex;
         flex-wrap: nowrap;
-        overflow-x: auto; /* Rolagem horizontal */
-        gap: 15px; /* Espaçamento entre os cartões */
+        overflow-x: auto;
+        /* Rolagem horizontal */
+        gap: 15px;
+        /* Espaçamento entre os cartões */
         padding: 10px;
     }
 
     .carousel-content::-webkit-scrollbar {
-        display: none; /* Ocultar barra de rolagem */
+        display: none;
+        /* Ocultar barra de rolagem */
     }
 
     .carousel-card2 {
-        width: 100%; /* Aumentar o tamanho dos cartões no carrossel */
+        width: 100%;
+        /* Aumentar o tamanho dos cartões no carrossel */
         max-width: 150px;
     }
 

@@ -104,6 +104,7 @@ const GerenciarMeusServicos = () => {
             if (response.ok) {
                 alert(`Contrato ${action === 'finalizar' ? 'finalizado' : action === 'cancelar' ? 'cancelado' : action === 'aceitar' ? 'aceito' : 'recusado'} com sucesso!`);
                 setContratos(contratos.filter((contrato) => contrato.id !== id));
+                window.location.reload();
             } else {
                 alert('Erro ao atualizar contrato.');
             }
@@ -119,7 +120,7 @@ const GerenciarMeusServicos = () => {
     return (
         <>
             <Header />
-            
+
             {/* Se tirar isso fode tudo, tmj */}
             <main style={{ marginTop: "60px" }}>
 

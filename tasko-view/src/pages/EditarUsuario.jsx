@@ -11,6 +11,7 @@ const EditarUsuario = () => {
     const [loading, setLoading] = useState(true);
     const [editType, setEditType] = useState("usuario");
     const [categorias, setCategorias] = useState([]);
+    const [errors, setErrors] = useState({});
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -79,6 +80,49 @@ const EditarUsuario = () => {
         fetchUserData();
     }, []);
 
+    const handleInputChange = async (e) => {
+        const { name, value } = e.target;
+
+        // Resetando o erro do campo alterado
+        setErrors((prevErrors) => ({ ...prevErrors, [name]: "" }));
+
+        if (name === "cep") {
+            const cep = value.replace(/\D/g, ""); // Remove caracteres não numéricos
+            setUser((prevUser) => ({ ...prevUser, cep }));
+
+            if (cep.length === 8) { // Realiza a busca apenas se o CEP tiver 8 números
+                try {
+                    const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+                    const data = await response.json();
+
+                    if (!data.erro) {
+                        setUser((prevUser) => ({
+                            ...prevUser,
+                            endereco: `${data.logradouro}, ${data.bairro}, ${data.localidade} - ${data.uf}`,
+                        }));
+                    } else {
+                        setUser((prevUser) => ({ ...prevUser, endereco: "" })); // Limpa o endereço
+                        setErrors((prevErrors) => ({
+                            ...prevErrors,
+                            cep: "CEP não encontrado.",
+                        }));
+                    }
+                } catch (error) {
+                    setUser((prevUser) => ({ ...prevUser, endereco: "" })); // Limpa o endereço
+                    setErrors((prevErrors) => ({
+                        ...prevErrors,
+                        cep: "Erro ao consultar o CEP.",
+                    }));
+                }
+            } else if (cep.length === 0) {
+                // Limpa o campo de endereço quando o CEP for apagado
+                setUser((prevUser) => ({ ...prevUser, endereco: "" }));
+            }
+        } else {
+            setUser((prevUser) => ({ ...prevUser, [name]: value }));
+        }
+    };
+
     const handleSave = async () => {
         try {
             // Atualiza o usuário
@@ -99,7 +143,7 @@ const EditarUsuario = () => {
                         method: "PUT",
                         credentials: "include",
                         body: JSON.stringify({
-                            categoria: {id:prestador.categoriaServicos},
+                            categoria: { id: prestador.categoriaServicos },
                             usuario: {
                                 id: user.id
                             },
@@ -172,64 +216,74 @@ const EditarUsuario = () => {
                                 Nome:
                                 <input
                                     type="text"
+                                    name="nome"
                                     value={user.nome}
-                                    onChange={(e) => setUser({ ...user, nome: e.target.value })}
+                                    onChange={handleInputChange}
                                 />
                             </label>
                             <label>
                                 Sobrenome:
                                 <input
                                     type="text"
+                                    name="sobrenome"
                                     value={user.sobrenome}
-                                    onChange={(e) => setUser({ ...user, sobrenome: e.target.value })}
+                                    onChange={handleInputChange}
                                 />
                             </label>
                             <label>
                                 Email:
                                 <input
                                     type="email"
+                                    name="email"
                                     value={user.email}
-                                    onChange={(e) => setUser({ ...user, email: e.target.value })}
+                                    onChange={handleInputChange}
                                 />
                             </label>
-                            <label>
+                            <                            label>
                                 Telefone:
                                 <input
                                     type="text"
+                                    name="telefone"
                                     value={user.telefone}
-                                    onChange={(e) => setUser({ ...user, telefone: e.target.value })}
+                                    onChange={handleInputChange}
                                 />
                             </label>
                             <label>
                                 Data de Nascimento:
                                 <input
                                     type="date"
+                                    name="data_nasc"
                                     value={user.data_nasc}
-                                    onChange={(e) => setUser({ ...user, data_nasc: e.target.value })}
+                                    onChange={handleInputChange}
                                 />
                             </label>
                             <label>
                                 Endereço:
                                 <input
                                     type="text"
+                                    name="endereco"
                                     value={user.endereco}
-                                    onChange={(e) => setUser({ ...user, endereco: e.target.value })}
+                                    onChange={handleInputChange}
+                                    disabled
                                 />
                             </label>
                             <label>
                                 CEP:
                                 <input
                                     type="text"
+                                    name="cep"
                                     value={user.cep}
-                                    onChange={(e) => setUser({ ...user, cep: e.target.value })}
+                                    onChange={handleInputChange}
                                 />
+                                {errors.cep && <span className="error">{errors.cep}</span>}
                             </label>
                             <label>
                                 CPF:
                                 <input
                                     type="text"
+                                    name="cpf"
                                     value={user.cpf}
-                                    onChange={(e) => setUser({ ...user, cpf: e.target.value })}
+                                    onChange={handleInputChange}
                                     disabled
                                 />
                             </label>
@@ -237,8 +291,9 @@ const EditarUsuario = () => {
                                 Foto:
                                 <input
                                     type="url"
+                                    name="foto"
                                     value={user.foto}
-                                    onChange={(e) => setUser({ ...user, foto: e.target.value })}
+                                    onChange={handleInputChange}
                                 />
                             </label>
                         </form>
@@ -253,7 +308,7 @@ const EditarUsuario = () => {
                                 className="se-class"
                                 name="categoriaServicos"
                                 required
-                                onChange={(e) => setPrestador({...prestador, categoriaServicos: e.target.value})}
+                                onChange={(e) => setPrestador({ ...prestador, categoriaServicos: e.target.value })}
                                 defaultValue={prestador.categoria.id}
                             >
                                 <option value="" disabled>

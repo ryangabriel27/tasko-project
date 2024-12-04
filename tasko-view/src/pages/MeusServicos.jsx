@@ -72,8 +72,9 @@ const MeusServicosContratados = () => {
                 });
 
                 if (response.ok) {
-                    alert(`Contrato ${action === 'finalizar' ? 'finalizado' : action === 'cancelar' ? 'cancelado' : action === 'aceitar' ? 'aceito' : 'recusado'} com sucesso!`);
+                    alert(`Contrato ${action === 'finalizar' ? 'finalizado' : action === 'cancelar' ? 'cancelado' : action === 'aceitar' ? 'aceito' : 'encerrado'} com sucesso!`);
                     setContratos(contratos.filter((c) => c.id !== contrato.id));
+                    window.location.reload();
                 } else {
                     alert('Erro ao atualizar contrato.');
                 }
@@ -90,7 +91,7 @@ const MeusServicosContratados = () => {
             alert('Todos os campos são obrigatórios');
             return;
         }
-    
+
         try {
             const response = await fetch(`http://localhost:8080/api/avaliacoes`, {
                 method: 'POST',
@@ -103,7 +104,7 @@ const MeusServicosContratados = () => {
                     prestador: { id: avaliacao.prestadorId },
                 }),
             });
-    
+
             if (response.ok) {
                 alert('Avaliação enviada com sucesso!');
                 setModalAvaliacao(null); // Fecha o modal

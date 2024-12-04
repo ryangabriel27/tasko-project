@@ -6,6 +6,7 @@ import image from "../assets/img/perfil1.jfif";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCog, faPencilAlt, faTrashAlt, faPlus, faThLarge } from "@fortawesome/free-solid-svg-icons";
 import Carregando from "../components/Carregando";
+import Footer from "../components/Footer";
 
 const Perfil = () => {
     const navigate = useNavigate();
@@ -214,7 +215,7 @@ const Perfil = () => {
                         </p>
                         <br />
                         <h3 className="about-title">Portifólio:</h3>
-                        <a className="about-text" href={prestador.links}>
+                        <a className="about-text about-link" href={prestador.links}>
                             {prestador.links || "Nenhuma descrição fornecida"}
                         </a>
                     </div>
@@ -271,6 +272,7 @@ const Perfil = () => {
                     </div>
                 </>
             )}
+            <Footer />
         </>
     );
 }

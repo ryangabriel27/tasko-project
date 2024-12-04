@@ -67,6 +67,8 @@ const EditarServico = () => {
     return (
         <>
             <Navbar />
+            {/* Se tirar isso fode tudo, tmj */}
+            <main style={{ marginTop: "60px" }}></main>
             <div>
                 <h2>Editar Serviço</h2>
                 <form>
