@@ -65,7 +65,7 @@ const Home = () => {
 
         const fetchRandomServices = async () => {
             try {
-                const response = await fetch('http://localhost:8080/api/servicos/random?limite=6', {
+                const response = await fetch('http://localhost:8080/api/servicos/random?limite=10', {
                     method: 'GET',
                     credentials: 'include',
                 });
