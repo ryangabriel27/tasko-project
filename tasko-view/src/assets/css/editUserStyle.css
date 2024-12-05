@@ -1,0 +1,52 @@
+.editar-container{
+    padding: 2em;
+}
+
+.button-container{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.button-container button{
+    width: 15em;
+    height: 5em;
+    padding: 1em;
+    border-radius: 10px;
+    font-family: 'Figtree', sans-serif;
+    font-weight: bold;
+    color: white;
+}
+.button-container button:hover{
+    transition: 0.4s;
+    transform: scale(1.05);
+}
+
+.btn-basicInfo {
+    background-color: #4F00A3;
+    cursor: pointer;
+}
+
+.btn-prestInfo {
+    background-color: #FF7F0F;
+    cursor: pointer;
+}
+
+.btn-edit-save{
+    margin-top: 1em;
+    width: 10em;
+    border-radius: 10px;
+    border: 2px solid #3c0d6d;
+    background-color: #4F00A3;
+    padding: 1em;
+    color: white;
+    font-family: 'Figtree', sans-serif;
+    font-size: 12px;
+}
+
+.btn-edit-save:hover{
+    background-color: #3c0d6d;
+    transform: scale(1.06);
+    transition: 0.3s;
+    cursor: pointer;
+}

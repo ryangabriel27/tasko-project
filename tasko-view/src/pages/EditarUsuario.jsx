@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Carregando from "../components/Carregando";
+import "../assets/css/editUserStyle.css";
+import InputField from "react-input-mask";
+import { validarCPF, validarEmail, validarTelefone, validarCEP, verificarMaioridade } from "../components/Auth";
 
 const EditarUsuario = () => {
     const navigate = useNavigate();
@@ -124,6 +127,41 @@ const EditarUsuario = () => {
     };
 
     const handleSave = async () => {
+        console.log(user);
+
+        // Validação dos campos
+        const newErrors = {};
+        if (!user.nome.trim()) newErrors.nome = "Nome é obrigatório.";
+        if (!user.sobrenome.trim()) newErrors.sobrenome = "Sobrenome é obrigatório.";
+
+        const cpfError = validarCPF(user.cpf);
+        if (cpfError) newErrors.cpf = cpfError;
+
+        const telefoneError = validarTelefone(user.telefone);
+        if (telefoneError) newErrors.telefone = telefoneError;
+
+        const emailError = validarEmail(user.email);
+        if (emailError) newErrors.email = emailError;
+
+        if (!user.senha.trim()) newErrors.senha = "Senha é obrigatória.";
+
+        if (!user.data_nasc) {
+            newErrors.data_nasc = "Data de nascimento é obrigatória.";
+        } else {
+            const maioridadeError = verificarMaioridade(user.data_nasc);
+            if (maioridadeError) newErrors.data_nasc = maioridadeError;
+        }
+
+        const cepError = validarCEP(user.cep);
+        if (cepError) newErrors.cep = cepError;
+
+        if (!user.endereco.trim()) newErrors.endereco = "Endereço é obrigatório.";
+
+        setErrors(newErrors);
+
+        // Se houver erros, não prosseguir com o envio
+        if (Object.keys(newErrors).length > 0) return;
+
         try {
             // Atualiza o usuário
             const userResponse = await fetch(`http://localhost:8080/api/users/${user.id}`, {
@@ -201,9 +239,9 @@ const EditarUsuario = () => {
                 <h1>Editar Informações</h1>
 
                 <div className="button-container">
-                    <button onClick={() => setEditType("usuario")}>Editar Informações Básicas</button>
+                    <button onClick={() => setEditType("usuario")} className="btn-basicInfo">Editar Informações Básicas</button>
                     {isPrestador && prestador && (
-                        <button onClick={() => setEditType("prestador")}>Editar Informações do Prestador</button>
+                        <button onClick={() => setEditType("prestador")} className="btn-prestInfo">Editar Informações do Prestador</button>
                     )}
 
                 </div>
@@ -211,82 +249,99 @@ const EditarUsuario = () => {
                 {editType === "usuario" && (
                     <div className="editar-section">
                         <h2>Informações Básicas</h2>
-                        <form>
-                            <label>
-                                Nome:
-                                <input
-                                    type="text"
-                                    name="nome"
-                                    value={user.nome}
-                                    onChange={handleInputChange}
-                                />
-                            </label>
-                            <label>
-                                Sobrenome:
-                                <input
-                                    type="text"
-                                    name="sobrenome"
-                                    value={user.sobrenome}
-                                    onChange={handleInputChange}
-                                />
-                            </label>
-                            <label>
-                                Email:
-                                <input
-                                    type="email"
-                                    name="email"
-                                    value={user.email}
-                                    onChange={handleInputChange}
-                                />
-                            </label>
-                            <                            label>
-                                Telefone:
-                                <input
-                                    type="text"
-                                    name="telefone"
-                                    value={user.telefone}
-                                    onChange={handleInputChange}
-                                />
-                            </label>
-                            <label>
-                                Data de Nascimento:
-                                <input
-                                    type="date"
-                                    name="data_nasc"
-                                    value={user.data_nasc}
-                                    onChange={handleInputChange}
-                                />
-                            </label>
-                            <label>
-                                Endereço:
-                                <input
-                                    type="text"
-                                    name="endereco"
-                                    value={user.endereco}
-                                    onChange={handleInputChange}
-                                    disabled
-                                />
-                            </label>
-                            <label>
-                                CEP:
-                                <input
-                                    type="text"
-                                    name="cep"
-                                    value={user.cep}
-                                    onChange={handleInputChange}
-                                />
-                                {errors.cep && <span className="error">{errors.cep}</span>}
-                            </label>
-                            <label>
-                                CPF:
-                                <input
-                                    type="text"
-                                    name="cpf"
-                                    value={user.cpf}
-                                    onChange={handleInputChange}
-                                    disabled
-                                />
-                            </label>
+                        <form className="form-edit-user">
+                            <div className="form-group-edit">
+                                <label>
+                                    Nome:
+                                    <input
+                                        type="text"
+                                        name="nome"
+                                        value={user.nome}
+                                        onChange={handleInputChange}
+                                    />
+                                    {errors.nome && <span className="error">{errors.nome}</span>}
+                                </label>
+                                <label>
+                                    Sobrenome:
+                                    <input
+                                        type="text"
+                                        name="sobrenome"
+                                        value={user.sobrenome}
+                                        onChange={handleInputChange}
+                                    />
+                                    {errors.sobrenome && <span className="error">{errors.sobrenome}</span>}
+                                </label>
+                            </div>
+                            <div className="form-group-edit">
+                                <label>
+                                    Email:
+                                    <input
+                                        type="email"
+                                        name="email"
+                                        value={user.email}
+                                        onChange={handleInputChange}
+                                    />
+                                    {errors.email && <span className="error">{errors.email}</span>}
+                                </label>
+                                <label>
+                                    Telefone:
+                                    <InputField
+                                        type="text"
+                                        name="telefone"
+                                        placeholder="Telefone"
+                                        mask="(99) 99999-9999"
+                                        value={user.telefone}
+                                        onChange={handleInputChange}
+                                    />
+                                    {errors.telefone && <span className="error">{errors.telefone}</span>}
+                                </label>
+                            </div>
+                            <div className="form-group-edit">
+                                <label>
+                                    CPF:
+                                    <input
+                                        type="text"
+                                        name="cpf"
+                                        value={user.cpf}
+                                        onChange={handleInputChange}
+                                        disabled
+                                    />
+                                    {errors.cpf && <span className="error">{errors.cpf}</span>}
+                                </label>
+                                <label>
+                                    Data de Nascimento:
+                                    <input
+                                        type="date"
+                                        name="data_nasc"
+                                        value={user.data_nasc}
+                                        onChange={handleInputChange}
+                                    />
+                                    {errors.data_nasc && <span className="error">{errors.data_nasc}</span>}
+                                </label>
+                            </div>
+                            <div className="form-group-edit">
+                                <label>
+                                    Endereço:
+                                    <input
+                                        type="text"
+                                        name="endereco"
+                                        value={user.endereco}
+                                        onChange={handleInputChange}
+                                        disabled
+                                    />
+                                    {errors.endereco && <span className="error">{errors.endereco}</span>}
+                                </label>
+                                <label>
+                                    CEP:
+                                    <input
+                                        type="text"
+                                        name="cep"
+                                        value={user.cep}
+                                        onChange={handleInputChange}
+                                    />
+                                    {errors.cep && <span className="error">{errors.cep}</span>}
+                                </label>
+                            </div>
                             <label>
                                 Foto:
                                 <input
@@ -349,6 +404,7 @@ const EditarUsuario = () => {
                                     type="text"
                                     value={prestador.cnpj}
                                     onChange={(e) => setPrestador({ ...prestador, cnpj: e.target.value })}
+                                    disabled
                                 />
                             </label>
                         </form>
@@ -356,7 +412,7 @@ const EditarUsuario = () => {
                 )}
 
                 <div>
-                    <button onClick={handleSave}>Salvar</button>
+                    <button onClick={handleSave} className="btn-edit-save">Salvar</button>
                 </div>
             </div>
         </>
