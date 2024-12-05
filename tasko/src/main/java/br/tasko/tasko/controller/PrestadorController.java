@@ -31,7 +31,7 @@ public class PrestadorController {
         try {
             Prestador novoPrestador = prestadorService.cadastrarPrestador(prestador);
             return ResponseEntity.ok(novoPrestador);
-        } catch (Exception e) {
+        } catch (RuntimeException e) {
             return ResponseEntity.status(400).body("Erro ao cadastrar prestador: " + e.getMessage());
         }
     }

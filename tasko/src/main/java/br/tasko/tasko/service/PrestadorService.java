@@ -48,6 +48,9 @@ public class PrestadorService {
 
     public Prestador cadastrarPrestador(Prestador prestador) {
         // Verificar se o usuário já é prestador
+        if(prestadorRepository.existsByCnpj(prestador.getCnpj())){
+            throw new RuntimeException("CNPJ já cadastrado!");
+        }
         if (prestadorRepository.findByUsuario(prestador.getUsuario()).isPresent()) {
             throw new RuntimeException("Usuário já é prestador!");
         }
